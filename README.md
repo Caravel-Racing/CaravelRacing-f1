@@ -1,5 +1,5 @@
 
-# Caravel Racing — GitHub Pages template
+# Caravel Racing — Stem Racing
 
 Template minimal para GitHub Pages com páginas: Home, Projects, Project template, Engineering Notebook, Downloads, Contactos.
 
