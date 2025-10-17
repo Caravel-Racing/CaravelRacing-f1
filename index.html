@@ -3,23 +3,28 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1">
-  <title>Caravel Racing — Portfólio</title>
+  <title>Caravel Racing — Website</title>
   <link rel="stylesheet" href="css/styles.css">
 </head>
+<script src="js/body.js"></script>
 <body>
-  <!-- SPLASH / INTRO ANIMATION -->
-  <div id="splash" aria-hidden="false">
-    <div class="splash-content" role="dialog" aria-label="Animação de entrada">
-      <div class="track" aria-hidden="true">
-        <div class="car" id="car"></div>
-      </div>
+  
+  <!-- SPLASH / INTRO FULLSCREEN -->
+<div id="splash" aria-hidden="false">
+  <div class="splash-content" role="dialog" aria-label="Animação de entrada">
+    <h1 class="splash-brand">Caravel Racing</h1>
 
-      <div class="progress-wrap" aria-hidden="true">
-        <div class="progress-bar" id="progressBar"></div>
-        <div class="progress-text" id="progressText">0%</div>
-      </div>
+    <div class="track" aria-hidden="true">
+      <div class="car" id="car"></div>
+    </div>
+
+    <div class="progress-wrap" aria-hidden="true">
+      <div class="progress-bar" id="progressBar"></div>
+      <div class="progress-text" id="progressText">0%</div>
     </div>
   </div>
+</div>
+
 
   <header class="site-header">
     <div class="container">
@@ -64,43 +69,5 @@
       <p>© Caravel Racing — Portugal</p>
     </div>
   </footer>
-
-  <script>
-    // Duração em ms — deve corresponder à variável CSS --splash-duration
-    const DURATION = 4500;
-
-    const progressText = document.getElementById('progressText');
-    const progressBar = document.getElementById('progressBar');
-    const splash = document.getElementById('splash');
-
-    // If user prefers reduced motion, skip animation
-    const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-    if (reduce) {
-      progressText.textContent = '100%';
-      progressBar.style.width = '100%';
-      // quick hide
-      setTimeout(() => { splash.style.display = 'none'; }, 300);
-    } else {
-      let start = null;
-      function step(timestamp) {
-        if (!start) start = timestamp;
-        const elapsed = timestamp - start;
-        const pct = Math.min(1, elapsed / DURATION);
-        const value = Math.round(pct * 100);
-        progressText.textContent = value + '%';
-        progressBar.style.width = value + '%';
-
-        if (elapsed < DURATION) {
-          window.requestAnimationFrame(step);
-        } else {
-          // fade out splash
-          splash.classList.add('splash-hidden');
-          // remove from flow after fade
-          setTimeout(() => { splash.style.display = 'none'; }, 600);
-        }
-      }
-      window.requestAnimationFrame(step);
-    }
-  </script>
 </body>
 </html>

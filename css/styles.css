@@ -1,67 +1,53 @@
-/* simples estilos responsivos para o template Caravel Racing */
-:root{
-  --max-width:1100px;
-  --accent:#c0182e;
-  --muted:#444;
-  --splash-duration: 4.5s; /* alterar para a duração desejada */
-}
-*{box-sizing:border-box}
-body{font-family:system-ui,-apple-system,Segoe UI,Roboto,'Helvetica Neue',Arial;line-height:1.45;color:var(--muted);margin:0}
-.container{max-width:var(--max-width);margin:0 auto;padding:1rem}
-.site-header{background:#111;color:#fff}
-.site-header .container{display:flex;align-items:center;justify-content:space-between}
-.brand{margin:0;padding:0.5rem 0;font-size:1.25rem}
-.nav a{color:#fff;text-decoration:none;margin-left:1rem;font-size:0.95rem}
-.hero{padding:3rem 0;text-align:center}
-.hero h2{margin:0 0 0.5rem;font-size:1.8rem;color:var(--accent)}
-.btn{background:var(--accent);color:#fff;padding:0.5rem 0.9rem;border-radius:6px;text-decoration:none}
-.kpis{display:flex;gap:1rem;margin:2rem 0}
-.kpis .card{background:#f5f5f5;padding:1rem;border-radius:8px;flex:1;text-align:center}
-.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:1rem}
-.project-card{background:#fff;border-radius:8px;padding:0.5rem;box-shadow:0 1px 3px rgba(0,0,0,0.08)}
-.project-card img{width:100%;height:140px;object-fit:cover;border-radius:6px}
-.small{padding:0.35rem 0.7rem;font-size:0.85rem}
-.site-footer{background:#101010;color:#ddd;padding:1rem;margin-top:2rem;text-align:center}
-table{width:100%;border-collapse:collapse;margin-top:1rem}
-table th,table td{padding:0.4rem;border:1px solid #e6e6e6;text-align:left;font-size:0.95rem}
-@media (max-width:600px){.site-header .container{flex-direction:column;align-items:flex-start}.nav a{margin-left:0;margin-right:0.5rem} .kpis{flex-direction:column}}
+/* ===== SPLASH (full-screen) ===== */
+body.no-scroll { overflow: hidden; }
 
-/* =========================
-   SPLASH / INTRO STYLES
-   ========================= */
 #splash{
   position: fixed;
-  inset: 0;
+  inset: 0;                 /* cobre todo o ecrã */
+  width: 100vw;
+  height: 100vh;
   background: #000;
   color: #fff;
   display: flex;
   align-items: center;
   justify-content: center;
-  z-index: 9999;
-  transition: opacity .6s ease, visibility .6s ease;
+  z-index: 99999;          /* muito acima de tudo */
+  transition: opacity .5s ease, visibility .5s ease;
+  pointer-events: auto;
 }
 
 .splash-hidden { opacity: 0; visibility: hidden; pointer-events: none; }
 
+/* content central */
 .splash-content{
   width: 92%;
-  max-width: 1000px;
-  padding: 1.5rem;
+  max-width: 900px;
+  text-align: center;
+  padding: 1rem;
 }
 
-/* pista e carro (cartão branco) */
+/* o texto grande "Caravel Racing" em branco */
+.splash-brand{
+  font-size: clamp(2rem, 5vw, 4rem);
+  margin: 0 0 1rem 0;
+  color: #fff;
+  letter-spacing: 0.02em;
+  text-transform: none;
+  font-weight: 700;
+}
+
+/* pista e carro simples (cartão branco) */
 .track{
   position: relative;
-  height: 120px;
+  height: 100px;
   border-radius: 10px;
   overflow: hidden;
-  display: block;
-  /* track visual subtle */
-  background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
-  box-shadow: 0 10px 30px rgba(0,0,0,0.6) inset;
+  background: rgba(255,255,255,0.03);
+  margin: 0 auto 1rem auto;
+  max-width: 100%;
 }
 
-/* o "carro" — simples cartão branco */
+/* carro branco */
 .car{
   position: absolute;
   left: 0;
@@ -72,22 +58,15 @@ table th,table td{padding:0.4rem;border:1px solid #e6e6e6;text-align:left;font-s
   background: #fff;
   border-radius: 10px;
   box-shadow: 0 8px 18px rgba(0,0,0,0.5);
-  /* animação do carro: da esquerda à direita */
-  animation: drive var(--splash-duration) ease-in-out forwards;
+  animation: drive var(--splash-duration, 4.5s) ease-in-out forwards;
 }
 
-/* keyframes para mover o carro pelo comprimento da track */
-@keyframes drive{
-  from { left: 0; }
-  to   { left: calc(100% - 140px); }
-}
-
-/* barra de progresso e texto */
+/* barra de progresso e texto (branco) */
 .progress-wrap{
-  margin-top: 1rem;
-  height: 20px;
-  border-radius: 12px;
-  background: #111;
+  margin-top: 0.75rem;
+  height: 28px;
+  border-radius: 999px;
+  background: rgba(255,255,255,0.06);
   position: relative;
   overflow: hidden;
 }
@@ -98,13 +77,14 @@ table th,table td{padding:0.4rem;border:1px solid #e6e6e6;text-align:left;font-s
   top: 0;
   bottom: 0;
   width: 0%;
-  background: var(--accent);
-  transition: width 0.1s linear;
+  background: #fff;
+  opacity: 0.95;
+  transition: width 0.08s linear;
 }
 
 .progress-text{
   position: absolute;
-  right: 10px;
+  right: 12px;
   top: 50%;
   transform: translateY(-50%);
   font-weight: 700;
@@ -112,13 +92,18 @@ table th,table td{padding:0.4rem;border:1px solid #e6e6e6;text-align:left;font-s
   font-size: 0.95rem;
 }
 
-/* reduz tamanho em ecrãs mais pequenos */
+/* animação do carro: da esquerda até ao fim da track */
+@keyframes drive{
+  from { left: 0; }
+  to   { left: calc(100% - 140px); }
+}
+
 @media (max-width:600px){
   .car{ width: 100px; height: 46px; }
   @keyframes drive{ from { left: 0; } to { left: calc(100% - 100px); } }
 }
 
-/* respeitar preferência do utilizador por pouca animação */
+/* reduz animação se preferido */
 @media (prefers-reduced-motion: reduce){
   .car{ animation: none; left: calc(100% - 140px); }
   .progress-bar{ transition: none; }
