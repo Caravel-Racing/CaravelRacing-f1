@@ -7,64 +7,6 @@
   <title>Caravel Racing — Website</title>
   <link rel="stylesheet" href="css/styles.css">
 </head>
-<body>
-<body>
-  <!-- SPLASH / LOADING OVERLAY -->
-  <div id="splash" aria-hidden="false" class="splash-overlay">
-    <div class="splash-inner">
-      <h1 class="splash-title">Caravel Racing</h1>
-      <div class="splash-bar" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0">
-        <div class="splash-fill" style="width:0%"></div>
-      </div>
-      <div class="splash-percent"><span id="splash-num">0</span>%</div>
-    </div>
-  </div>
-
-
-  <header class="site-header">
-    <div class="container">
-      <h1 class="brand"><span style="color: red; text-transform: uppercase;">CAR</span>AVEL Racing</h1>
-      <nav class="nav">
-        <a href="index.html">Home</a>
-        <a href="projects.html">Projetos</a>
-        <a href="sobre-equipa.html">Sobre a Equipa</a>
-        <a href="patrocinadores.html">Patrocinadores</a>
-        <a href="contact.html">Contactos</a>
-      </nav>
-    </div>
-  </header>
-
-  <main class="container">
-    <section class="hero">
-      <h2>Equipa portuguesa inscrita na competição 'STEM Racing'</h2>
-      <p>ns • ns • ns • ns • ns</p>
-      <p><a class="btn" href="projects.html">Ver Projetos</a></p>
-    </section>
-
-    <section class="kpis">
-      <div class="card"><strong>Temporada</strong><p>2025/26</p></div>
-      <div class="card"><strong>Média run</strong><p>— s</p></div>
-      <div class="card"><strong>Membros</strong><p>6</p></div>
-    </section>
-
-    <section class="projects-preview">
-      <div class="grid">
-        <article class="project-card">
-          <h4>Caravel V1 — 2025/26</h4>
-          <p>Primeiro esboço</p>
-          <p><a href="projects/caravel-v1-2025.html" class="btn small">Ver Projeto</a></p>
-        </article>
-      </div>
-    </section>
-
-  </main>
-
-  <footer class="site-footer">
-    <div class="container">
-      <p>© Caravel Racing — Portugal</p>
-    </div>
-  </footer>
-</body>
 <script>
 (function(){
   const splash = document.getElementById('splash');
@@ -135,5 +77,61 @@
   }, 8000);
 })();
 </script>
+<body>
+  <div id="splash" class="splash-overlay" aria-hidden="false">
+    <div class="splash-inner">
+      <h1 class="splash-title">Caravel Racing</h1>
+      <div class="splash-bar" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0">
+        <div class="splash-fill" style="width:0%"></div>
+      </div>
+      <div class="splash-percent"><span id="splash-num">0</span>%</div>
+    </div>
+  </div>
+
+
+  <header class="site-header">
+    <div class="container">
+      <h1 class="brand"><span style="color: red; text-transform: uppercase;">CAR</span>AVEL Racing</h1>
+      <nav class="nav">
+        <a href="index.html">Home</a>
+        <a href="projects.html">Projetos</a>
+        <a href="sobre-equipa.html">Sobre a Equipa</a>
+        <a href="patrocinadores.html">Patrocinadores</a>
+        <a href="contact.html">Contactos</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="container">
+    <section class="hero">
+      <h2>Equipa portuguesa inscrita na competição 'STEM Racing'</h2>
+      <p>ns • ns • ns • ns • ns</p>
+      <p><a class="btn" href="projects.html">Ver Projetos</a></p>
+    </section>
+
+    <section class="kpis">
+      <div class="card"><strong>Temporada</strong><p>2025/26</p></div>
+      <div class="card"><strong>Média run</strong><p>— s</p></div>
+      <div class="card"><strong>Membros</strong><p>6</p></div>
+    </section>
+
+    <section class="projects-preview">
+      <div class="grid">
+        <article class="project-card">
+          <h4>Caravel V1 — 2025/26</h4>
+          <p>Primeiro esboço</p>
+          <p><a href="projects/caravel-v1-2025.html" class="btn small">Ver Projeto</a></p>
+        </article>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <p>© Caravel Racing — Portugal</p>
+    </div>
+  </footer>
+</body>
 
 </html>
