@@ -8,6 +8,19 @@
   <link rel="stylesheet" href="css/styles.css">
 </head>
 <body>
+<body>
+  <!-- SPLASH / LOADING OVERLAY -->
+  <div id="splash" aria-hidden="false" class="splash-overlay">
+    <div class="splash-inner">
+      <h1 class="splash-title">Caravel Racing</h1>
+      <div class="splash-bar" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0">
+        <div class="splash-fill" style="width:0%"></div>
+      </div>
+      <div class="splash-percent"><span id="splash-num">0</span>%</div>
+    </div>
+  </div>
+
+
   <header class="site-header">
     <div class="container">
       <h1 class="brand"><span style="color: red; text-transform: uppercase;">CAR</span>AVEL Racing</h1>
@@ -52,4 +65,75 @@
     </div>
   </footer>
 </body>
+<script>
+(function(){
+  const splash = document.getElementById('splash');
+  const fill  = splash.querySelector('.splash-fill');
+  const num   = document.getElementById('splash-num');
+  let progress = 0;
+  let running = true;
+
+  // Impede scroll enquanto o splash existe
+  document.documentElement.classList.add('splash-active');
+  document.body.classList.add('splash-active');
+
+  // animação gradual "fake" até 90% enquanto a página carrega
+  const stepInterval = 25; // ms
+  const interval = setInterval(() => {
+    // incrementa menos quando já alto
+    if (progress < 90) {
+      progress += Math.ceil(Math.random() * 3); // 1-3 por passo
+    } else {
+      // quando está 90-99 avança muito devagar para parecer natural
+      progress += (progress < 99) ? 1 : 0;
+    }
+    if (progress > 99) progress = 99;
+    fill.style.width = progress + '%';
+    num.textContent = progress;
+    if (!running) {
+      clearInterval(interval);
+    }
+  }, stepInterval);
+
+  // Quando o 'load' da janela acontece, vai direto até 100 e fecha
+  window.addEventListener('load', () => {
+    running = false;
+    // anima para 100 (suave)
+    progress = 100;
+    fill.style.width = '100%';
+    num.textContent = '100';
+
+    // espera um pouco para o utilizador ver 100% (200-600ms)
+    setTimeout(() => {
+      // fade out do overlay
+      splash.classList.add('hidden');
+      // remove o overlay do DOM após a transição
+      splash.addEventListener('transitionend', () => {
+        if (splash && splash.parentNode) splash.parentNode.removeChild(splash);
+      }, { once: true });
+
+      // reativar scroll
+      document.documentElement.classList.remove('splash-active');
+      document.body.classList.remove('splash-active');
+    }, 300);
+  });
+
+  // Segurança: se o load demorar muito, força a fechar aos 8s
+  setTimeout(() => {
+    if (document.body.contains(splash)) {
+      running = false;
+      progress = 100;
+      fill.style.width = '100%';
+      num.textContent = '100';
+      splash.classList.add('hidden');
+      splash.addEventListener('transitionend', () => {
+        if (splash && splash.parentNode) splash.parentNode.removeChild(splash);
+      }, { once: true });
+      document.documentElement.classList.remove('splash-active');
+      document.body.classList.remove('splash-active');
+    }
+  }, 8000);
+})();
+</script>
+
 </html>
