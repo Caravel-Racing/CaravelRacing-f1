@@ -214,6 +214,7 @@ body.splash-active{
   pointer-events: none;
   display: block;
   object-fit: contain;
+  background: transparent;
 }
 
 /* smaller screens: shrink the car a bit */
