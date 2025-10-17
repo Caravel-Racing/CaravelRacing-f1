@@ -157,7 +157,7 @@ table th,table td{padding:0.4rem;border:1px solid #e6e6e6;text-align:left;font-s
 .splash-bar{
   width: 100%;
   height: 14px;
-  background: #202020; /* barra cinzenta */
+  background: #3d3d3d; /* barra cinzenta */
   border-radius: 12px;
   overflow: hidden;
   margin: 0 auto;
