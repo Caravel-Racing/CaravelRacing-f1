@@ -7,13 +7,29 @@
   <link rel="stylesheet" href="css/styles.css">
 </head>
 <script>
-  // Duração em ms — deve corresponder a --splash-duration se alterares em CSS
-  const DURATION = 4500;
+(function() {
+  // Tenta ler a duração do CSS (variável --splash-duration em segundos)
+  const rootStyles = getComputedStyle(document.documentElement);
+  const cssDur = rootStyles.getPropertyValue('--splash-duration').trim();
+  let DURATION = 4500; // fallback ms
+  if (cssDur) {
+    // aceita formatos '4.5s' ou '4500ms' ou apenas '4.5'
+    if (cssDur.endsWith('ms')) {
+      DURATION = parseFloat(cssDur);
+    } else if (cssDur.endsWith('s')) {
+      DURATION = parseFloat(cssDur) * 1000;
+    } else {
+      const n = parseFloat(cssDur);
+      if (!isNaN(n)) DURATION = (n > 10 ? n : n * 1000); // heurística
+    }
+  }
 
-  // elementos
   const progressText = document.getElementById('progressText');
   const progressBar = document.getElementById('progressBar');
   const splash = document.getElementById('splash');
+
+  // proteções básicas
+  if (!progressText || !progressBar || !splash) return;
 
   // bloquear scroll enquanto splash está activo
   document.body.classList.add('no-scroll');
@@ -21,39 +37,51 @@
   // respeitar preferência do utilizador por pouca animação
   const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   if (reduce) {
-    progressText.textContent = '100%';
-    progressBar.style.width = '100%';
-    endSplashSoon();
-  } else {
-    let start = null;
-    function step(timestamp) {
-      if (!start) start = timestamp;
-      const elapsed = timestamp - start;
-      const pct = Math.min(1, elapsed / DURATION);
-      const value = Math.round(pct * 100);
-      progressText.textContent = value + '%';
-      progressBar.style.width = value + '%';
-
-      if (elapsed < DURATION) {
-        window.requestAnimationFrame(step);
-      } else {
-        endSplashSoon();
-      }
-    }
-    window.requestAnimationFrame(step);
+    setFinalState();
+    return;
   }
 
+  let startTime = null;
+  function step(ts) {
+    if (!startTime) startTime = ts;
+    const elapsed = ts - startTime;
+    const pct = Math.min(1, elapsed / DURATION);
+    const value = Math.floor(pct * 100); // usar floor para evitar 100 antes do fim visual
+    progressText.textContent = value + '%';
+    progressBar.style.width = (value) + '%';
+
+    if (elapsed < DURATION) {
+      window.requestAnimationFrame(step);
+    } else {
+      // garante 100% no fim (evita arredondamento)
+      progressText.textContent = '100%';
+      progressBar.style.width = '100%';
+      endSplashSoon();
+    }
+  }
+
+  window.requestAnimationFrame(step);
+
   function endSplashSoon() {
-    // fade out
     splash.classList.add('splash-hidden');
-    // remover overlay do fluxo e desbloquear scroll após a transição
     setTimeout(() => {
       splash.style.display = 'none';
       splash.setAttribute('aria-hidden', 'true');
       document.body.classList.remove('no-scroll');
+      // limpar variáveis para GC
+      startTime = null;
     }, 600);
   }
+
+  function setFinalState() {
+    progressText.textContent = '100%';
+    progressBar.style.width = '100%';
+    // pequeno tempo até esconder
+    setTimeout(endSplashSoon, 300);
+  }
+})();
 </script>
+
 
 <body>
   

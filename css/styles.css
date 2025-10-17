@@ -1,87 +1,29 @@
-/* ===== SPLASH (full-screen) ===== */
-body.no-scroll { overflow: hidden; }
-
-#splash{
-  position: fixed;
-  inset: 0;                 /* cobre todo o ecrã */
-  width: 100vw;
-  height: 100vh;
-  background: #000;
-  color: #fff;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  z-index: 99999;          /* muito acima de tudo */
-  transition: opacity .5s ease, visibility .5s ease;
-  pointer-events: auto;
-}
-
-.splash-hidden { opacity: 0; visibility: hidden; pointer-events: none; }
-
-/* content central */
-.splash-content{
-  width: 92%;
-  max-width: 900px;
-  text-align: center;
-  padding: 1rem;
-}
-
-/* o texto grande "Caravel Racing" em branco */
-.splash-brand{
-  font-size: clamp(2rem, 5vw, 4rem);
-  margin: 0 0 1rem 0;
-  color: #fff;
-  letter-spacing: 0.02em;
-  text-transform: none;
-  font-weight: 700;
-}
-
-/* pista e carro simples (cartão branco) */
-.track{
-  position: relative;
-  height: 100px;
-  border-radius: 10px;
-  overflow: hidden;
-  background: rgba(255,255,255,0.03);
-  margin: 0 auto 1rem auto;
-  max-width: 100%;
-}
-
-/* carro branco */
-.car{
-  position: absolute;
-  left: 0;
-  top: 50%;
-  transform: translateY(-50%);
-  width: 140px;
-  height: 56px;
-  background: #fff;
-  border-radius: 10px;
-  box-shadow: 0 8px 18px rgba(0,0,0,0.5);
-  animation: drive var(--splash-duration, 4.5s) ease-in-out forwards;
-}
-
-/* barra de progresso e texto (branco) */
+/* progress - garantia de que a barra interior fica sempre dentro */
 .progress-wrap{
   margin-top: 0.75rem;
   height: 28px;
   border-radius: 999px;
   background: rgba(255,255,255,0.06);
   position: relative;
-  overflow: hidden;
+  overflow: hidden;            /* essencial: corta a barra branca ao contorno */
+  box-shadow: inset 0 1px 0 rgba(255,255,255,0.03);
 }
 
+/* barra interior */
 .progress-bar{
   position: absolute;
   left: 0;
   top: 0;
-  bottom: 0;
+  height: 100%;               /* garante que preenche verticalmente */
   width: 0%;
+  border-radius: 999px;       /* arredonda também a barra interior */
   background: #fff;
-  opacity: 0.95;
+  opacity: 0.98;
   transition: width 0.08s linear;
+  z-index: 0;                 /* atrás do texto */
 }
 
+/* texto por cima da barra */
 .progress-text{
   position: absolute;
   right: 12px;
@@ -90,21 +32,6 @@ body.no-scroll { overflow: hidden; }
   font-weight: 700;
   color: #fff;
   font-size: 0.95rem;
-}
-
-/* animação do carro: da esquerda até ao fim da track */
-@keyframes drive{
-  from { left: 0; }
-  to   { left: calc(100% - 140px); }
-}
-
-@media (max-width:600px){
-  .car{ width: 100px; height: 46px; }
-  @keyframes drive{ from { left: 0; } to { left: calc(100% - 100px); } }
-}
-
-/* reduz animação se preferido */
-@media (prefers-reduced-motion: reduce){
-  .car{ animation: none; left: calc(100% - 140px); }
-  .progress-bar{ transition: none; }
+  z-index: 2;                 /* sempre acima */
+  pointer-events: none;
 }
