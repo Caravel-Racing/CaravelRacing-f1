@@ -183,3 +183,42 @@ table th,table td{padding:0.4rem;border:1px solid #e6e6e6;text-align:left;font-s
 body.splash-active{
   overflow: hidden;
 }
+
+/* ---- Car above the progress bar ---- */
+.splash-inner{
+  position: relative; /* needed for absolute children */
+  padding-top: 1.6rem; /* room for the car */
+}
+
+/* wrapper that spans the same width as splash-inner so car can be positioned absolutely */
+.splash-car-wrap{
+  position: absolute;
+  left: 0;
+  top: 0.35rem; /* tweak vertical offset above the bar */
+  width: 100%;
+  height: 48px;     /* vertical space for the car */
+  pointer-events: none;
+  overflow: visible;
+}
+
+/* the car svg itself */
+.splash-car{
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 84px;     /* car width, tweak as needed */
+  height: auto;
+  transform: translateX(0);
+  transition: left 120ms linear; /* smooth movement */
+  filter: drop-shadow(0 2px 4px rgba(0,0,0,0.25));
+  /* keep it white: the SVG fills are white already, so no color changes needed */
+}
+
+/* smaller screens: shrink the car a bit */
+@media (max-width:600px){
+  .splash-car{
+    width: 60px;
+  }
+  .splash-car-wrap{height: 40px; top: 0.1rem}
+}
+

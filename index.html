@@ -9,14 +9,38 @@
 </head>
 <body>
   <div id="splash" class="splash-overlay" aria-hidden="false">
-    <div class="splash-inner">
-      <h1 class="splash-title">Caravel Racing</h1>
-      <div class="splash-bar" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0">
-        <div class="splash-fill" style="width:0%"></div>
-      </div>
-      <div class="splash-percent"><span id="splash-num">0</span>%</div>
+  <div class="splash-inner">
+    <h1 class="splash-title">Caravel Racing</h1>
+
+    <!-- Car wrapper & inline SVG (white F1 car) -->
+    <div class="splash-car-wrap" aria-hidden="true">
+      <!-- Simple stylized F1 SVG; width controlled by CSS .splash-car -->
+      <svg class="splash-car" viewBox="0 0 200 60" xmlns="http://www.w3.org/2000/svg" role="img" aria-hidden="true">
+        <!-- body -->
+        <rect x="10" y="22" width="140" height="14" rx="6" fill="#ffffff"/>
+        <!-- nose -->
+        <polygon points="150,22 185,30 150,36" fill="#ffffff"/>
+        <!-- cockpit -->
+        <rect x="90" y="12" width="28" height="14" rx="4" fill="#ffffff"/>
+        <!-- wing -->
+        <rect x="20" y="12" width="28" height="6" rx="3" fill="#ffffff"/>
+        <!-- wheels -->
+        <circle cx="38" cy="46" r="8" fill="#111"/>
+        <circle cx="160" cy="46" r="8" fill="#111"/>
+        <!-- small highlights to make it look nicer -->
+        <path d="M14 26 L22 26" stroke="#eee" stroke-width="1.2" stroke-linecap="round"/>
+        <path d="M96 16 L116 16" stroke="#eee" stroke-width="1.2" stroke-linecap="round"/>
+      </svg>
     </div>
+
+    <div class="splash-bar" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0">
+      <div class="splash-fill" style="width:0%"></div>
+    </div>
+
+    <div class="splash-percent"><span id="splash-num">0</span>%</div>
   </div>
+</div>
+
 
 
   <header class="site-header">
@@ -67,13 +91,16 @@
 (function(){
   const splash = document.getElementById('splash');
   if (!splash) return;
+  const splashInner = splash.querySelector('.splash-inner');
+  const splashBar = splash.querySelector('.splash-bar');
   const fill  = splash.querySelector('.splash-fill');
   const num   = document.getElementById('splash-num');
+  const car   = splash.querySelector('.splash-car');
 
-  // === CONFIGURE THIS ===
-  const totalMs = 4500;      // desired minimum duration (ms) — set to 4000 or 5000 as you like
-  const safetyExtra = 3000;  // extra time after totalMs to force-close in case load never fires
-  // =======================
+  // === CONFIG ===
+  const totalMs = 4500;      // minimum splash duration to reach 99 (ms). Use 4000 or 5000 if desired.
+  const safetyExtra = 3000;  // extra time after totalMs to force-close if load never fires
+  // ============
 
   let progress = 0;
   let running = true;
@@ -83,29 +110,53 @@
   document.documentElement.classList.add('splash-active');
   document.body.classList.add('splash-active');
 
-  // Calculate per-step delay so we show every integer up to 99 roughly in totalMs
+  // per-step delay so 0->99 happens roughly in totalMs
   const stepDelay = Math.max(20, Math.round(totalMs / 99));
 
-  // Tick: increment by 1 each step until 99
+  // helper to update car position (computes pixel left inside splash-inner)
+  function updateCar(pct) {
+    if (!car || !splashBar || !splashInner) return;
+    // get rects
+    const innerRect = splashInner.getBoundingClientRect();
+    const barRect = splashBar.getBoundingClientRect();
+    const carRect = car.getBoundingClientRect();
+
+    // left edge of the bar relative to splash-inner's left
+    const barOffset = barRect.left - innerRect.left;
+
+    // x center for the current percentage along bar
+    const xCenter = barOffset + (pct / 100) * barRect.width;
+
+    // position car so its center aligns with xCenter
+    const leftPx = xCenter - (carRect.width / 2);
+
+    // clamp so car doesn't overflow splash-inner
+    const clamped = Math.max(0, Math.min(leftPx, innerRect.width - carRect.width));
+    car.style.left = clamped + 'px';
+  }
+
+  // Tick loop - increments by 1 until 99
   const interval = setInterval(() => {
     if (!running) { clearInterval(interval); return; }
     if (progress < 99) {
       progress += 1;
       fill.style.width = progress + '%';
       num.textContent = progress;
+      updateCar(progress);
     } else {
-      // stop when we hit 99 — actual finish is handled elsewhere (when both conditions met)
       clearInterval(interval);
     }
   }, stepDelay);
 
-  // Called when both conditions are met (min time reached AND page loaded) or safety triggers
+  // finish only when both conditions met: min time and page load
   function finishNow() {
     if (!running) return;
     running = false;
     clearInterval(interval);
+    progress = 100;
     fill.style.width = '100%';
     num.textContent = '100';
+    updateCar(100);
     setTimeout(() => {
       splash.classList.add('hidden');
       splash.addEventListener('transitionend', () => {
@@ -116,28 +167,36 @@
     }, 300);
   }
 
-  // When min time passes
+  // min time reached
   setTimeout(() => {
     minTimeReached = true;
-    // if page already loaded, finish now; otherwise wait for load
     if (pageLoaded) finishNow();
   }, totalMs);
 
-  // When page loads — only finish if min time already passed
+  // window load
   window.addEventListener('load', () => {
     pageLoaded = true;
     if (minTimeReached) {
       finishNow();
     }
-    // otherwise do nothing — the setTimeout above will call finish when time's up
   });
 
-  // Safety: force-close after totalMs + safetyExtra (prevents infinite spinner if load never fires)
+  // safety force-close
   setTimeout(() => {
     if (running) finishNow();
   }, totalMs + safetyExtra);
+
+  // reposition the car on resize (keeps it synced if layout changes)
+  window.addEventListener('resize', () => {
+    // slight timeout to let layout settle
+    setTimeout(() => updateCar(progress), 60);
+  });
+
+  // initial position (0)
+  // wait a tick for layout measurements to be valid
+  setTimeout(() => updateCar(progress), 20);
+
 })();
 </script>
-
 
 </html>
