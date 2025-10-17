@@ -1,9 +1,9 @@
-
 /* simples estilos responsivos para o template Caravel Racing */
 :root{
   --max-width:1100px;
   --accent:#c0182e;
   --muted:#444;
+  --splash-duration: 4.5s; /* alterar para a duração desejada */
 }
 *{box-sizing:border-box}
 body{font-family:system-ui,-apple-system,Segoe UI,Roboto,'Helvetica Neue',Arial;line-height:1.45;color:var(--muted);margin:0}
@@ -25,3 +25,101 @@ body{font-family:system-ui,-apple-system,Segoe UI,Roboto,'Helvetica Neue',Arial;
 table{width:100%;border-collapse:collapse;margin-top:1rem}
 table th,table td{padding:0.4rem;border:1px solid #e6e6e6;text-align:left;font-size:0.95rem}
 @media (max-width:600px){.site-header .container{flex-direction:column;align-items:flex-start}.nav a{margin-left:0;margin-right:0.5rem} .kpis{flex-direction:column}}
+
+/* =========================
+   SPLASH / INTRO STYLES
+   ========================= */
+#splash{
+  position: fixed;
+  inset: 0;
+  background: #000;
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
+  transition: opacity .6s ease, visibility .6s ease;
+}
+
+.splash-hidden { opacity: 0; visibility: hidden; pointer-events: none; }
+
+.splash-content{
+  width: 92%;
+  max-width: 1000px;
+  padding: 1.5rem;
+}
+
+/* pista e carro (cartão branco) */
+.track{
+  position: relative;
+  height: 120px;
+  border-radius: 10px;
+  overflow: hidden;
+  display: block;
+  /* track visual subtle */
+  background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
+  box-shadow: 0 10px 30px rgba(0,0,0,0.6) inset;
+}
+
+/* o "carro" — simples cartão branco */
+.car{
+  position: absolute;
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 140px;
+  height: 56px;
+  background: #fff;
+  border-radius: 10px;
+  box-shadow: 0 8px 18px rgba(0,0,0,0.5);
+  /* animação do carro: da esquerda à direita */
+  animation: drive var(--splash-duration) ease-in-out forwards;
+}
+
+/* keyframes para mover o carro pelo comprimento da track */
+@keyframes drive{
+  from { left: 0; }
+  to   { left: calc(100% - 140px); }
+}
+
+/* barra de progresso e texto */
+.progress-wrap{
+  margin-top: 1rem;
+  height: 20px;
+  border-radius: 12px;
+  background: #111;
+  position: relative;
+  overflow: hidden;
+}
+
+.progress-bar{
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 0%;
+  background: var(--accent);
+  transition: width 0.1s linear;
+}
+
+.progress-text{
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  font-weight: 700;
+  color: #fff;
+  font-size: 0.95rem;
+}
+
+/* reduz tamanho em ecrãs mais pequenos */
+@media (max-width:600px){
+  .car{ width: 100px; height: 46px; }
+  @keyframes drive{ from { left: 0; } to { left: calc(100% - 100px); } }
+}
+
+/* respeitar preferência do utilizador por pouca animação */
+@media (prefers-reduced-motion: reduce){
+  .car{ animation: none; left: calc(100% - 140px); }
+  .progress-bar{ transition: none; }
+}
