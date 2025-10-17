@@ -1,3 +1,4 @@
+
 <!doctype html>
 <html lang="pt-PT">
 <head>
@@ -6,103 +7,7 @@
   <title>Caravel Racing — Website</title>
   <link rel="stylesheet" href="css/styles.css">
 </head>
-<script>
-(function() {
-  // Tenta ler a duração do CSS (variável --splash-duration em segundos)
-  const rootStyles = getComputedStyle(document.documentElement);
-  const cssDur = rootStyles.getPropertyValue('--splash-duration').trim();
-  let DURATION = 4500; // fallback ms
-  if (cssDur) {
-    // aceita formatos '4.5s' ou '4500ms' ou apenas '4.5'
-    if (cssDur.endsWith('ms')) {
-      DURATION = parseFloat(cssDur);
-    } else if (cssDur.endsWith('s')) {
-      DURATION = parseFloat(cssDur) * 1000;
-    } else {
-      const n = parseFloat(cssDur);
-      if (!isNaN(n)) DURATION = (n > 10 ? n : n * 1000); // heurística
-    }
-  }
-
-  const progressText = document.getElementById('progressText');
-  const progressBar = document.getElementById('progressBar');
-  const splash = document.getElementById('splash');
-
-  // proteções básicas
-  if (!progressText || !progressBar || !splash) return;
-
-  // bloquear scroll enquanto splash está activo
-  document.body.classList.add('no-scroll');
-
-  // respeitar preferência do utilizador por pouca animação
-  const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-  if (reduce) {
-    setFinalState();
-    return;
-  }
-
-  let startTime = null;
-  function step(ts) {
-    if (!startTime) startTime = ts;
-    const elapsed = ts - startTime;
-    const pct = Math.min(1, elapsed / DURATION);
-    const value = Math.floor(pct * 100); // usar floor para evitar 100 antes do fim visual
-    progressText.textContent = value + '%';
-    progressBar.style.width = (value) + '%';
-
-    if (elapsed < DURATION) {
-      window.requestAnimationFrame(step);
-    } else {
-      // garante 100% no fim (evita arredondamento)
-      progressText.textContent = '100%';
-      progressBar.style.width = '100%';
-      endSplashSoon();
-    }
-  }
-
-  window.requestAnimationFrame(step);
-
-  function endSplashSoon() {
-    splash.classList.add('splash-hidden');
-    setTimeout(() => {
-      splash.style.display = 'none';
-      splash.setAttribute('aria-hidden', 'true');
-      document.body.classList.remove('no-scroll');
-      // limpar variáveis para GC
-      startTime = null;
-    }, 600);
-  }
-
-  function setFinalState() {
-    progressText.textContent = '100%';
-    progressBar.style.width = '100%';
-    // pequeno tempo até esconder
-    setTimeout(endSplashSoon, 300);
-  }
-})();
-</script>
-
-
 <body>
-  
-<!-- SPLASH / INTRO FULLSCREEN -->
-<div id="splash" aria-hidden="false">
-  <div class="splash-content" role="dialog" aria-label="Animação de entrada">
-    <h1 class="splash-brand">Caravel Racing</h1>
-
-    <div class="track" aria-hidden="true">
-      <div class="car" id="car"></div>
-    </div>
-
-    <div class="progress-wrap" aria-hidden="true">
-      <div class="progress-bar" id="progressBar"></div>
-      <div class="progress-text" id="progressText">0%</div>
-    </div>
-  </div>
-</div>
-
-
-
   <header class="site-header">
     <div class="container">
       <h1 class="brand"><span style="color: red; text-transform: uppercase;">CAR</span>AVEL Racing</h1>
