@@ -69,38 +69,41 @@
   if (!splash) return;
   const fill  = splash.querySelector('.splash-fill');
   const num   = document.getElementById('splash-num');
+
+  // === CONFIGURE THIS ===
+  const totalMs = 4500;      // desired minimum duration (ms) — set to 4000 or 5000 as you like
+  const safetyExtra = 3000;  // extra time after totalMs to force-close in case load never fires
+  // =======================
+
   let progress = 0;
   let running = true;
+  let minTimeReached = false;
+  let pageLoaded = false;
+
   document.documentElement.classList.add('splash-active');
   document.body.classList.add('splash-active');
 
-  // tick loop: increments by 1 and schedules the next tick with a delay
-  function tick() {
-    if (!running) return;
-    // show numbers up to 98/99 so load can set 100
-    if (progress < 98) progress = progress + 1;
-    fill.style.width = progress + '%';
-    num.textContent = progress;
+  // Calculate per-step delay so we show every integer up to 99 roughly in totalMs
+  const stepDelay = Math.max(20, Math.round(totalMs / 99));
 
-    // dynamic delay: faster at beginning, slower near the end
-    let delay;
-    if (progress < 50) {
-      delay = 20 + Math.random() * 40; // ~20–60 ms per step (fast)
-    } else if (progress < 80) {
-      delay = 40 + Math.random() * 80; // ~40–120 ms per step (medium)
+  // Tick: increment by 1 each step until 99
+  const interval = setInterval(() => {
+    if (!running) { clearInterval(interval); return; }
+    if (progress < 99) {
+      progress += 1;
+      fill.style.width = progress + '%';
+      num.textContent = progress;
     } else {
-      delay = 120 + Math.random() * 180; // ~120–300 ms per step (slow)
+      // stop when we hit 99 — actual finish is handled elsewhere (when both conditions met)
+      clearInterval(interval);
     }
+  }, stepDelay);
 
-    setTimeout(tick, delay);
-  }
-
-  tick();
-
-  function finish() {
+  // Called when both conditions are met (min time reached AND page loaded) or safety triggers
+  function finishNow() {
     if (!running) return;
     running = false;
-    progress = 100;
+    clearInterval(interval);
     fill.style.width = '100%';
     num.textContent = '100';
     setTimeout(() => {
@@ -113,10 +116,28 @@
     }, 300);
   }
 
-  window.addEventListener('load', finish);
-  // fallback to force close at 8s
-  setTimeout(() => { if (document.body.contains(splash)) finish(); }, 8000);
+  // When min time passes
+  setTimeout(() => {
+    minTimeReached = true;
+    // if page already loaded, finish now; otherwise wait for load
+    if (pageLoaded) finishNow();
+  }, totalMs);
+
+  // When page loads — only finish if min time already passed
+  window.addEventListener('load', () => {
+    pageLoaded = true;
+    if (minTimeReached) {
+      finishNow();
+    }
+    // otherwise do nothing — the setTimeout above will call finish when time's up
+  });
+
+  // Safety: force-close after totalMs + safetyExtra (prevents infinite spinner if load never fires)
+  setTimeout(() => {
+    if (running) finishNow();
+  }, totalMs + safetyExtra);
 })();
 </script>
+
 
 </html>
