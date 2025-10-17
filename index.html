@@ -8,75 +8,147 @@
   <link rel="stylesheet" href="css/styles.css">
 </head>
 <script>
-(function(){
-  const splash = document.getElementById('splash');
-  const fill  = splash.querySelector('.splash-fill');
-  const num   = document.getElementById('splash-num');
-  let progress = 0;
-  let running = true;
+(function () {
+  // Espera pelo DOM estar pronto
+  document.addEventListener('DOMContentLoaded', () => {
 
-  // Impede scroll enquanto o splash existe
-  document.documentElement.classList.add('splash-active');
-  document.body.classList.add('splash-active');
-
-  // animação gradual "fake" até 90% enquanto a página carrega
-  const stepInterval = 25; // ms
-  const interval = setInterval(() => {
-    // incrementa menos quando já alto
-    if (progress < 90) {
-      progress += Math.ceil(Math.random() * 3); // 1-3 por passo
-    } else {
-      // quando está 90-99 avança muito devagar para parecer natural
-      progress += (progress < 99) ? 1 : 0;
+    // --- Helpers para criar o splash caso não exista ---
+    function createSplashMarkup() {
+      const splash = document.createElement('div');
+      splash.id = 'splash';
+      splash.className = 'splash-overlay';
+      splash.setAttribute('aria-hidden', 'false');
+      splash.innerHTML = `
+        <div class="splash-inner">
+          <h1 class="splash-title">Caravel Racing</h1>
+          <div class="splash-bar" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0">
+            <div class="splash-fill" style="width:0%"></div>
+          </div>
+          <div class="splash-percent"><span id="splash-num">0</span>%</div>
+        </div>
+      `;
+      document.body.appendChild(splash);
+      return splash;
     }
-    if (progress > 99) progress = 99;
-    fill.style.width = progress + '%';
-    num.textContent = progress;
-    if (!running) {
-      clearInterval(interval);
+
+    // Obtém o elemento splash existente ou cria um novo
+    let splash = document.getElementById('splash');
+    if (!splash) {
+      splash = createSplashMarkup();
     }
-  }, stepInterval);
 
-  // Quando o 'load' da janela acontece, vai direto até 100 e fecha
-  window.addEventListener('load', () => {
-    running = false;
-    // anima para 100 (suave)
-    progress = 100;
-    fill.style.width = '100%';
-    num.textContent = '100';
+    // Seleciona fill e número — se não existirem, cria-os dentro do splash
+    let fill = splash.querySelector('.splash-fill');
+    let num = splash.querySelector('#splash-num');
 
-    // espera um pouco para o utilizador ver 100% (200-600ms)
-    setTimeout(() => {
-      // fade out do overlay
+    if (!fill || !num) {
+      // rebuild inner content (defensivo)
+      splash.innerHTML = `
+        <div class="splash-inner">
+          <h1 class="splash-title">Caravel Racing</h1>
+          <div class="splash-bar" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0">
+            <div class="splash-fill" style="width:0%"></div>
+          </div>
+          <div class="splash-percent"><span id="splash-num">0</span>%</div>
+        </div>
+      `;
+      fill = splash.querySelector('.splash-fill');
+      num = splash.querySelector('#splash-num');
+    }
+
+    // Segurança: se ainda não encontrou, aborta (mas sem lançar erro)
+    if (!fill || !num) {
+      console.warn('Splash: elementos .splash-fill ou #splash-num não encontrados — loader desativado para evitar bloqueio.');
+      // remove splash para não bloquear a interface
       splash.classList.add('hidden');
-      // remove o overlay do DOM após a transição
-      splash.addEventListener('transitionend', () => {
-        if (splash && splash.parentNode) splash.parentNode.removeChild(splash);
-      }, { once: true });
+      setTimeout(() => { if (splash.parentNode) splash.parentNode.removeChild(splash); }, 500);
+      return;
+    }
 
-      // reativar scroll
-      document.documentElement.classList.remove('splash-active');
-      document.body.classList.remove('splash-active');
-    }, 300);
-  });
+    // Impede scroll enquanto o splash está ativo
+    document.documentElement.classList.add('splash-active');
+    document.body.classList.add('splash-active');
 
-  // Segurança: se o load demorar muito, força a fechar aos 8s
-  setTimeout(() => {
-    if (document.body.contains(splash)) {
+    // Lógica de progress simulada
+    let progress = 0;
+    let running = true;
+    fill.style.width = '0%';
+    num.textContent = '0';
+
+    const stepInterval = 40; // ms entre passos
+    const intervalId = setInterval(() => {
+      if (!running) return;
+
+      // incremento adaptativo: rápido no início, mais lento perto do fim
+      if (progress < 70) {
+        progress += Math.ceil(Math.random() * 4); // 1-4
+      } else if (progress < 90) {
+        progress += Math.ceil(Math.random() * 2); // 1-2
+      } else if (progress < 97) {
+        progress += 1; // lento
+      } // não passa de 99 aqui; só o load coloca 100
+
+      if (progress > 99) progress = 99;
+      fill.style.width = progress + '%';
+      num.textContent = String(progress);
+    }, stepInterval);
+
+    // Função para fechar o splash (fade + remover)
+    function closeSplash() {
+      if (!splash) return;
       running = false;
-      progress = 100;
+      clearInterval(intervalId);
       fill.style.width = '100%';
       num.textContent = '100';
-      splash.classList.add('hidden');
-      splash.addEventListener('transitionend', () => {
-        if (splash && splash.parentNode) splash.parentNode.removeChild(splash);
-      }, { once: true });
-      document.documentElement.classList.remove('splash-active');
-      document.body.classList.remove('splash-active');
+
+      // espera pequeno delay para mostrar 100%
+      setTimeout(() => {
+        splash.classList.add('hidden');
+        // remove do DOM após a transição de opacidade terminar
+        const removeAfter = () => {
+          try {
+            if (splash.parentNode) splash.parentNode.removeChild(splash);
+          } catch (e) { /* ignore */ }
+          document.documentElement.classList.remove('splash-active');
+          document.body.classList.remove('splash-active');
+        };
+        // tenta ouvir transitionend, se não houver, remove após 600ms
+        let handled = false;
+        splash.addEventListener('transitionend', () => {
+          if (handled) return;
+          handled = true;
+          removeAfter();
+        }, { once: true });
+
+        setTimeout(() => {
+          if (!handled) removeAfter();
+        }, 700);
+      }, 220);
     }
-  }, 8000);
+
+    // Se a janela completar o load, vai para 100% e fecha
+    window.addEventListener('load', () => {
+      closeSplash();
+    });
+
+    // Força fechar caso algo trave: 8 segundos fallback
+    setTimeout(() => {
+      if (document.body.contains(splash)) {
+        console.info('Splash: fallback a 100% após timeout');
+        closeSplash();
+      }
+    }, 8000);
+
+    // Pequeno fallback para quem quer testar em dev: se o utilizador clicar no overlay fecha
+    splash.addEventListener('click', () => {
+      console.info('Splash: fechado por clique do utilizador (debug).');
+      closeSplash();
+    });
+
+  }); // DOMContentLoaded
 })();
 </script>
+
 <body>
   <div id="splash" class="splash-overlay" aria-hidden="false">
     <div class="splash-inner">
