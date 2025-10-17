@@ -119,7 +119,7 @@ table th,table td{padding:0.4rem;border:1px solid #e6e6e6;text-align:left;font-s
 .splash-overlay{
   position: fixed;
   inset: 0;
-  background: #6f6f6f;
+  background: #b0b0b0;
   display: flex;
   align-items: center;
   justify-content: center;
