@@ -66,71 +66,57 @@
 <script>
 (function(){
   const splash = document.getElementById('splash');
+  if (!splash) return;
   const fill  = splash.querySelector('.splash-fill');
   const num   = document.getElementById('splash-num');
   let progress = 0;
   let running = true;
-
-  // Impede scroll enquanto o splash existe
   document.documentElement.classList.add('splash-active');
   document.body.classList.add('splash-active');
 
-  // animação gradual "fake" até 90% enquanto a página carrega
-  const stepInterval = 25; // ms
-  const interval = setInterval(() => {
-    // incrementa menos quando já alto
-    if (progress < 90) {
-      progress += Math.ceil(Math.random() * 3); // 1-3 por passo
-    } else {
-      // quando está 90-99 avança muito devagar para parecer natural
-      progress += (progress < 99) ? 1 : 0;
-    }
-    if (progress > 99) progress = 99;
+  // tick loop: increments by 1 and schedules the next tick with a delay
+  function tick() {
+    if (!running) return;
+    // show numbers up to 98/99 so load can set 100
+    if (progress < 98) progress = progress + 1;
     fill.style.width = progress + '%';
     num.textContent = progress;
-    if (!running) {
-      clearInterval(interval);
-    }
-  }, stepInterval);
 
-  // Quando o 'load' da janela acontece, vai direto até 100 e fecha
-  window.addEventListener('load', () => {
+    // dynamic delay: faster at beginning, slower near the end
+    let delay;
+    if (progress < 50) {
+      delay = 20 + Math.random() * 40; // ~20–60 ms per step (fast)
+    } else if (progress < 80) {
+      delay = 40 + Math.random() * 80; // ~40–120 ms per step (medium)
+    } else {
+      delay = 120 + Math.random() * 180; // ~120–300 ms per step (slow)
+    }
+
+    setTimeout(tick, delay);
+  }
+
+  tick();
+
+  function finish() {
+    if (!running) return;
     running = false;
-    // anima para 100 (suave)
     progress = 100;
     fill.style.width = '100%';
     num.textContent = '100';
-
-    // espera um pouco para o utilizador ver 100% (200-600ms)
     setTimeout(() => {
-      // fade out do overlay
       splash.classList.add('hidden');
-      // remove o overlay do DOM após a transição
       splash.addEventListener('transitionend', () => {
         if (splash && splash.parentNode) splash.parentNode.removeChild(splash);
       }, { once: true });
-
-      // reativar scroll
       document.documentElement.classList.remove('splash-active');
       document.body.classList.remove('splash-active');
     }, 300);
-  });
+  }
 
-  // Segurança: se o load demorar muito, força a fechar aos 8s
-  setTimeout(() => {
-    if (document.body.contains(splash)) {
-      running = false;
-      progress = 100;
-      fill.style.width = '100%';
-      num.textContent = '100';
-      splash.classList.add('hidden');
-      splash.addEventListener('transitionend', () => {
-        if (splash && splash.parentNode) splash.parentNode.removeChild(splash);
-      }, { once: true });
-      document.documentElement.classList.remove('splash-active');
-      document.body.classList.remove('splash-active');
-    }
-  }, 8000);
+  window.addEventListener('load', finish);
+  // fallback to force close at 8s
+  setTimeout(() => { if (document.body.contains(splash)) finish(); }, 8000);
 })();
 </script>
+
 </html>
