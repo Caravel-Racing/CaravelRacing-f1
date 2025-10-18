@@ -2,7 +2,7 @@
   --max-width:1100px;
   --accent:#c0182e;
   --muted:#444;
-  --header-height:64px; /* adjust to control header/logo height */
+  --header-height:64px; /* adjust this to control header/logo height */
 }
 
 *{box-sizing:border-box}
@@ -18,62 +18,74 @@ body{
   padding:1rem;
 }
 
-/* ===== Header + logo layout adjustments (nav centered) ===== */
+/* ===== Header + logo layout adjustments ===== */
 .site-header{
   background:#111;
   color:#fff;
+  /* ensure header area respects the header height variable */
   min-height: var(--header-height);
 }
 
+/* Use flexible layout: logo (left), nav (middle), brand (right) */
 .site-header .container{
   display:flex;
-  align-items:center; /* vertically center */
+  align-items:center; /* vertically center elements */
   gap:1rem;
-  /* no justify-content needed — nav will expand (flex:1) and be centered */
+  /* no justify-content here, we'll use margin-left:auto on .brand to push it right */
 }
 
-/* Logo (left) */
+/* Logo (place your file: images/logo.png or change path in HTML) */
 .site-logo{
   display:block;
   flex: 0 0 auto;
-  height: calc(var(--header-height) - 12px); /* change if you want exact fit */
+  /* make logo fit header height while preserving aspect ratio */
+  height: calc(var(--header-height) - 12px); /* leave some breathing room for padding */
   width: auto;
   object-fit: contain;
 }
 
-/* Nav centered: take remaining space and center its items */
+/* Nav in the middle — use flex for spacing */
 .nav{
   display:flex;
   gap:0.75rem;
   align-items:center;
-  justify-content:center; /* centers the nav items */
-  flex: 1 1 auto; /* expand to consume available space between logo & brand */
+  flex: 0 1 auto;
 }
 
 /* Links of the navigation */
 .nav a{
   color:#fff;
   text-decoration:none;
+  margin-left:0;     /* spacing handled by gap on .nav */
   font-size:0.95rem;
   padding:0.25rem 0.4rem;
-  display:inline-block;
 }
 
-/* Brand on the right (do NOT use margin-left:auto — nav is centered via flex:1) */
+/* Brand pushed to the far right */
 .brand{
   margin:0;
   padding:0.5rem 0;
   font-size:1.25rem;
   color:inherit;
-  flex: 0 0 auto;
+  margin-left: auto;     /* pushes the brand to the extreme right */
   display:flex;
   align-items:center;
   gap:0.4rem;
   white-space:nowrap;
 }
+
+/* Preserve your inline-style look for CAR red-highlight if you keep spans */
 .brand span { display:inline-block; vertical-align:middle; }
 
-/* ===== preserved original rules ===== */
+/* ===== original rules (kept mostly unchanged) ===== */
+.nav a{
+  /* duplicated earlier but keeping original font-size intent */
+  color:#fff;
+  text-decoration:none;
+  margin-left:1rem;
+  font-size:0.95rem;
+}
+
 .hero{
   padding:3rem 0;
   text-align:center;
@@ -133,36 +145,20 @@ table th,table td{padding:0.4rem;border:1px solid #e6e6e6;text-align:left;font-s
 
 /* Mobile adjustments */
 @media (max-width:600px){
-  /* stack header */
   .site-header .container{
     flex-direction:column;
     align-items:flex-start;
-    gap:0.5rem;
   }
-
-  /* allow nav to occupy full width and keep items centered */
-  .nav{
-    width:100%;
-    justify-content:center;
-    overflow-x:auto;
-    -webkit-overflow-scrolling:touch;
+  .nav a{
+    margin-left:0;
+    margin-right:0.5rem;
   }
-
-  .nav a{ white-space:nowrap; }
-
   .kpis{flex-direction:column}
 
   /* Mobile: reduce logo height */
   .site-logo{
     height: calc(var(--header-height) - 20px);
     max-height:48px;
-  }
-
-  /* Brand occupies full width but aligned to the right */
-  .brand{
-    width:100%;
-    text-align:right;
-    justify-content:flex-end;
   }
 }
 
@@ -228,9 +224,11 @@ table th,table td{padding:0.4rem;border:1px solid #e6e6e6;text-align:left;font-s
   font-size: 0.95rem;
 }
 
+
 body.splash-active{
   overflow: hidden;
 }
+
 
 .splash-inner{
   position: relative; 
