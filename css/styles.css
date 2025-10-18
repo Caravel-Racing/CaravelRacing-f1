@@ -17,16 +17,26 @@ body{
   padding:1rem;
 }
 
-.site-header{
-  background:#111;
-  color:#fff;
+/* pick one place to put the header height value */
+:root { --header-height: 64px; }
+
+/* ensure container matches that height */
+.site-header {
+  --header-height: 64px;
 }
-.site-header .container{
-  display:flex;
-  align-items:center;
-  gap:1rem;
-  /* usamos margin/padding do .container global */
+.site-header .container {
+  min-height: var(--header-height);
+  align-items: center; /* vertically center items */
 }
+
+/* logo fits the header height */
+.site-logo {
+  height: calc(var(--header-height) - 12px); /* leave some breathing room if header has padding */
+  width: auto;
+  display: block;
+  object-fit: contain;
+}
+
 
 /* Logo (coloca o ficheiro: images/logo.png ou ajusta o caminho) */
 .site-logo{
