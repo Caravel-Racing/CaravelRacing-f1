@@ -2,6 +2,7 @@
   --max-width:1100px;
   --accent:#c0182e;
   --muted:#444;
+  --header-height:64px; /* adjust this to control header/logo height */
 }
 
 *{box-sizing:border-box}
@@ -17,36 +18,33 @@ body{
   padding:1rem;
 }
 
-/* pick one place to put the header height value */
-:root { --header-height: 64px; }
-
-/* ensure container matches that height */
-.site-header {
-  --header-height: 64px;
-}
-.site-header .container {
+/* ===== Header + logo layout adjustments ===== */
+.site-header{
+  background:#111;
+  color:#fff;
+  /* ensure header area respects the header height variable */
   min-height: var(--header-height);
-  align-items: center; /* vertically center items */
 }
 
-/* logo fits the header height */
-.site-logo {
-  height: calc(var(--header-height) - 12px); /* leave some breathing room if header has padding */
+/* Use flexible layout: logo (left), nav (middle), brand (right) */
+.site-header .container{
+  display:flex;
+  align-items:center; /* vertically center elements */
+  gap:1rem;
+  /* no justify-content here, we'll use margin-left:auto on .brand to push it right */
+}
+
+/* Logo (place your file: images/logo.png or change path in HTML) */
+.site-logo{
+  display:block;
+  flex: 0 0 auto;
+  /* make logo fit header height while preserving aspect ratio */
+  height: calc(var(--header-height) - 12px); /* leave some breathing room for padding */
   width: auto;
-  display: block;
   object-fit: contain;
 }
 
-
-/* Logo (coloca o ficheiro: images/logo.png ou ajusta o caminho) */
-.site-logo{
-  display:block;
-  width:56px;    /* ajusta conforme o desejado */
-  height:auto;
-  flex: 0 0 auto;
-}
-
-/* Nav no meio — torna-a um flex para espaçamento consistente */
+/* Nav in the middle — use flex for spacing */
 .nav{
   display:flex;
   gap:0.75rem;
@@ -54,55 +52,38 @@ body{
   flex: 0 1 auto;
 }
 
-/* Links da navegação */
+/* Links of the navigation */
 .nav a{
   color:#fff;
   text-decoration:none;
-  margin-left:0;     /* deixamos o espaçamento via gap no .nav */
+  margin-left:0;     /* spacing handled by gap on .nav */
   font-size:0.95rem;
   padding:0.25rem 0.4rem;
 }
 
-/* Marca (força para a direita) */
+/* Brand pushed to the far right */
 .brand{
   margin:0;
   padding:0.5rem 0;
   font-size:1.25rem;
   color:inherit;
-  margin-left: auto;     /* empurra a marca para a extrema direita */
+  margin-left: auto;     /* pushes the brand to the extreme right */
   display:flex;
   align-items:center;
   gap:0.4rem;
   white-space:nowrap;
 }
 
-/* Pequeno ajuste visual quando quiseres destacar "CAR" a vermelho com spans inline */
+/* Preserve your inline-style look for CAR red-highlight if you keep spans */
 .brand span { display:inline-block; vertical-align:middle; }
 
-/* MOBILE: empilha e garante que a marca fica alinhada à direita no ecrã pequeno */
-@media (max-width:600px){
-  .site-header .container{
-    flex-direction:column;
-    align-items:flex-start;
-    gap:0.5rem;
-  }
-
-  /* Mantém o nav ocupando a largura e permitindo scroll horizontal se necessário */
-  .nav{
-    width:100%;
-    overflow-x:auto;
-  }
-
-  /* Marca ocupa 100% mas alinhada à direita */
-  .brand{
-    width:100%;
-    text-align:right;
-    margin-left:0;
-  }
-
-  .site-logo{
-    width:48px;
-  }
+/* ===== original rules (kept mostly unchanged) ===== */
+.nav a{
+  /* duplicated earlier but keeping original font-size intent */
+  color:#fff;
+  text-decoration:none;
+  margin-left:1rem;
+  font-size:0.95rem;
 }
 
 .hero{
@@ -162,6 +143,7 @@ body{
 table{width:100%;border-collapse:collapse;margin-top:1rem}
 table th,table td{padding:0.4rem;border:1px solid #e6e6e6;text-align:left;font-size:0.95rem}
 
+/* Mobile adjustments */
 @media (max-width:600px){
   .site-header .container{
     flex-direction:column;
@@ -172,7 +154,14 @@ table th,table td{padding:0.4rem;border:1px solid #e6e6e6;text-align:left;font-s
     margin-right:0.5rem;
   }
   .kpis{flex-direction:column}
+
+  /* Mobile: reduce logo height */
+  .site-logo{
+    height: calc(var(--header-height) - 20px);
+    max-height:48px;
+  }
 }
+
 /* splash overlay */
 .splash-overlay{
   position: fixed;
