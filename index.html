@@ -111,6 +111,8 @@
   const car         = splash.querySelector('.splash-car'); 
   const lettersWrap = document.getElementById('splash-letters');
   const letters = lettersWrap ? Array.from(lettersWrap.querySelectorAll('.splash-letter')) : [];
+  const splashGifWrap = splash.querySelector('.splash-gif-wrap');
+  const splashGif = splash.querySelector('.splash-gif');
 
   // CONFIG
   const totalMs = 4500;      
@@ -232,6 +234,37 @@
   });
 
   setTimeout(() => ensureCarReadyAndUpdate(), 20);
+
+  function restartGif() {
+    if (!splashGif || !splashGif.parentNode) return;
+    const src = (splashGif.getAttribute('src') || '').split('?')[0];
+    const newGif = document.createElement('img');
+
+    newGif.className = splashGif.className;
+    newGif.alt = splashGif.alt || '';
+    newGif.setAttribute('aria-hidden', 'true');
+    newGif.style.pointerEvents = 'none';
+
+
+    newGif.src = src + '?_=' + Date.now();
+
+    newGif.addEventListener('load', () => {
+      if (splashGif.parentNode) splashGif.parentNode.replaceChild(newGif, splashGif);
+    }, { once: true });
+    setTimeout(() => {
+      if (splashGif.parentNode) splashGif.parentNode.replaceChild(newGif, splashGif);
+    }, 250);
+  }
+
+  restartGif();
+
+  window.addEventListener('pageshow', (ev) => {
+    restartGif();
+  });
+
+  document.addEventListener('visibilitychange', () => {
+    if (document.visibilityState === 'visible') restartGif();
+  });
 
 })();
 </script>
