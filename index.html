@@ -10,7 +10,25 @@
 <body>
   <div id="splash" class="splash-overlay" aria-hidden="false">
   <div class="splash-inner">
-    <h1 class="splash-title"><span style="color: red; text-transform: uppercase;">CAR</span><span style="color: black;">AVEL Racing</span></h1>
+  <h1 class="splash-title" aria-hidden="true">
+    <span class="splash-letters" id="splash-letters">
+    
+      <span class="splash-letter" data-index="0">C</span>
+      <span class="splash-letter" data-index="1">A</span>
+      <span class="splash-letter" data-index="2">R</span>
+      <span class="splash-letter" data-index="3">A</span>
+      <span class="splash-letter" data-index="4">V</span>
+      <span class="splash-letter" data-index="5">E</span>
+      <span class="splash-letter" data-index="6">L</span>
+      <span class="splash-letter" data-index="7">&nbsp;</span>
+      <span class="splash-letter" data-index="8">R</span>
+      <span class="splash-letter" data-index="9">a</span>
+      <span class="splash-letter" data-index="10">c</span>
+      <span class="splash-letter" data-index="11">i</span>
+      <span class="splash-letter" data-index="12">n</span>
+      <span class="splash-letter" data-index="13">g</span>
+    </span>
+  </h1>
 
     <div class="splash-car-wrap" aria-hidden="true">
 
@@ -29,8 +47,7 @@
 
 <header class="site-header">
   <div class="container">
-    <!-- Logo: coloque o ficheiro em images/logo.png -->
-    <img class="site-logo" src="images/logonobk.png" alt="Caravel Racing logo">
+    <img class="site-logo" src="images/logonobg.png" alt="Caravel Racing logo">
 
     <nav class="nav">
       <a href="index.html">Home</a>
@@ -40,15 +57,15 @@
       <a href="contact.html">Contactos</a>
     </nav>
 
-    <h1 class="brand"><span style="color: red; text-transform: uppercase;">CAR</span>AVEL Racing</h1>
+  <h1 class="brand"><span class="brand-red">CAR</span><span class="brand-avel">AVEL Racing</span></h1>
   </div>
 </header>
 
 
   <main class="container">
     <section class="hero">
-      <h2>Equipa portuguesa inscrita na competição 'STEM Racing'</h2>
-      <p>ns • ns • 2025/26 • ns • ns</p>
+      <h2>Equipa inscrita na competição STEM Racing</h2>
+      <p>Home • Projetos • Sobre a Equipa • Patrocinadores • Contactos</p>
       <p><a class="btn" href="projects.html">Ver Projetos</a></p>
     </section>
 
@@ -86,6 +103,8 @@
   const fill        = splash.querySelector('.splash-fill');
   const num         = document.getElementById('splash-num');
   const car         = splash.querySelector('.splash-car'); 
+  const lettersWrap = document.getElementById('splash-letters');
+  const letters = lettersWrap ? Array.from(lettersWrap.querySelectorAll('.splash-letter')) : [];
 
   // CONFIG
   const totalMs = 4500;      
@@ -118,6 +137,29 @@
     car.style.left = clamped + 'px';
   }
 
+  function updateLetters(pct){
+    if (!letters || !letters.length) return;
+    const total = letters.length;
+    const pos = (pct / 100) * total;
+    for(let i=0;i<total;i++){
+      const el = letters[i];
+      const idx = i + 1;
+      if (idx <= Math.floor(pos)){
+        el.style.opacity = '1';
+        el.style.transform = 'translateY(0) scale(1)';
+      } else if (idx === Math.floor(pos) + 1){
+        const partial = Math.max(0, Math.min(1, pos - Math.floor(pos)));
+        el.style.opacity = String(partial);
+        const y = (1 - partial) * 8; 
+        const s = 0.98 + (partial * 0.02);
+        el.style.transform = `translateY(${y}px) scale(${s})`;
+      } else {
+        el.style.opacity = '0';
+        el.style.transform = 'translateY(8px) scale(0.98)';
+      }
+    }
+  }
+
   function ensureCarReadyAndUpdate() {
     if (!car) return updateCar(progress);
 
@@ -140,6 +182,7 @@
       fill.style.width = progress + '%';
       num.textContent = progress;
       updateCar(progress);
+      updateLetters(progress);
     } else {
       clearInterval(interval);
     }
@@ -153,6 +196,7 @@
     fill.style.width = '100%';
     num.textContent = '100';
     updateCar(100);
+    updateLetters(100);
     setTimeout(() => {
       splash.classList.add('hidden');
       splash.addEventListener('transitionend', () => {

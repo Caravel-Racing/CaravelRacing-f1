@@ -2,7 +2,7 @@
   --max-width:1100px;
   --accent:#c0182e;
   --muted:#444;
-  --header-height:64px; /* adjust this to control header/logo height */
+  --header-height:64px; 
 }
 
 *{box-sizing:border-box}
@@ -18,68 +18,92 @@ body{
   padding:1rem;
 }
 
-/* ===== Header + logo layout adjustments ===== */
+
 .site-header{
   background:#111;
   color:#fff;
-  /* ensure header area respects the header height variable */
   min-height: var(--header-height);
 }
 
-/* Use flexible layout: logo (left), nav (middle), brand (right) */
 .site-header .container{
   display:flex;
-  align-items:center; /* vertically center elements */
+  align-items:center;
   gap:1rem;
-  /* no justify-content here, we'll use margin-left:auto on .brand to push it right */
 }
 
-/* Logo (place your file: images/logo.png or change path in HTML) */
+.site-header .container{
+  position: relative;
+}
+
 .site-logo{
   display:block;
   flex: 0 0 auto;
-  /* make logo fit header height while preserving aspect ratio */
-  height: calc(var(--header-height) - 12px); /* leave some breathing room for padding */
+  height: calc(var(--header-height) - 12px); 
   width: auto;
   object-fit: contain;
 }
 
-/* Nav in the middle — use flex for spacing */
 .nav{
   display:flex;
   gap:0.75rem;
   align-items:center;
   flex: 0 1 auto;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
 }
 
-/* Links of the navigation */
+.nav{
+  white-space: nowrap;
+}
+
+
 .nav a{
   color:#fff;
   text-decoration:none;
-  margin-left:0;     /* spacing handled by gap on .nav */
+  margin-left:0;     
   font-size:0.95rem;
   padding:0.25rem 0.4rem;
 }
 
-/* Brand pushed to the far right */
+
 .brand{
   margin:0;
   padding:0.5rem 0;
   font-size:1.25rem;
   color:inherit;
-  margin-left: auto;     /* pushes the brand to the extreme right */
+  margin-left: auto;     
   display:flex;
   align-items:center;
-  gap:0.4rem;
+  gap:0;
   white-space:nowrap;
 }
 
-/* Preserve your inline-style look for CAR red-highlight if you keep spans */
 .brand span { display:inline; vertical-align:middle; }
 
-/* ===== original rules (kept mostly unchanged) ===== */
+.brand-red, .splash-car-part {
+  color: red;
+  text-transform: uppercase;
+  letter-spacing: 0.6px;
+  display: inline-block; 
+  margin: 0; 
+  padding: 0;
+}
+
+.brand-avel, .splash-avel {
+  color: #fff; 
+  display: inline-block;
+  margin: 0;
+  padding: 0;
+}
+
+.brand-red + .brand-avel,
+.splash-car-part + .splash-avel {
+  white-space: nowrap;
+}
+
 .nav a{
-  /* duplicated earlier but keeping original font-size intent */
   color:#fff;
   text-decoration:none;
   margin-left:1rem;
@@ -143,7 +167,6 @@ body{
 table{width:100%;border-collapse:collapse;margin-top:1rem}
 table th,table td{padding:0.4rem;border:1px solid #e6e6e6;text-align:left;font-size:0.95rem}
 
-/* Mobile adjustments */
 @media (max-width:600px){
   .site-header .container{
     flex-direction:column;
@@ -155,14 +178,22 @@ table th,table td{padding:0.4rem;border:1px solid #e6e6e6;text-align:left;font-s
   }
   .kpis{flex-direction:column}
 
-  /* Mobile: reduce logo height */
   .site-logo{
     height: calc(var(--header-height) - 20px);
     max-height:48px;
   }
+
+  .nav{
+    position: static;
+    left: auto;
+    top: auto;
+    transform: none;
+    width: 100%;
+    justify-content: flex-start;
+    white-space: normal;
+  }
 }
 
-/* splash overlay */
 .splash-overlay{
   position: fixed;
   inset: 0;
@@ -186,19 +217,45 @@ table th,table td{padding:0.4rem;border:1px solid #e6e6e6;text-align:left;font-s
 .splash-inner{
   text-align: center;
   color: #fff;
-  padding: 1.5rem;
+  /* reduce top padding so title sits higher on the splash */
+  padding: 0.9rem 1.5rem;
   width: 90%;
-  max-width: 640px;
+  max-width: 740px;
 }
 
 .splash-title{
-  margin: 0 0 1rem;
-  font-size: 1.4rem;
-  font-weight: 700;
+  margin: 0 0 0.6rem;
+  /* larger, title-like size */
+  font-size: 2.4rem;
+  font-weight: 800;
   letter-spacing: 2px;
   color: #fff;
   text-transform: uppercase;
+  line-height: 1;
 }
+
+.splash-letters{display:inline-block;line-height:1;}
+.splash-letter{
+  display:inline-block;
+  opacity:0;
+  transform: translateY(8px) scale(0.98);
+  transition: opacity 220ms cubic-bezier(.2,.8,.2,1), transform 220ms cubic-bezier(.2,.8,.2,1);
+  color: #fff;
+  font-weight:800;
+  letter-spacing: 1px;
+  will-change: transform, opacity;
+  /* scale letters up to match title size */
+  font-size: 2.4rem;
+}
+.splash-letter.space{width:0.5rem;display:inline-block}
+
+.splash-letter[data-index="0"],
+.splash-letter[data-index="0"],
+.splash-letter[data-index="1"],
+.splash-letter[data-index="2"]{
+  color: var(--accent);
+}
+.splash-overlay.hidden .splash-letter{opacity:1;transform:none}
 
 .splash-bar{
   width: 100%;
@@ -265,4 +322,7 @@ body.splash-active{
     width: 60px;
   }
   .splash-car-wrap{ height: 40px; top: 0.1rem; }
+  /* mobile: slightly smaller title but still prominent */
+  .splash-title{ font-size: 1.6rem; }
+  .splash-letter{ font-size: 1.6rem; }
 }
