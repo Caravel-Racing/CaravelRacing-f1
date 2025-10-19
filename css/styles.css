@@ -298,13 +298,18 @@ body.splash-active{
   justify-content:center;
   align-items:center;
   margin-bottom:0.6rem;
+  /* prevent the GIF from pushing other splash content off-screen */
+  max-height:28vh;
+  overflow:hidden;
 }
 .splash-gif{
   max-width:220px;
-  width:40%;
+  /* responsive cap: won't shrink below ~88px, scales with viewport, never exceed max-width */
+  width: clamp(88px, 30vw, 220px);
   height:auto;
   display:block;
   pointer-events:none;
+  object-fit:contain;
 }
 
 .splash-car-wrap{
@@ -342,7 +347,9 @@ body.splash-active{
   /* mobile: slightly smaller title but still prominent */
   .splash-title{ font-size: 1.6rem; }
   .splash-letter{ font-size: 1.6rem; }
-  .splash-gif{ max-width:140px; width:48%; }
+  /* tighter constraints for the GIF on small screens (phones/tablets) */
+  .splash-gif{ max-width:140px; width: clamp(64px, 36vw, 140px); max-height:20vh; }
+  .splash-gif-wrap{ max-height:18vh; margin-bottom:0.4rem; }
 }
 
 /* stacking: ensure gif is above the car and the car is above the progress bar */
