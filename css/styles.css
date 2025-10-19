@@ -75,7 +75,7 @@ body{
 }
 
 /* Preserve your inline-style look for CAR red-highlight if you keep spans */
-.brand span { display:inline-block; vertical-align:middle; }
+.brand span { display:inline; vertical-align:middle; }
 
 /* ===== original rules (kept mostly unchanged) ===== */
 .nav a{
