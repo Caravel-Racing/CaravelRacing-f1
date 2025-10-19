@@ -298,18 +298,13 @@ body.splash-active{
   justify-content:center;
   align-items:center;
   margin-bottom:0.6rem;
-  /* prevent the GIF from pushing other splash content off-screen */
-  max-height:28vh;
-  overflow:hidden;
 }
 .splash-gif{
   max-width:220px;
-  /* responsive cap: won't shrink below ~88px, scales with viewport, never exceed max-width */
-  width: clamp(88px, 30vw, 220px);
+  width:40%;
   height:auto;
   display:block;
   pointer-events:none;
-  object-fit:contain;
 }
 
 .splash-car-wrap{
@@ -347,12 +342,28 @@ body.splash-active{
   /* mobile: slightly smaller title but still prominent */
   .splash-title{ font-size: 1.6rem; }
   .splash-letter{ font-size: 1.6rem; }
-  /* tighter constraints for the GIF on small screens (phones/tablets) */
-  .splash-gif{ max-width:140px; width: clamp(64px, 36vw, 140px); max-height:20vh; }
-  .splash-gif-wrap{ max-height:18vh; margin-bottom:0.4rem; }
+  .splash-gif{ max-width:140px; width:48%; }
 }
 
 /* stacking: ensure gif is above the car and the car is above the progress bar */
 .splash-gif-wrap{ position: relative; z-index: 3; }
 .splash-car-wrap{ z-index: 2; }
 .splash-bar{ position: relative; z-index: 1; margin-top: 0.6rem; }
+
+/* Make splash GIF much smaller on narrow/mobile screens */
+@media (max-width: 430px) {
+  .splash-gif {
+    /* use a small fixed maximum so it never grows too big */
+    max-width: 90px;    /* try 90px — change to 70px or 110px to taste */
+    width: auto;        /* avoid percentage-based scaling */
+    height: auto;
+  }
+
+  /* slightly tighten title so layout feels balanced */
+  .splash-title { font-size: 1.4rem; }
+  .splash-letter { font-size: 1.4rem; }
+
+  /* nudge car area if needed on very small screens */
+  .splash-car-wrap { top: 2.0rem; height: 36px; }
+}
+
