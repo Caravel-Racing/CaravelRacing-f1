@@ -337,33 +337,42 @@ body.splash-active{
   .splash-car{
     width: 60px;
   }
-  /* mobile: keep the car below the GIF/title but slightly closer for smaller screens */
   .splash-car-wrap{ height: 40px; top: 2.2rem; }
-  /* mobile: slightly smaller title but still prominent */
   .splash-title{ font-size: 1.6rem; }
   .splash-letter{ font-size: 1.6rem; }
   .splash-gif{ max-width:140px; width:48%; }
 }
 
-/* stacking: ensure gif is above the car and the car is above the progress bar */
 .splash-gif-wrap{ position: relative; z-index: 3; }
 .splash-car-wrap{ z-index: 2; }
 .splash-bar{ position: relative; z-index: 1; margin-top: 0.6rem; }
 
-/* Make splash GIF much smaller on narrow/mobile screens */
-@media (max-width: 430px) {
+@media (max-width: 430px) and (orientation: portrait) {
   .splash-gif {
-    /* use a small fixed maximum so it never grows too big */
-    max-width: 90px;    /* try 90px — change to 70px or 110px to taste */
-    width: auto;        /* avoid percentage-based scaling */
+    max-width: 80px;
+    width: auto;
     height: auto;
+    display: block;
+    margin: 0 auto 0.4rem;
+    pointer-events: none;
+    z-index: 3; 
   }
 
-  /* slightly tighten title so layout feels balanced */
-  .splash-title { font-size: 1.4rem; }
-  .splash-letter { font-size: 1.4rem; }
+  .splash-car-wrap {
+    top: 5.2rem;   
+    height: 48px;   
+    z-index: 1;     
+    overflow: visible;
+  }
 
-  /* nudge car area if needed on very small screens */
-  .splash-car-wrap { top: 2.0rem; height: 36px; }
+  .splash-car {
+    width: 60px;
+    top: 0;
+    transition: left 120ms linear, top 120ms linear;
+  }
+
+  .splash-title { font-size: 1.6rem; }
+  .splash-letter { font-size: 1.6rem; }
 }
+
 
