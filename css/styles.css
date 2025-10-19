@@ -292,10 +292,26 @@ body.splash-active{
   padding-top: 1.6rem; 
 }
 
+/* GIF logo shown above the title and car on the splash screen */
+.splash-gif-wrap{
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  margin-bottom:0.6rem;
+}
+.splash-gif{
+  max-width:220px;
+  width:40%;
+  height:auto;
+  display:block;
+  pointer-events:none;
+}
+
 .splash-car-wrap{
   position: absolute;
   left: 0;
-  top: 0.35rem; 
+  /* place the car below the GIF/title area so it doesn't overlap the animated logo */
+  top: 9.0rem; 
   width: 100%;
   height: 48px;     
   pointer-events: none;
@@ -321,8 +337,15 @@ body.splash-active{
   .splash-car{
     width: 60px;
   }
-  .splash-car-wrap{ height: 40px; top: 0.1rem; }
+  /* mobile: keep the car below the GIF/title but slightly closer for smaller screens */
+  .splash-car-wrap{ height: 40px; top: 2.2rem; }
   /* mobile: slightly smaller title but still prominent */
   .splash-title{ font-size: 1.6rem; }
   .splash-letter{ font-size: 1.6rem; }
+  .splash-gif{ max-width:140px; width:48%; }
 }
+
+/* stacking: ensure gif is above the car and the car is above the progress bar */
+.splash-gif-wrap{ position: relative; z-index: 3; }
+.splash-car-wrap{ z-index: 2; }
+.splash-bar{ position: relative; z-index: 1; margin-top: 0.6rem; }
