@@ -110,7 +110,42 @@
   const num         = document.getElementById('splash-num');
   const car         = splash.querySelector('.splash-car'); 
   const lettersWrap = document.getElementById('splash-letters');
+
+  (function groupLettersIntoWords(){
+    if (!lettersWrap) return;
+    const letterNodes = Array.from(lettersWrap.querySelectorAll('.splash-letter'));
+    if (!letterNodes.length) return;
+
+    const frag = document.createDocumentFragment();
+    let word = document.createElement('span');
+    word.className = 'splash-word';
+
+    letterNodes.forEach((ln) => {
+      const text = (ln.textContent || '').replace(/\u00A0/g, ' ').trim();
+      if (text === '') {
+        if (word.childNodes.length) {
+          frag.appendChild(word);
+          word = document.createElement('span');
+          word.className = 'splash-word';
+        }
+
+        const spacer = document.createElement('span');
+        spacer.className = 'splash-letter splash-space';
+        spacer.innerHTML = '&nbsp;';
+        frag.appendChild(spacer);
+      } else {
+        word.appendChild(ln);
+      }
+    });
+
+    if (word.childNodes.length) frag.appendChild(word);
+    lettersWrap.innerHTML = '';
+    lettersWrap.appendChild(frag);
+  })();
+
+
   const letters = lettersWrap ? Array.from(lettersWrap.querySelectorAll('.splash-letter')) : [];
+
   const splashGifWrap = splash.querySelector('.splash-gif-wrap');
   const splashGif = splash.querySelector('.splash-gif');
 
