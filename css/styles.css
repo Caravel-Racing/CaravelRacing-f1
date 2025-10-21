@@ -488,23 +488,65 @@ html.mobile-menu-open .mobile-nav::before{
   cursor: pointer;
 }
 
-/* small layout adjustments on mobile */
-@media (max-width: 600px){
-  /* hide desktop nav */
-  .nav{ display: none; }
 
-  /* show hamburger */
-  .nav-toggle{ display: inline-flex; }
+/* MOBILE layout: brand left, logo centered, hamburger right */
+@media (max-width: 600px) {
 
-  /* keep brand to the right of the header */
-  .brand{ margin-left: auto; }
+  /* keep header a single row but allow absolute-positioned brand + toggle */
+  .site-header .container {
+    display: flex;
+    justify-content: center; /* center the logo (normal flow) */
+    align-items: center;
+    position: relative;      /* so absolutely positioned children use this as origin */
+    padding-left: 1rem;      /* room for the left brand */
+    padding-right: 3.5rem;   /* room for the right hamburger */
+    gap: 0;
+  }
 
-  /* reduce header padding so top fits */
-  .site-header{ min-height: 56px; }
-  :root{ --header-height:56px; }
+  /* move the textual brand to top-left (visually) */
+  .brand {
+    position: absolute;
+    left: 1rem;
+    top: 50%;
+    transform: translateY(-50%);
+    margin: 0;
+    font-size: 1rem;        /* tweak size for mobile */
+    white-space: nowrap;
+    z-index: 1100;
+  }
+
+  /* center the logo: since container uses justify-content:center, the logo (in flow) will be centered */
+  .site-logo {
+    height: calc(var(--header-height) - 18px);
+    max-height: 48px;
+    margin: 0 auto;         /* ensure it's in the center */
+    display: block;
+  }
+
+  /* hide desktop nav and show hamburger in top-right */
+  .nav { display: none; }
+
+  .nav-toggle {
+    display: inline-flex;
+    position: absolute;
+    right: 0.9rem;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 1200;
+    background: transparent;
+    border: none;
+    padding: .25rem;
+    align-items: center;
+    justify-content: center;
+  }
+
+  /* slightly smaller header height on phones */
+  .site-header { min-height: 56px; }
+  :root { --header-height: 56px; }
+
+  /* keep mobile panel z-index above header */
+  .mobile-nav { z-index: 1300; }
+
 }
 
-/* ensure mobile panel doesn’t cover splash unnecessarily (low z-index coordination) */
-@media (max-width: 600px){
-  .mobile-nav { z-index: 1200; }
-}
+
