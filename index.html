@@ -78,18 +78,29 @@
         <span class="splash-letters" id="splash-letters">
 
           <span class="splash-letter" data-index="0">C</span>
+          <span class="splash-letter"> </span>
           <span class="splash-letter" data-index="1">A</span>
+          <span class="splash-letter"> </span>
           <span class="splash-letter" data-index="2">R</span>
+          <span class="splash-letter"> </span>
           <span class="splash-letter" data-index="3">A</span>
+          <span class="splash-letter"> </span>
           <span class="splash-letter" data-index="4">V</span>
+          <span class="splash-letter"> </span>
           <span class="splash-letter" data-index="5">E</span>
+          <span class="splash-letter"> </span>
           <span class="splash-letter" data-index="6">L</span>
           <span class="splash-letter" data-index="7">&nbsp;</span>
           <span class="splash-letter" data-index="8">R</span>
+          <span class="splash-letter"> </span>
           <span class="splash-letter" data-index="9">a</span>
+          <span class="splash-letter"> </span>
           <span class="splash-letter" data-index="10">c</span>
+          <span class="splash-letter"> </span>
           <span class="splash-letter" data-index="11">i</span>
+          <span class="splash-letter"> </span>
           <span class="splash-letter" data-index="12">n</span>
+          <span class="splash-letter"> </span>
           <span class="splash-letter" data-index="13">g</span>
         </span>
       </h1>
@@ -110,13 +121,37 @@
     <div class="container">
       <img class="site-logo" src="images/logonobg.png" alt="Caravel Racing logo">
 
-      <nav class="nav">
+      <!-- Mobile: hamburger button shown only on small screens -->
+      <button class="mobile-hamburger" aria-label="Abrir menu" aria-controls="mobile-nav" aria-expanded="false">
+        <span class="hamburger-line"></span>
+        <span class="hamburger-line"></span>
+        <span class="hamburger-line"></span>
+      </button>
+
+      <nav class="nav" id="desktop-nav">
         <a href="index.html">Home</a>
         <a href="projects.html">Projetos</a>
         <a href="sobre-equipa.html">Sobre a Equipa</a>
         <a href="patrocinadores.html">Patrocinadores</a>
         <a href="contact.html">Contactos</a>
       </nav>
+
+      <!-- Mobile side nav: hidden by default, toggled by hamburger -->
+      <aside id="mobile-nav" class="mobile-nav" aria-hidden="true">
+        <div class="mobile-nav-inner">
+          <div class="mobile-nav-header">
+            <img class="mobile-logo" src="images/logonobg.png" alt="Caravel Racing logo">
+            <button class="mobile-close" aria-label="Fechar menu">×</button>
+          </div>
+          <nav class="mobile-links">
+            <a href="index.html">Home</a>
+            <a href="projects.html">Projetos</a>
+            <a href="sobre-equipa.html">Sobre a Equipa</a>
+            <a href="patrocinadores.html">Patrocinadores</a>
+            <a href="contact.html">Contactos</a>
+          </nav>
+        </div>
+      </aside>
 
       <h1 class="brand"><span class="brand-red">CAR</span><span class="brand-avel">AVEL Racing</span></h1>
     </div>

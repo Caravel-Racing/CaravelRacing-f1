@@ -194,6 +194,81 @@ table th,table td{padding:0.4rem;border:1px solid #e6e6e6;text-align:left;font-s
   }
 }
 
+/* Mobile header: hamburger and side panel */
+@media (max-width:800px){
+  /* Hide desktop nav */
+  #desktop-nav{ display:none; }
+
+  .mobile-hamburger{
+    display:inline-flex;
+    flex-direction:column;
+    justify-content:center;
+    gap:5px;
+    background:transparent;
+    border:0;
+    padding:8px;
+    margin-left:auto;
+    cursor:pointer;
+    align-items:center;
+  }
+
+  .mobile-hamburger:focus{ outline:2px solid rgba(255,255,255,0.15); border-radius:6px }
+
+  .hamburger-line{
+    width:22px;
+    height:2px;
+    background:#fff;
+    display:block;
+    border-radius:2px;
+  }
+
+  /* Mobile side nav */
+
+  .mobile-nav{
+    position:fixed;
+    top:0;
+    left:0;
+    height:100vh;
+    width:320px;
+    max-width:85vw;
+    background:#0f0f0f;
+    color:#fff;
+    transform:translateX(-110%);
+    transition:transform 300ms cubic-bezier(.2,.8,.2,1);
+    z-index:10000;
+    box-shadow:2px 0 12px rgba(0,0,0,0.6);
+  }
+
+
+  .mobile-nav[aria-hidden="false"]{ transform:translateX(0); }
+
+
+  .mobile-nav-inner{ padding:1rem; display:flex; flex-direction:column; height:100%; }
+
+
+  .mobile-nav-header{ display:flex; align-items:center; gap:0.5rem; margin-bottom:1rem; }
+
+
+  .mobile-logo{ height:40px; width:auto; }
+
+
+  .mobile-close{ margin-left:auto; background:transparent; border:0; color:#fff; font-size:1.6rem; cursor:pointer }
+
+
+  .mobile-links{ display:flex; flex-direction:column; gap:0.6rem; margin-top:0.4rem }
+
+
+  .mobile-links a{ color:#fff; text-decoration:none; padding:0.6rem 0.3rem; border-bottom:1px solid rgba(255,255,255,0.03) }
+
+
+  /* show only hamburger and logo on header (compact) */
+  .site-header .container{ flex-direction:row; align-items:center }
+  .brand{ display:none }
+}
+
+@media (min-width:801px){
+  .mobile-hamburger, .mobile-nav{ display:none }
+}
 .splash-overlay{
   position: fixed;
   inset: 0;
