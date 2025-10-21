@@ -290,21 +290,7 @@ body.splash-active{
 }
 
 
-.splash-word {
-  display: inline-block;
-  white-space: nowrap; 
-}
 
-
-.splash-space {
-  display: inline-block;
-  width: 0.5rem;
-}
-
-
-.splash-word .splash-letter {
-  display: inline-block; 
-}
 
 
 
