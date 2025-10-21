@@ -5,32 +5,34 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1">
 
+  <!-- === SEO / Social / Favicon (substitui https://example.com pela tua URL real) === -->
   <title>Caravel Racing — Website</title>
   <meta name="description" content="Equipa inscrita na competição STEM Racing na temporada 2025/26 — Caravel Racing. Projetos, membros e resultados da equipa portuguesa.">
 
+  <!-- FAVICONS: coloca estes ficheiros na raiz do site ou ajusta os caminhos -->
   <link rel="shortcut icon" href="/favicon.ico">
   <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
   <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
   <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
-  <link rel="manifest" href="/site.webmanifest">
-  <meta name="theme-color" content="#c0182e">
-  <meta name="msapplication-TileColor" content="#c0182e">
-  <meta name="msapplication-TileImage" content="/favicon-32x32.png">
 
+  <!-- Canonical (substitui pela URL correta da tua homepage, ex: https://teusite.com/) -->
   <link rel="canonical" href="https://caravelracing.com/">
 
+  <!-- Open Graph -->
   <meta property="og:type" content="website">
   <meta property="og:title" content="Caravel Racing — Website">
   <meta property="og:description" content="Equipa inscrita na competição STEM Racing na temporada 2025/26 — Caravel Racing.">
   <meta property="og:url" content="https://caravelracing.com/">
-  <meta property="og:image" content="https://caravelracing.com/images/logonobg.png">
+  <meta property="og:image" content="images/logonobg.png">
   <meta property="og:image:alt" content="Caravel Racing logo">
 
+  <!-- Twitter Card -->
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="Caravel Racing — Website">
   <meta name="twitter:description" content="Equipa inscrita na competição STEM Racing na temporada 2025/26 — Caravel Racing.">
   <meta name="twitter:image" content="https://caravelracing.com/images/logonobg.png">
 
+  <!-- JSON-LD structured data -->
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -39,7 +41,7 @@
         "@type": "SportsTeam",
         "name": "Caravel Racing",
         "url": "https://caravelracing.com/",
-        "logo": "https://caravelracing.com/images/logonobg.png",
+        "logo": "images/logonobg.png",
         "description": "Equipa inscrita na competição STEM Racing na temporada 2025/26 — Caravel Racing.",
         "member": [],
         "sameAs": []
@@ -50,24 +52,19 @@
         "name": "Caravel Racing — Website",
         "description": "Equipa inscrita na competição STEM Racing na temporada 2025/26 — Caravel Racing."
       }
-      ,
-      {
-        "@type": "Organization",
-        "name": "Caravel Racing",
-        "url": "https://caravelracing.com/",
-        "logo": "https://caravelracing.com/images/logo.png",
-        "sameAs": []
-      }
     ]
   }
   </script>
+  <!-- === fim head SEO/social === -->
 
+  <!-- link para o teu CSS -->
   <link rel="stylesheet" href="css/styles.css">
 </head>
 <body>
   <div id="splash" class="splash-overlay" aria-hidden="false">
     <div class="splash-inner">
 
+      <!-- GIF logo placed above title and car -->
       <div class="splash-gif-wrap" aria-hidden="true">
         <img src="images/logogifs.gif" alt="Caravel Racing animated logo" class="splash-gif">
       </div>
@@ -203,8 +200,8 @@
     const splashGif = splash.querySelector('.splash-gif');
 
     // CONFIG
-    const totalMs = 3500;      
-    const safetyExtra = 2000; 
+    const totalMs = 4500;      
+    const safetyExtra = 3000; 
 
     let progress = 0;
     let running = true;
