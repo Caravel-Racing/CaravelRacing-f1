@@ -107,7 +107,11 @@
   </div>
 
   <header class="site-header">
-  <div class="container">
+  <div class="container header-row">
+    <!-- Brand (texto) — agora aparece antes do logo no DOM -->
+    <h1 class="brand"><a href="index.html"><span class="brand-red">CAR</span><span class="brand-avel">AVEL Racing</span></a></h1>
+
+    <!-- Logo (logo coloca-se imediatamente após o texto) -->
     <img class="site-logo" src="images/logonobg.png" alt="Caravel Racing logo">
 
     <!-- Mobile hamburger (hidden on desktop) -->
@@ -127,11 +131,9 @@
       <a href="patrocinadores.html">Patrocinadores</a>
       <a href="contact.html">Contactos</a>
     </nav>
-
-    <h1 class="brand"><span class="brand-red">CAR</span><span class="brand-avel">AVEL Racing</span></h1>
   </div>
 
-  <!-- Mobile panel (hidden by default, slides in) -->
+  <!-- Mobile panel -->
   <div id="mobile-nav" class="mobile-nav" aria-hidden="true">
     <div class="mobile-nav-panel">
       <button class="nav-close" aria-label="Fechar menu">&times;</button>
@@ -145,6 +147,7 @@
     </div>
   </div>
 </header>
+
 
 
   <main class="container">
