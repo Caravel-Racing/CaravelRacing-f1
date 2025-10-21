@@ -78,29 +78,18 @@
         <span class="splash-letters" id="splash-letters">
 
           <span class="splash-letter" data-index="0">C</span>
-          <span class="splash-letter"> </span>
           <span class="splash-letter" data-index="1">A</span>
-          <span class="splash-letter"> </span>
           <span class="splash-letter" data-index="2">R</span>
-          <span class="splash-letter"> </span>
           <span class="splash-letter" data-index="3">A</span>
-          <span class="splash-letter"> </span>
           <span class="splash-letter" data-index="4">V</span>
-          <span class="splash-letter"> </span>
           <span class="splash-letter" data-index="5">E</span>
-          <span class="splash-letter"> </span>
           <span class="splash-letter" data-index="6">L</span>
           <span class="splash-letter" data-index="7">&nbsp;</span>
           <span class="splash-letter" data-index="8">R</span>
-          <span class="splash-letter"> </span>
           <span class="splash-letter" data-index="9">a</span>
-          <span class="splash-letter"> </span>
           <span class="splash-letter" data-index="10">c</span>
-          <span class="splash-letter"> </span>
           <span class="splash-letter" data-index="11">i</span>
-          <span class="splash-letter"> </span>
           <span class="splash-letter" data-index="12">n</span>
-          <span class="splash-letter"> </span>
           <span class="splash-letter" data-index="13">g</span>
         </span>
       </h1>
@@ -118,44 +107,45 @@
   </div>
 
   <header class="site-header">
-    <div class="container">
-      <img class="site-logo" src="images/logonobg.png" alt="Caravel Racing logo">
+  <div class="container">
+    <img class="site-logo" src="images/logonobg.png" alt="Caravel Racing logo">
 
-      <!-- Mobile: hamburger button shown only on small screens -->
-      <button class="mobile-hamburger" aria-label="Abrir menu" aria-controls="mobile-nav" aria-expanded="false">
-        <span class="hamburger-line"></span>
-        <span class="hamburger-line"></span>
-        <span class="hamburger-line"></span>
-      </button>
+    <!-- Mobile hamburger (hidden on desktop) -->
+    <button class="nav-toggle" aria-controls="mobile-nav" aria-expanded="false" aria-label="Abrir menu">
+      <span class="hamburger" aria-hidden="true">
+        <span></span>
+        <span></span>
+        <span></span>
+      </span>
+    </button>
 
-      <nav class="nav" id="desktop-nav">
+    <!-- Desktop nav (kept for larger screens) -->
+    <nav class="nav">
+      <a href="index.html">Home</a>
+      <a href="projects.html">Projetos</a>
+      <a href="sobre-equipa.html">Sobre a Equipa</a>
+      <a href="patrocinadores.html">Patrocinadores</a>
+      <a href="contact.html">Contactos</a>
+    </nav>
+
+    <h1 class="brand"><span class="brand-red">CAR</span><span class="brand-avel">AVEL Racing</span></h1>
+  </div>
+
+  <!-- Mobile panel (hidden by default, slides in) -->
+  <div id="mobile-nav" class="mobile-nav" aria-hidden="true">
+    <div class="mobile-nav-panel">
+      <button class="nav-close" aria-label="Fechar menu">&times;</button>
+      <nav class="mobile-links" role="navigation" aria-label="Menu principal">
         <a href="index.html">Home</a>
         <a href="projects.html">Projetos</a>
         <a href="sobre-equipa.html">Sobre a Equipa</a>
         <a href="patrocinadores.html">Patrocinadores</a>
         <a href="contact.html">Contactos</a>
       </nav>
-
-      <!-- Mobile side nav: hidden by default, toggled by hamburger -->
-      <aside id="mobile-nav" class="mobile-nav" aria-hidden="true">
-        <div class="mobile-nav-inner">
-          <div class="mobile-nav-header">
-            <img class="mobile-logo" src="images/logonobg.png" alt="Caravel Racing logo">
-            <button class="mobile-close" aria-label="Fechar menu">×</button>
-          </div>
-          <nav class="mobile-links">
-            <a href="index.html">Home</a>
-            <a href="projects.html">Projetos</a>
-            <a href="sobre-equipa.html">Sobre a Equipa</a>
-            <a href="patrocinadores.html">Patrocinadores</a>
-            <a href="contact.html">Contactos</a>
-          </nav>
-        </div>
-      </aside>
-
-      <h1 class="brand"><span class="brand-red">CAR</span><span class="brand-avel">AVEL Racing</span></h1>
     </div>
-  </header>
+  </div>
+</header>
+
 
   <main class="container">
     <section class="hero">
@@ -392,5 +382,69 @@
 
   })();
   </script>
+
+  <!-- Mobile menu script -->
+  <script>
+(function(){
+  const toggle = document.querySelector('.nav-toggle');
+  const mobileNav = document.getElementById('mobile-nav');
+  const closeBtn = document.querySelector('.nav-close');
+
+  if (!toggle || !mobileNav) return;
+
+  function openMenu(){
+    document.documentElement.classList.add('mobile-menu-open');
+    toggle.setAttribute('aria-expanded','true');
+    mobileNav.setAttribute('aria-hidden','false');
+    // focus the first link for accessibility
+    const firstLink = mobileNav.querySelector('.mobile-links a');
+    if (firstLink) firstLink.focus();
+  }
+  function closeMenu(){
+    document.documentElement.classList.remove('mobile-menu-open');
+    toggle.setAttribute('aria-expanded','false');
+    mobileNav.setAttribute('aria-hidden','true');
+    toggle.focus();
+  }
+
+  toggle.addEventListener('click', (e) => {
+    const expanded = toggle.getAttribute('aria-expanded') === 'true';
+    if (expanded) closeMenu(); else openMenu();
+  });
+
+  if (closeBtn) closeBtn.addEventListener('click', closeMenu);
+
+  // click on backdrop closes menu
+  mobileNav.addEventListener('click', (ev) => {
+    // if click target is the overlay (not inside panel), close
+    if (ev.target === mobileNav || ev.target === mobileNav.querySelector('.mobile-nav::before')) {
+      closeMenu();
+    }
+    // also allow clicking outside panel (on pseudo-backdrop) by checking bounding rect
+    const panel = mobileNav.querySelector('.mobile-nav-panel');
+    if (panel) {
+      const rect = panel.getBoundingClientRect();
+      if (ev.clientX < rect.left || ev.clientX > rect.right) {
+        closeMenu();
+      }
+    }
+  });
+
+  // close on ESC
+  window.addEventListener('keydown', (ev) => {
+    if (ev.key === 'Escape' && document.documentElement.classList.contains('mobile-menu-open')) {
+      closeMenu();
+    }
+  });
+
+  // optional: close when link is clicked (so menu closes after navigation)
+  mobileNav.querySelectorAll('.mobile-links a').forEach(a => {
+    a.addEventListener('click', () => {
+      closeMenu();
+    });
+  });
+})();
+</script>
+
 </body>
 </html>
