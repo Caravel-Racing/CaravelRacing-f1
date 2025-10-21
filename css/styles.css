@@ -1,7 +1,7 @@
 
 @font-face {
   font-family: "GreatsRaceItalic";                    
-  src: url("/fonts/greats-race-italic.woff2") format("woff2");
+  src: url("file:///D:/Users/pc/Documents/GitHub/CaravelRacing-f1/fonts/greats-race-italic.woff2") format("woff2");
   font-weight: 400;                                    
 }
 
@@ -76,10 +76,9 @@ body{
 .brand{
   font-family: "GreatsRaceItalic";
   letter-spacing: 0.4px;
-  line-height: 1;
   margin:0;
   padding:0.5rem 0;
-  font-size:1.25rem;
+  font-size:2.2rem;
   color:inherit;
   margin-left: auto;     
   display:flex;
@@ -91,7 +90,7 @@ body{
 .brand span { display:inline; vertical-align:middle; }
 
 .brand-red, .splash-car-part {
-  color: red;
+  color: #CC000E;
   text-transform: uppercase;
   letter-spacing: 0.6px;
   display: inline-block; 
@@ -231,10 +230,11 @@ table th,table td{padding:0.4rem;border:1px solid #e6e6e6;text-align:left;font-s
 }
 
 .splash-title{
+  font-family: "GreatsRaceItalic";
+  font-size: 1.0rem;
   margin: 0 0 0.6rem;
-  font-size: 2.4rem;
   font-weight: 800;
-  letter-spacing: 2px;
+  letter-spacing: 6px;
   color: #fff;
   text-transform: uppercase;
   line-height: 1;
