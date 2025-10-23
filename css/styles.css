@@ -1,16 +1,17 @@
 
 @font-face {
   font-family: "GreatsRaceItalic";                    
-  src: url("file:///D:/Users/pc/Documents/GitHub/CaravelRacing-f1/fonts/greats-race-italic.woff2") format("woff2");
+  src: url("/fonts/greats-race-italic.woff2") format("woff2");
+  src: url("/fonts/SpeedDemon.ttf") format("truetype");
   font-weight: 400;                                    
 }
 
 :root{
   --brand-font: "GreatsRaceItalic", system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
-  --max-width:1100px;
+  --max-width: 1920px;    /* aumentei para deixar o header mais largo */
   --accent:#c0182e;
   --muted:#444;
-  --header-height:64px; 
+  --header-height:80px;   /* opcional: header um pouco mais alto */
 }
 
 *{box-sizing:border-box}
@@ -27,64 +28,83 @@ body{
 }
 
 
-.site-header{
-  background:#111;
-  color:#fff;
-  min-height: var(--header-height);
-}
-
-.site-header .container{
-  display:flex;
-  align-items:center;
-  gap:1rem;
-}
-
-.site-header .container{
+.site-header {
+  background-color: #000000;
+  color: #ffffff;   
   position: relative;
+  width: 100%;
+  overflow: hidden;
+  padding: 0.5rem;          /* espaço vertical */
 }
 
-.site-logo{
-  display:block;
-  flex: 0 0 auto;
-  height: calc(var(--header-height) - 12px); 
+.site-header .header-inner {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  max-width: var(--max-width); /* usa a largura maior */
+  width: 100%;
+  margin: 0;
+  padding: 0 0rem;         /* controla espaço horizontal */
+}
+
+.brand-top{
+  font-size: 2em;        /* Caravel — maior */
+  font-weight: 800;
+  color: #fff;
+  letter-spacing: 1px;
+  text-transform: none;
+}
+
+.brand-bottom{
+  font-size: 1.5rem;       /* Racing — menor e com accent */
+  font-weight: 700;
+  color: var(--accent);
+  margin-top: -0.15rem;     /* aproxima visualmente */
+  text-transform: uppercase;
+  letter-spacing: 2px;
+}
+
+
+.site-logo {
+  display: block;
+  height: calc(var(--header-height) - 18px);
   width: auto;
-  object-fit: contain;
+  z-index: 1110;
+  flex: 0 0 auto; /* não encolher */
 }
 
-.nav{
-  display:flex;
-  gap:0.75rem;
-  align-items:center;
-  flex: 0 1 auto;
-  position: absolute;
-  left: 50%;
-  top: 50%;
-  transform: translate(-50%, -50%);
+.brand-stack{
+  display: flex;
+  flex-direction: column;   /* empilha Caravel / Racing */
+  justify-content: center;
+  align-items: flex-start;  /* texto à esquerda do bloco, próximo ao logo */
+  font-family: var(--brand-font);
+  line-height: 1;
+  margin-left: 0.25rem;
+  gap: 0;
+  user-select: none;
+  z-index: 1110;
+}
+
+.nav {
+  margin-left: auto;
+  display: flex;
+
+  align-items: center;
   white-space: nowrap;
 }
 
-.nav a{
-  color:#fff;
-  text-decoration:none;
-  margin-left:0;     
-  font-size:0.95rem;
-  padding:0.25rem 0.4rem;
-}
-
+.nav a {
+    color: #fff;
+    text-decoration: none;
+    margin-left: 0;       /* usamos gap para espaçar */
+    padding: 0.25rem 0.4rem;
+    font-size: 0.95rem;
+  }
 
 
 .brand{
-  font-family: "GreatsRaceItalic";
-  letter-spacing: 0.4px;
-  margin:0;
-  padding:0.5rem 0;
-  font-size:2.2rem;
-  color:inherit;
-  margin-left: auto;     
-  display:flex;
-  align-items:center;
-  gap:0;
-  white-space:nowrap;
+  display: none;
 }
 
 .brand span { display:inline; vertical-align:middle; }
@@ -110,12 +130,6 @@ body{
   white-space: nowrap;
 }
 
-.nav a{
-  color:#fff;
-  text-decoration:none;
-  margin-left:1rem;
-  font-size:0.95rem;
-}
 
 .hero{
   padding:3rem 0;
@@ -503,52 +517,41 @@ html.mobile-menu-open .mobile-nav::before{
 
 
 
-/* FIX: mobile portrait — keep brand left, logo always to the right of the name */
-@media (max-width: 600px) and (orientation: portrait) {
+/* Ensure brand sits top-left on phone portrait */
+@media (max-width: 780px)  {
 
-  /* header container: keep items aligned to start so brand sits left */
+  /* keep header items aligned to the left */
   .site-header .container {
     display: flex;
-    justify-content: flex-start;
+    justify-content: flex-start; /* <- important: forces brand to left */
     align-items: center;
-    position: relative; /* reference for absolute logo/hamburger */
+    position: relative;
     padding-left: 1rem;
     padding-right: 1rem;
     gap: 0;
   }
 
-  /* brand stays in normal flow on the left and reserves space to the right */
+  /* brand anchored to the left corner */
   .brand {
-    position: relative;      /* not absolute anymore — avoids overlap */
-    left: 0;
-    top: auto;
+    letter-spacing: 2px;
+    position: absolute;
     transform: none;
+    left: 1rem;
     margin: 0;
     font-size: 1rem;
-    white-space: nowrap;
-    z-index: 1100;
-    /* reserve space on the right so long names don't touch the logo/hamburger */
-    padding-right: 5.5rem;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    max-width: calc(100% - 7.5rem); /* prevents brand from growing into the logo area */
-    display: inline-block;
   }
 
-  /* place logo absolutely at the right of the header (to the right of the name) */
+  /* keep logo/hamburger to the right */
   .site-logo {
-    position: absolute;
-    right: 2.8rem; /* leaves room for the hamburger at extreme right */
+    position: relative;
     top: 50%;
-    transform: translateY(-50%);
     height: calc(var(--header-height) - 18px);
     max-height: 48px;
     width: auto;
     z-index: 1110;
-    display: block;
   }
 
-  /* hamburger stays top-right; ensure it's above the logo */
+  .nav { display: none; }     /* hide desktop nav */
   .nav-toggle {
     display: inline-flex;
     position: absolute;
@@ -556,24 +559,78 @@ html.mobile-menu-open .mobile-nav::before{
     top: 50%;
     transform: translateY(-50%);
     z-index: 1200;
-    background: transparent;
-    border: none;
-    padding: .25rem;
-    align-items: center;
-    justify-content: center;
-  }
-
-  /* hide desktop nav on phones (keeps previous behaviour) */
-  .nav { display: none; }
-
-  /* Slight tweak for very narrow screens to avoid collisions */
-  @media (max-width: 360px) {
-    .brand { padding-right: 4.5rem; max-width: calc(100% - 6.5rem); }
-    .site-logo { right: 2.4rem; height: calc(var(--header-height) - 22px); }
-    .nav-toggle { right: 0.5rem; }
   }
 }
 
+/* === Comportamento específico para ecrãs <= 600px ===
+   Coloca o logo no canto esquerdo e o "brand-stack" ao lado,
+   com "Caravel" acima e "Racing" abaixo. */
+@media (max-width:600px){
+  /* garante que o header usa flex e fica à esquerda */
+  .site-header .container,
+  .site-header .header-inner {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start; /* força itens para a esquerda */
+    gap: 0.6rem;
+    padding-left: 0.9rem;  /* espaço do canto esquerdo */
+    padding-right: 0.9rem;
+  }
 
+  /* Logo fica à esquerda, sem ocupar toda a linha */
+  .site-logo {
+    order: 0;
+    flex: 0 0 auto;
+    height: 44px;           /* ajusta conforme necessário */
+    max-height: 44px;
+    width: auto;
+    margin: 0;
+    margin-right: 0.5rem;   /* distância entre logo e texto */
+    align-self: center;
+  }
 
+  /* container que empilha Caravel / Racing ao lado do logo */
+  .brand-stack {
+    order: 1;
+    display: flex;
+    flex-direction: column;    /* mantém Caravel acima, Racing abaixo */
+    justify-content: center;
+    align-items: flex-start;   /* alinha o texto à esquerda */
+    text-align: left;
+    gap: 0;                    /* sem separação extra entre as linhas */
+    margin: 0;
+    padding: 0;
+    line-height: 1;
+    user-select: none;
+  }
 
+  /* torna as fontes um pouco menores para caber e parecer equilibrado */
+  .brand-top {
+    font-size: 1.05rem;   /* ajusta se precisares maior/menor */
+    font-weight: 800;
+    margin: 0;
+  }
+  .brand-bottom {
+    font-size: 0.78rem;
+    margin-top: 0.06rem;
+    letter-spacing: 1.5px;
+  }
+
+  /* Esconde ou reposiciona itens de navegação se necessário */
+  .nav {
+    display: none; /* mantém hamburger para mobile se já estiveres a usar isso */
+  }
+
+  /* se estiveres a usar .brand (elemento alternativo), garante visibilidade */
+  .brand { display: none; } /* mantém o teu brand-stack como fonte única */
+
+  /* se tiveres um botão hamburger - coloca-o no canto direito */
+  .nav-toggle {
+    display: inline-flex;
+    position: absolute;
+    right: 0.6rem;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 1200;
+  }
+}
