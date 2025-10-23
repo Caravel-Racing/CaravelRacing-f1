@@ -562,56 +562,45 @@ html.mobile-menu-open .mobile-nav::before{
   }
 }
 
-@media (max-width:600px){
-  .site-header .container,
+@media (max-width:600px) {
+  /* ensure header-inner is a flex row and centers items */
   .site-header .header-inner {
     display: flex;
     align-items: center;
-    justify-content: flex-start; 
-    gap: 0.6rem;
-    padding-left: 0.9rem;  
-    padding-right: 0.9rem;
+    gap: 0.5rem; /* space between logo and brand */
   }
 
-
+  /* logo on the left */
   .site-logo {
     order: 0;
     flex: 0 0 auto;
-    height: 44px;          
-    max-height: 44px;
-    width: auto;
     margin: 0;
-    margin-right: 0.5rem;   
-    align-self: baseline;
+    margin-right: 0.5rem; /* tiny gap to brand */
+    height: 44px;
+    max-height: 44px;
+    position: relative; /* cancel absolute if set elsewhere */
+    top: auto;
+    left: auto;
   }
 
+  /* put brand directly to the right of the logo (in the normal flow) */
   .brand-stack {
     order: 1;
+    position: relative; /* override any absolute positioning you set earlier */
+    top: auto;
+    left: auto;
+    margin: 0;
+    margin-left: 0;      /* use header-inner gap instead */
     display: flex;
-    flex-direction: column;    
-    justify-content: center;
-    align-items: flex-start;   
-    text-align: left;
-    gap: 0;                   
-    margin: 0;
-    padding: 0;
-    line-height: 1;
+    flex-direction: column;
+    justify-content: center; /* vertically center with the logo */
+    align-items: flex-start; /* keep text left-aligned */
     user-select: none;
-    position: absolute;
-    top: 20%
   }
 
-
-  .brand-top {
-    font-size: 1.05rem; 
-    font-weight: 800;
-    margin: 0;
-  }
-  .brand-bottom {
-    font-size: 0.78rem;
-    margin-top: 0.06rem;
-    letter-spacing: 1.5px;
-  }
+  /* small text-size adjustments you already have are fine */
+  .brand-top { font-size: 1.05rem; }
+  .brand-bottom { font-size: 0.78rem; }
 
 
   .nav {
