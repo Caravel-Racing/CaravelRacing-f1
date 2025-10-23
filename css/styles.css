@@ -49,7 +49,6 @@ body{
 
 .brand-top{
   font-size: 2em;        /* Caravel — maior */
-  font-weight: 800;
   color: #fff;
   letter-spacing: 1px;
   text-transform: none;
@@ -57,7 +56,6 @@ body{
 
 .brand-bottom{
   font-size: 1.5rem;       /* Racing — menor e com accent */
-  font-weight: 700;
   color: var(--accent);
   margin-top: -0.15rem;     /* aproxima visualmente */
   text-transform: uppercase;
@@ -604,7 +602,6 @@ html.mobile-menu-open .mobile-nav::before{
 
   .brand-top {
     font-size: 1.05rem; 
-    font-weight: 800;
     margin: 0;
   }
   .brand-bottom {
