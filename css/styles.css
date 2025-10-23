@@ -563,44 +563,53 @@ html.mobile-menu-open .mobile-nav::before{
 }
 
 @media (max-width:600px) {
-  /* ensure header-inner is a flex row and centers items */
+    /* keep the header items in a left-to-right flex row */
+  .site-header .container,
   .site-header .header-inner {
-    display: flex;
-    align-items: center;
-    gap: 0.5rem; /* space between logo and brand */
+    display: flex !important;
+    align-items: center !important;   /* vertical centering */
+    justify-content: flex-start !important; /* force left alignment */
+    gap: 0.45rem;
+    padding-left: 0.6rem; /* tweak to keep logo at the corner */
+    padding-right: 0.6rem;
+    width: 100%;
   }
 
-  /* logo on the left */
+  /* Logo stuck to the left corner */
   .site-logo {
     order: 0;
-    flex: 0 0 auto;
+    position: relative !important; /* cancel any absolute */
+    left: 0 !important;
+    top: auto !important;
+    transform: none !important;    /* cancel centering transforms */
     margin: 0;
-    margin-right: 0.5rem; /* tiny gap to brand */
+    margin-right: 0.4rem;          /* space between logo and text */
     height: 44px;
     max-height: 44px;
-    position: relative; /* cancel absolute if set elsewhere */
-    top: auto;
-    left: auto;
   }
 
-  /* put brand directly to the right of the logo (in the normal flow) */
+  /* Brand text sits immediately to the right of the logo */
   .brand-stack {
     order: 1;
-    position: relative; /* override any absolute positioning you set earlier */
-    top: auto;
-    left: auto;
+    position: relative !important; /* ensure it's in normal flow */
+    top: auto !important;
+    left: auto !important;
     margin: 0;
-    margin-left: 0;      /* use header-inner gap instead */
+    margin-left: 0;                /* use gap / margin-right on logo instead */
     display: flex;
     flex-direction: column;
-    justify-content: center; /* vertically center with the logo */
-    align-items: flex-start; /* keep text left-aligned */
-    user-select: none;
+    justify-content: center;
+    align-items: flex-start;
+    text-align: left;
+    pointer-events: auto;
+    z-index: 1110;
   }
 
-  /* small text-size adjustments you already have are fine */
-  .brand-top { font-size: 1.05rem; }
-  .brand-bottom { font-size: 0.78rem; }
+  /* make sure the brand text doesn't float above or center */
+  .brand-top, .brand-bottom {
+    margin: 0;
+    text-align: left;
+  }
 
 
   .nav {
