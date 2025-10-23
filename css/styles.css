@@ -562,51 +562,48 @@ html.mobile-menu-open .mobile-nav::before{
   }
 }
 
-/* === Comportamento específico para ecrãs <= 600px ===
-   Coloca o logo no canto esquerdo e o "brand-stack" ao lado,
-   com "Caravel" acima e "Racing" abaixo. */
 @media (max-width:600px){
-  /* garante que o header usa flex e fica à esquerda */
   .site-header .container,
   .site-header .header-inner {
     display: flex;
     align-items: center;
-    justify-content: flex-start; /* força itens para a esquerda */
+    justify-content: flex-start; 
     gap: 0.6rem;
-    padding-left: 0.9rem;  /* espaço do canto esquerdo */
+    padding-left: 0.9rem;  
     padding-right: 0.9rem;
   }
 
-  /* Logo fica à esquerda, sem ocupar toda a linha */
+
   .site-logo {
     order: 0;
     flex: 0 0 auto;
-    height: 44px;           /* ajusta conforme necessário */
+    height: 44px;          
     max-height: 44px;
     width: auto;
     margin: 0;
-    margin-right: 0.5rem;   /* distância entre logo e texto */
-    align-self: center;
+    margin-right: 0.5rem;   
+    align-self: baseline;
   }
 
-  /* container que empilha Caravel / Racing ao lado do logo */
   .brand-stack {
     order: 1;
     display: flex;
-    flex-direction: column;    /* mantém Caravel acima, Racing abaixo */
+    flex-direction: column;    
     justify-content: center;
-    align-items: flex-start;   /* alinha o texto à esquerda */
+    align-items: flex-start;   
     text-align: left;
-    gap: 0;                    /* sem separação extra entre as linhas */
+    gap: 0;                   
     margin: 0;
     padding: 0;
     line-height: 1;
     user-select: none;
+    position: absolute;
+    top: 20%
   }
 
-  /* torna as fontes um pouco menores para caber e parecer equilibrado */
+
   .brand-top {
-    font-size: 1.05rem;   /* ajusta se precisares maior/menor */
+    font-size: 1.05rem; 
     font-weight: 800;
     margin: 0;
   }
@@ -616,15 +613,13 @@ html.mobile-menu-open .mobile-nav::before{
     letter-spacing: 1.5px;
   }
 
-  /* Esconde ou reposiciona itens de navegação se necessário */
+
   .nav {
-    display: none; /* mantém hamburger para mobile se já estiveres a usar isso */
+    display: none;
   }
 
-  /* se estiveres a usar .brand (elemento alternativo), garante visibilidade */
-  .brand { display: none; } /* mantém o teu brand-stack como fonte única */
+  .brand { display: none; } 
 
-  /* se tiveres um botão hamburger - coloca-o no canto direito */
   .nav-toggle {
     display: inline-flex;
     position: absolute;
