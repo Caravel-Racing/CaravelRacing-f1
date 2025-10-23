@@ -8,44 +8,48 @@
 </head>
 <body>
   <header class="site-header">
-    <div class="container">
-      <img class="site-logo" src="images/logonobg.png" alt="Caravel Racing logo">
+ <div class="container header-inner">
+    <img class="site-logo" src="images/logonobg.png" alt="Caravel Racing logo">
+    <div class="brand-stack" aria-hidden="false">
+      <span class="brand-top">Caravel</span>
+      <span class="brand-bottom">Racing</span>
+    </div>
 
-      <!-- Mobile hamburger (hidden on desktop) -->
-      <button class="nav-toggle" aria-controls="mobile-nav" aria-expanded="false" aria-label="Abrir menu">
-        <span class="hamburger" aria-hidden="true">
-          <span></span>
-          <span></span>
-          <span></span>
-        </span>
-      </button>
+    <!-- Mobile hamburger (hidden on desktop) -->
+    <button class="nav-toggle" aria-controls="mobile-nav" aria-expanded="false" aria-label="Abrir menu">
+      <span class="hamburger" aria-hidden="true">
+        <span></span>
+        <span></span>
+        <span></span>
+      </span>
+    </button>
 
-      <!-- Desktop nav (kept for larger screens) -->
-      <nav class="nav">
+    <!-- Desktop nav (kept for larger screens) -->
+    <nav class="nav">
+      <a href="index.html">Home</a>
+      <a href="projects.html">Projetos</a>
+      <a href="sobre-equipa.html">Sobre a Equipa</a>
+      <a href="patrocinadores.html">Patrocinadores</a>
+      <a href="contact.html">Contactos</a>
+    </nav>
+
+    <h1 class="brand"><span class="brand-red">CAR</span><span class="brand-avel">AVEL Racing</span></h1>
+  </div>
+
+  <!-- Mobile panel (hidden by default, slides in) -->
+  <div id="mobile-nav" class="mobile-nav" aria-hidden="true">
+    <div class="mobile-nav-panel">
+      <button class="nav-close" aria-label="Fechar menu">&times;</button>
+      <nav class="mobile-links" role="navigation" aria-label="Menu principal">
         <a href="index.html">Home</a>
         <a href="projects.html">Projetos</a>
         <a href="sobre-equipa.html">Sobre a Equipa</a>
         <a href="patrocinadores.html">Patrocinadores</a>
         <a href="contact.html">Contactos</a>
       </nav>
-
-      <h1 class="brand"><span class="brand-red">CAR</span><span class="brand-avel">AVEL Racing</span></h1>
     </div>
-
-    <!-- Mobile panel (hidden by default, slides in) -->
-    <div id="mobile-nav" class="mobile-nav" aria-hidden="true">
-      <div class="mobile-nav-panel">
-        <button class="nav-close" aria-label="Fechar menu">&times;</button>
-        <nav class="mobile-links" role="navigation" aria-label="Menu principal">
-          <a href="index.html">Home</a>
-          <a href="projects.html">Projetos</a>
-          <a href="sobre-equipa.html">Sobre a Equipa</a>
-          <a href="patrocinadores.html">Patrocinadores</a>
-          <a href="contact.html">Contactos</a>
-        </nav>
-      </div>
-    </div>
-  </header>
+  </div>
+</header>
 
   <main class="container">
     <h2>Projetos</h2>
