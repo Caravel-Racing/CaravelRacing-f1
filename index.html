@@ -1,9 +1,7 @@
 
 <!doctype html>
 <html lang="pt-PT">
-  <link rel="icon" href="/favicon.ico">
 <head>
-  <link rel="icon" href="/favicon.ico">
   <link rel="preload" href="/fonts/SpeedDemon.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="preload" href="/fonts/SpeedDemon.ttf" as="font" type="font/truetype" crossorigin>
   <meta charset="utf-8">
@@ -11,9 +9,12 @@
 
   <title>Caravel Racing</title>
   <meta name="description" content="Equipa inscrita na competição STEM Racing na temporada 2025/26 — Caravel Racing. Projetos, membros e resultados da equipa portuguesa.">
-  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
-  <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
-  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<!-- dentro de <head> -->
+  <link rel="icon" href="/favicon.ico" sizes="48x48" type="image/ico">
+  <link rel="icon" href="/favicon-16x16.png" sizes="16x16" type="image/png">
+  <link rel="icon" href="/favicon-32x32.png" sizes="32x32" type="image/png">
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png" sizes="180x180">
+
   <meta name="theme-color" content="#c0182e">
   <meta name="msapplication-TileColor" content="#c0182e">
   <meta name="msapplication-TileImage" content="/favicon-32x32.png">
@@ -34,35 +35,19 @@
   <meta name="twitter:image" content="https://caravelracing.com/images/logonobg.png">
 
   <script type="application/ld+json">
+{
+  "@context":"https://schema.org",
+  "@type":"WebSite",
+  "name":"Caravel Racing",
+  "url":"https://caravelracing.com"
   {
-    "@context": "https://schema.org",
-    "@graph": [
-      {
-        "@type": "SportsTeam",
-        "name": "Caravel Racing",
-        "url": "https://caravelracing.com/",
-        "logo": "https://caravelracing.com/images/logonobg.png",
-        "description": "Equipa inscrita na competição STEM Racing na temporada 2025/26 — Caravel Racing.",
-        "member": [],
-        "sameAs": []
-      },
-      {
-        "@type": "WebSite",
-        "url": "https://caravelracing.com/",
-        "name": "Caravel Racing",
-        "description": "Equipa inscrita na competição STEM Racing na temporada 2025/26 — Caravel Racing."
-      }
-      ,
-      {
-        "@type": "Organization",
-        "name": "Caravel Racing",
-        "url": "https://caravelracing.com/",
-        "logo": "https://caravelracing.com/images/logo.png",
-        "sameAs": []
-      }
-    ]
-  }
-  </script>
+  "@type":"Organization",
+  "name":"Caravel Racing",
+  "url":"https://caravelracing.com",
+  "logo":"https://caravelracing.com/images/logo.png"
+}
+}
+</script>
 
   <link rel="stylesheet" href="css/styles.css">
 </head>
