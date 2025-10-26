@@ -27,50 +27,73 @@
 
     <!-- Desktop nav (kept for larger screens) -->
     <nav class="nav">
-      <a href="index.html">Home</a>
-      <a href="projects.html">Projetos</a>
-      <a href="sobre-equipa.html">Sobre a Equipa</a>
-      <a href="patrocinadores.html">Patrocinadores</a>
-      <a href="contact.html">Contactos</a>
+        <a href="index.html">Home</a>
+        <a href="projects.html">Projects</a>
+        <a href="sobre-equipa.html">About the Team</a>
+        <a href="patrocinadores.html">Sponsors</a>
+        <a href="contact.html">Contact Us</a>
     </nav>
+
+    <a class="header-social desktop-only" href="https://instagram.com/caravelracing"
+       target="_blank" rel="noopener noreferrer"
+       aria-label="Caravel Racing on Instagram" title="Instagram — Caravel Racing">
+      <img src="/images/instagram.png" alt="Instagram icon">
+    </a>
 
     <h1 class="brand"><span class="brand-red">CAR</span><span class="brand-avel">AVEL Racing</span></h1>
   </div>
 
   <!-- Mobile panel (hidden by default, slides in) -->
-  <div id="mobile-nav" class="mobile-nav" aria-hidden="true">
-    <div class="mobile-nav-panel">
-      <button class="nav-close" aria-label="Fechar menu">&times;</button>
-      <nav class="mobile-links" role="navigation" aria-label="Menu principal">
-        <a href="index.html">Home</a>
-        <a href="projects.html">Projetos</a>
-        <a href="sobre-equipa.html">Sobre a Equipa</a>
-        <a href="patrocinadores.html">Patrocinadores</a>
-        <a href="contact.html">Contactos</a>
-      </nav>
+<div id="mobile-nav" class="mobile-nav" aria-hidden="true">
+  <div class="mobile-nav-panel">
+    <button class="nav-close" aria-label="Fechar menu">&times;</button>
+
+    <nav class="mobile-links" role="navigation" aria-label="Menu principal">
+      <a href="index.html">Home</a>
+      <a href="projects.html">Projects</a>
+      <a href="sobre-equipa.html">About the Team</a>
+      <a href="patrocinadores.html">Sponsors</a>
+      <a href="contact.html">Contact Us</a>
+    </nav>
+
+    <!-- Socials placed below the links (mobile) -->
+    <div class="mobile-socials" aria-label="Social links">
+      <a href="https://instagram.com/caravelracing"
+         target="_blank" rel="noopener noreferrer"
+         class="mobile-social-link" aria-label="Caravel Racing on Instagram">
+        <img src="images/instagram.png" alt="" aria-hidden="true" />
+      </a>
     </div>
+
   </div>
+</div>
 </header>
 
   <main class="container">
-    <h2>Patrocinadores</h2>
+    <h2>Sponsors</h2>
     <ul>
        <!--<li><a href="https://www.youtube.com/watch?v=xvFZjo5PgG0&pp=ygUNcmljayBhbmQgcm9sbA%3D%3D" target="_blank">Nenhum</a> — -</li>-->
     </ul>
     </main>
 
   <main class="container">
-    <h3>Benefícios dos Patrocinadores</h3>
+    <h3>Sponsor Benefits</h3>
       <div class="grid">
         <article class="beneficio-card">
-          <p><a href="beneficios/beneficiospatrocinadores.html" class="btn small">Ver Benefícios</a></p>
+          <p><a href="beneficios/beneficiospatrocinadores.html" class="btn small">View Sponsor Benefits</a></p>
         </article>
       </div>
     </main>
 
   <footer class="site-footer">
-    <div class="container">
-      <p>© Caravel Racing — Portugal</p>
+    <div class="container" style="display:flex;flex-wrap:wrap;gap:1rem;align-items:center;justify-content:space-between;">
+      <div>
+        <p style="margin:0">© Caravel Racing — Portugal</p>
+        <p style="margin:0;font-size:.9rem;color:#9a9a9a;">Contact: <a href="mailto:caravelracing@gmail.com">caravelracing@gmail.com</a></p>
+      </div>
+      <div style="display:flex;gap:.6rem;align-items:center;">
+        <a href="https://instagram.com/caravelracing" aria-label="Instagram">Instagram</a>
+      </div>
     </div>
   </footer>
 </body>

@@ -26,40 +26,57 @@
 
     <!-- Desktop nav (kept for larger screens) -->
     <nav class="nav">
-      <a href="index.html">Home</a>
-      <a href="projects.html">Projetos</a>
-      <a href="sobre-equipa.html">Sobre a Equipa</a>
-      <a href="patrocinadores.html">Patrocinadores</a>
-      <a href="contact.html">Contactos</a>
+        <a href="index.html">Home</a>
+        <a href="projects.html">Projects</a>
+        <a href="sobre-equipa.html">About the Team</a>
+        <a href="patrocinadores.html">Sponsors</a>
+        <a href="contact.html">Contact Us</a>
     </nav>
+
+    <a class="header-social desktop-only" href="https://instagram.com/caravelracing"
+       target="_blank" rel="noopener noreferrer"
+       aria-label="Caravel Racing on Instagram" title="Instagram — Caravel Racing">
+      <img src="/images/instagram.png" alt="Instagram icon">
+    </a>    
 
     <h1 class="brand"><span class="brand-red">CAR</span><span class="brand-avel">AVEL Racing</span></h1>
   </div>
 
   <!-- Mobile panel (hidden by default, slides in) -->
-  <div id="mobile-nav" class="mobile-nav" aria-hidden="true">
-    <div class="mobile-nav-panel">
-      <button class="nav-close" aria-label="Fechar menu">&times;</button>
-      <nav class="mobile-links" role="navigation" aria-label="Menu principal">
-        <a href="index.html">Home</a>
-        <a href="projects.html">Projetos</a>
-        <a href="sobre-equipa.html">Sobre a Equipa</a>
-        <a href="patrocinadores.html">Patrocinadores</a>
-        <a href="contact.html">Contactos</a>
-      </nav>
+<div id="mobile-nav" class="mobile-nav" aria-hidden="true">
+  <div class="mobile-nav-panel">
+    <button class="nav-close" aria-label="Fechar menu">&times;</button>
+
+    <nav class="mobile-links" role="navigation" aria-label="Menu principal">
+      <a href="index.html">Home</a>
+      <a href="projects.html">Projects</a>
+      <a href="sobre-equipa.html">About the Team</a>
+      <a href="patrocinadores.html">Sponsors</a>
+      <a href="contact.html">Contact Us</a>
+    </nav>
+
+    <!-- Socials placed below the links (mobile) -->
+    <div class="mobile-socials" aria-label="Social links">
+      <a href="https://instagram.com/caravelracing"
+         target="_blank" rel="noopener noreferrer"
+         class="mobile-social-link" aria-label="Caravel Racing on Instagram">
+        <img src="images/instagram.png" alt="" aria-hidden="true" />
+      </a>
     </div>
+
   </div>
+</div>
 </header>
 
   <main class="container">
-    <h2>Sobre a Equipa</h2>
+    <h2>About the Team</h2>
 
     <ul>
-      <li><strong>Composição:</strong> 6 membros</li>
-      <li><strong>Nacionalidade:</strong> Portuguesa</li>
-      <li><strong>Escola:</strong> Colégio Paulo VI</li>
+      <li><strong>Composição:</strong> 6 members</li>
+      <li><strong>Nationality:</strong> Portuguesa</li>
+      <li><strong>School:</strong> Colégio Paulo VI</li>
 
-      <li><strong>Funções principais:</strong>
+      <li><strong>Main Roles:</strong>
         <ul>
           <li>Team Manager & Aerodynamicist — <em>Mariana Santos</em></li>
           <li>Business Development Manager — <em>Diogo Lopes</em></li>
@@ -70,28 +87,34 @@
         </ul>
       </li>
 
-      <li><strong>Temporada / Objetivo:</strong> Participar na temporada 2025/26 — aprender regulamentos e competir a nível regional/nacional. (Meta técnica: minimizar o drag e o atrito o mais possível.)</li>
+      <li><strong>Season / Goal:</strong> Participate in the 2025/26 season — learn regulations and compete at a regional/national level. (Technical goal: minimize drag and friction as much as possible.)</li>
+      
+      <li><strong>Key team skills:</strong> CAD (Fusion 360), basic CFD, CNC/laser fabrication, marketing/branding, and project management.</li>
 
-      <li><strong>Competências chave na equipa:</strong> CAD (Fusion 360), CFD básico, fabrico CNC/laser, acabamento, marketing/branding e gestão de projecto.</li>
+      <li><strong>Planned events:</strong> Regional competitions (dates to be confirmed), local tests and demonstrations at the school.</li>
 
-      <li><strong>Eventos previstos:</strong> Competições regionais (datas a confirmar), testes locais e demonstrações na escola.</li>
+      <li><strong>Team Meetings:</strong> Weekly meeting (every Friday at 8:00 PM).</li>
 
-      <li><strong>Reuniões:</strong> Encontro semanal (todas as 6ªs às 20:00).</li>
+      <li><strong>Team Email:</strong> <a href="mailto:caravelracing@gmail.com">caravelracing@gmail.com</a></li>
 
-      <li><strong>Contacto de equipa:</strong> <a href="mailto:caravelracing@gmail.com">caravelracing@gmail.com</a></li>
+      <li><strong>Team Social Media:</strong> Instagram: <a href="https://instagram.com/caravelracing">@caravelracing</a></li>
 
-      <li><strong>Redes sociais:</strong> Instagram: <a href="https://instagram.com/caravelracing">@caravelracing</a></li>
+      <li><strong>Sponsors wanted:</strong> Domain/DNS, crafting materials, clothing/suits, financial or technical support (list of sponsor benefits available).</li>
 
-      <li><strong>Patrocinadores procurados:</strong> Domínio/DNS, materiais para fabrico, roupa/fatos, apoio financeiro ou técnico (lista de benefícios para patrocinadores disponível).</li>
-
-      <li><strong>Notas adicionais:</strong> Manteremos este site sempre atualizado com todos os projetos ( CAD, simulações e resultados de testes ) — disponível para patrocinadores e juízes.</li>
+      <li><strong>Additional Notes:</strong> We will keep this site updated with all projects (CAD, simulations, and test results) — available to sponsors and judges.</li>
     </ul>
 
   </main>
 
   <footer class="site-footer">
-    <div class="container">
-      <p>© Caravel Racing — Portugal</p>
+    <div class="container" style="display:flex;flex-wrap:wrap;gap:1rem;align-items:center;justify-content:space-between;">
+      <div>
+        <p style="margin:0">© Caravel Racing — Portugal</p>
+        <p style="margin:0;font-size:.9rem;color:#9a9a9a;">Contact: <a href="mailto:caravelracing@gmail.com">caravelracing@gmail.com</a></p>
+      </div>
+      <div style="display:flex;gap:.6rem;align-items:center;">
+        <a href="https://instagram.com/caravelracing" aria-label="Instagram">Instagram</a>
+      </div>
     </div>
   </footer>
 </body>

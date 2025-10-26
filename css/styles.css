@@ -8,10 +8,10 @@
 
 :root{
   --brand-font: "GreatsRaceItalic", system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
-  --max-width: 1920px;    /* aumentei para deixar o header mais largo */
+  --max-width: 1920px;    
   --accent:#c0182e;
   --muted:#444;
-  --header-height:80px;   /* opcional: header um pouco mais alto */
+  --header-height:80px;   
 }
 
 *{box-sizing:border-box}
@@ -34,30 +34,30 @@ body{
   position: relative;
   width: 100%;
   overflow: hidden;
-  padding: 0.5rem;          /* espaço vertical */
+  padding: 0.5rem;         
 }
 
 .site-header .header-inner {
   display: flex;
   align-items: center;
   gap: 1rem;
-  max-width: var(--max-width); /* usa a largura maior */
+  max-width: var(--max-width); 
   width: 100%;
   margin: 0;
-  padding: 0 0rem;         /* controla espaço horizontal */
+  padding: 0 0rem;        
 }
 
 .brand-top{
-  font-size: 2em;        /* Caravel — maior */
+  font-size: 2em;      
   color: #fff;
   letter-spacing: 1px;
   text-transform: none;
 }
 
 .brand-bottom{
-  font-size: 1.5rem;       /* Racing — menor e com accent */
+  font-size: 1.5rem;      
   color: var(--accent);
-  margin-top: -0.15rem;     /* aproxima visualmente */
+  margin-top: -0.15rem;     
   text-transform: uppercase;
   letter-spacing: 2px;
 }
@@ -68,14 +68,14 @@ body{
   height: calc(var(--header-height) - 18px);
   width: auto;
   z-index: 1110;
-  flex: 0 0 auto; /* não encolher */
+  flex: 0 0 auto;
 }
 
 .brand-stack{
   display: flex;
-  flex-direction: column;   /* empilha Caravel / Racing */
+  flex-direction: column;   
   justify-content: center;
-  align-items: flex-start;  /* texto à esquerda do bloco, próximo ao logo */
+  align-items: flex-start;  
   font-family: var(--brand-font);
   line-height: 1;
   margin-left: 0.25rem;
@@ -95,10 +95,24 @@ body{
 .nav a {
     color: #fff;
     text-decoration: none;
-    margin-left: 0;       /* usamos gap para espaçar */
+    margin-left: 0;      
     padding: 0.25rem 0.4rem;
     font-size: 0.95rem;
-  }
+}
+
+.header-social {             
+  align-items: center;
+  margin-right: 0.8rem;
+  text-decoration: none;
+}
+
+
+.header-social img {
+  width: 28px;
+  height: auto;
+  display: block;
+  filter: none; 
+}
 
 
 .brand{
@@ -429,6 +443,36 @@ body.splash-active{
 .nav-toggle .hamburger span:nth-child(2){ top:9px; }
 .nav-toggle .hamburger span:nth-child(3){ top:18px; }
 
+.mobile-socials {
+  border-top: 1px solid rgba(0,0,0,0.06);
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  background: transparent;
+}
+
+.mobile-social-link {
+  display: inline-flex;
+  align-items: center;
+  text-decoration: none;
+  font-weight: 600;
+  color: var(--text-color, #222);
+  padding: 0.25rem 0.25rem;
+  border-radius: 6px;
+}
+
+.mobile-social-link img {
+  width: 26px;
+  height: 26px;
+  display: block;
+}
+
+.mobile-social-link:focus,
+.mobile-social-link:hover {
+  outline: none;
+  background: rgba(0,0,0,0.04);
+}
+
 
 .mobile-nav{
   position: fixed;
@@ -513,15 +557,14 @@ html.mobile-menu-open .mobile-nav::before{
 }
 
 
-
-
-/* Ensure brand sits top-left on phone portrait */
 @media (max-width: 780px)  {
+  .header-social {             
+  display: none;
+}
 
-  /* keep header items aligned to the left */
   .site-header .container {
     display: flex;
-    justify-content: flex-start; /* <- important: forces brand to left */
+    justify-content: flex-start; 
     align-items: center;
     position: relative;
     padding-left: 1rem;
@@ -529,7 +572,6 @@ html.mobile-menu-open .mobile-nav::before{
     gap: 0;
   }
 
-  /* brand anchored to the left corner */
   .brand {
     letter-spacing: 2px;
     position: absolute;
@@ -539,7 +581,6 @@ html.mobile-menu-open .mobile-nav::before{
     font-size: 1rem;
   }
 
-  /* keep logo/hamburger to the right */
   .site-logo {
     position: relative;
     top: 50%;
@@ -549,7 +590,7 @@ html.mobile-menu-open .mobile-nav::before{
     z-index: 1110;
   }
 
-  .nav { display: none; }     /* hide desktop nav */
+  .nav { display: none; }   
   .nav-toggle {
     display: inline-flex;
     position: absolute;
@@ -558,9 +599,13 @@ html.mobile-menu-open .mobile-nav::before{
     transform: translateY(-50%);
     z-index: 1200;
   }
+
 }
 
 @media (max-width:600px){
+  .header-social {             
+  display: none;
+}
   .site-header .container,
   .site-header .header-inner {
     display: flex;
