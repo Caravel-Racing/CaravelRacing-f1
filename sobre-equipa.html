@@ -16,8 +16,7 @@
     </div>
 
     <!-- Mobile hamburger (hidden on desktop) -->
-    <button class="nav-toggle" aria-controls="mobile-nav" aria-expanded="false" data-i18n-attr="aria-label" data-i18n="nav.openMenu">Abrir menu</button>
-      <span class="hamburger" aria-hidden="true">
+    <button class="nav-toggle" aria-controls="mobile-nav" aria-expanded="false" aria-label="Menu">
         <span></span>
         <span></span>
         <span></span>
@@ -69,12 +68,12 @@
 </header>
 
   <main class="container">
-    <h2>About the Team</h2>
+    <h2 data-i18n="nav.about">About the Team</h2>
 
     <ul>
-      <li><strong>Composição:</strong> 6 members</li>
-      <li><strong>Nationality:</strong> Portuguesa</li>
-      <li><strong>School:</strong> Colégio Paulo VI</li>
+      <li><strong data-i18n="about.members">Members</strong><span data-i18n="about.membersans">6</span></div>
+      <li><strong data-i18n="about.nation">Nationality:</strong><span data-i18n="about.nationans">Portuguese</span></li>
+      <li><strong data-i18n="about.school">School:</strong>Colégio Paulo VI</li>
 
       <li><strong>Main Roles:</strong>
         <ul>
@@ -87,21 +86,21 @@
         </ul>
       </li>
 
-      <li><strong>Season / Goal:</strong> Participate in the 2025/26 season — learn regulations and compete at a regional/national level. (Technical goal: minimize drag and friction as much as possible.)</li>
+      <li><strong data-i18n="about.goal">Season / Goal:</strong><span data-i18n="about.goalans">Participate in the 2025/26 season — learn regulations and compete at a regional/national level. (Technical goal: minimize drag and friction as much as possible.)</span></li>
       
-      <li><strong>Key team skills:</strong> CAD (Fusion 360), basic CFD, CNC/laser fabrication, marketing/branding, and project management.</li>
+      <li><strong data-i18n="about.skills">Key team skills:</strong><span data-i18n="about.skillsans">CAD (Fusion 360), basic CFD, CNC/laser fabrication, marketing/branding, and project management.</span></li>
 
-      <li><strong>Planned events:</strong> Regional competitions (dates to be confirmed), local tests and demonstrations at the school.</li>
+      <li><strong data-i18n="about.events">Planned events:</strong><span data-i18n="about.eventsans">Regional competitions (dates to be confirmed), local tests and demonstrations at the school.</span></li>
 
-      <li><strong>Team Meetings:</strong> Weekly meeting (every Friday at 8:00 PM).</li>
+      <li><strong data-i18n="about.meetings">Team Meetings:</strong><span data-i18n="about.meetingsans">Weekly meeting (every Friday at 8:00 PM).</span></li>
 
       <li><strong>Team Email:</strong> <a href="mailto:caravelracing@gmail.com">caravelracing@gmail.com</a></li>
 
-      <li><strong>Team Social Media:</strong> Instagram: <a href="https://instagram.com/caravelracing">@caravelracing</a></li>
+      <li><strong data-i18n="about.social">Team Social Media:</strong> Instagram: <a href="https://instagram.com/caravelracing">@caravelracing</a></li>
 
-      <li><strong>Sponsors wanted:</strong> Domain/DNS, crafting materials, clothing/suits, financial or technical support (list of sponsor benefits available).</li>
+      <li><strong data-i18n="about.sponsors">Sponsors wanted:</strong><span data-i18n="about.sponsorsans">Domain/DNS, crafting materials, clothing/suits, financial or technical support (list of sponsor benefits available).</span></li>
 
-      <li><strong>Additional Notes:</strong> We will keep this site updated with all projects (CAD, simulations, and test results) — available to sponsors and judges.</li>
+      <li><strong data-i18n="about.notes">Additional Notes:</strong><span data-i18n="about.notesans">We will keep this site updated with all projects (CAD, simulations, and test results) — available to sponsors and judges.</span></li>
     </ul>
 
   </main>
@@ -118,5 +117,6 @@
     </div>
   </footer>
 </body>
+<script src="js/lang.js" defer></script>
 <script src="js/mobile-menu.js" defer></script>
 </html>

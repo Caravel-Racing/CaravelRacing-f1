@@ -45,7 +45,7 @@
         instagram: "Caravel Racing on Instagram"
       },
       projects: {
-        one: "Project 1 - Caravel V1 &rarr; Sketch",
+        one: "Project 1 - Caravel V1 -> Sketch",
         oneinfo: "First car sketch made by our Graphic Engineer and our Aerodynamicist"
       }
     },
@@ -92,8 +92,28 @@
         instagram: "Caravel Racing no Instagram"
       },
       projects: {
-        one: "Projeto 1 - Caravel V1 &rarr; Esboço",
-        oneinfo: "Primeiro esboço de um carro feito pelo nosso Engenheiro Gráfico e pela nossa Engenheira da aerodinâmica"
+        one: "Projeto 1 - Caravel V1 -> Esboço",
+        oneinfo: "Primeiro esboço de um carro feito pelo nosso Engenheiro Gráfico e pela nossa Engenheira da Aerodinâmica"
+      },
+      about: {
+        members: "Membros:",
+        membersans: "6",
+        nation: "Nacionalidade:",
+        nationans: "Portuguesa",
+        school: "Escola:",
+        goal:"Objetivos:",
+        goalans:"Participar na época 2025/26 — aprender os regulamentos e competir a nível regional/nacional. (Objetivo técnico: minimizar ao máximo o arrasto e o atrito.)",
+        skills:"Competências-chave da equipa:",
+        skillsans: "CAD (Fusion 360), CFD, fabrico CNC/laser, marketing/branding e gestão de projetos.",
+        events:"Eventos planeados:",
+        eventsans:"Competições regionais (datas a confirmar), provas locais e demonstrações na escola.",
+        meetings:"Reuniões da Equipa:",
+        meetingsans:"Reunião semanal (todas as sextas-feiras às 20h).",
+        social:"Redes Sociais da Equipa:",
+        sponsors:"Patrocinadores procurados:",
+        sponsorsans:"Domínio/DNS, materiais, roupa/fatos, apoio financeiro ou técnico (lista de benefícios dos patrocinadores disponível).",
+        notes:"Notas adicionais:",
+        notesans: "Manteremos este site atualizado com todos os projetos (CAD, simulações e resultados de testes) — disponíveis para os patrocinadores e jurí."
       }
     }
   };
