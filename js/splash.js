@@ -146,6 +146,7 @@
         }, { once: true });
         document.documentElement.classList.remove('splash-active');
         document.body.classList.remove('splash-active');
+        document.dispatchEvent(new Event('splash-complete'));
       }, 300);
     }
 

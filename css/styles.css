@@ -197,6 +197,34 @@ body{
   text-align:center;
 }
 
+/* language modal */
+.lang-modal {
+  position: fixed;
+  inset: 0;
+  display: none;           /* shown by JS */
+  align-items: center;
+  justify-content: center;
+  background: rgba(0,0,0,0.5);
+  z-index: 1200;
+}
+.lang-modal[aria-hidden="false"] { display: flex; }
+
+.lang-panel{
+  background:#fff;
+  padding:1.25rem;
+  width: clamp(300px, 90%, 420px);
+  border-radius:10px;
+  box-shadow: 0 8px 28px rgba(0,0,0,0.35);
+  text-align:center;
+}
+.lang-buttons { display:flex; gap:0.6rem; justify-content:center; margin-top:1rem; }
+.lang-btn { padding:.6rem 1rem; border-radius:8px; border:1px solid #ddd; background:#fff; cursor:pointer; font-weight:600; }
+.lang-btn:hover { transform:translateY(-2px); }
+.lang-close{ position:absolute; right:1rem; top:1rem; border:none; background:transparent; font-size:1.4rem; cursor:pointer; }
+
+.lang-remember { margin-top:0.8rem; font-size:.95rem; color:#666; }
+
+
 table{width:100%;border-collapse:collapse;margin-top:1rem}
 table th,table td{padding:0.4rem;border:1px solid #e6e6e6;text-align:left;font-size:0.95rem}
 
