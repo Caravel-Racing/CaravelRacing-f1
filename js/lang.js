@@ -93,6 +93,19 @@
         p4: "Design",
         result:"Result",
         images:"Sketch Images"
+      },
+      benefits: {
+        title: "Sponsor Benefits",
+        visibility: "Brand Visibility: ",
+        visibilityans: "Sponsor logo and name displayed on the official website, car logo, flyer, and pit lane mention at events.",
+        marketing: "Digital Marketing: ",
+        marketingans: "Team social media promotion, including regular mentions and acknowledgements.",
+        event: "Event Acess: ",
+        eventans:"Invitations to team events, such as tryouts and competitions.",
+        progress: "Progress Reports: ",
+        progressans:"Updates on project development and team performance.",
+        promotional: "Custom Promotional Material: ",
+        promotionalans:"Possibility to create promotional material jointly with the team."
       }
     },
     pt: {
@@ -188,7 +201,17 @@
         images:"Imagens do Esboço"
       },
       benefits: {
-        title: "Benefícios dos Patrocinadores"
+        title: "Benefícios dos Patrocinadores",
+        visibility: "Visibilidade da Marca: ",
+        visibilityans: "Logótipo e nome do patrocinador exibidos no site oficial, logótipo do automóvel, folheto e menção no pit em eventos.",
+        marketing: "Marketing Digital: ",
+        marketingans: "Promoção da equipa nas redes sociais, incluindo menções e agradecimentos regulares.",
+        event: "Acesso a Eventos: ",
+        eventans:"Convites para eventos de equipa, como testes e competições.",
+        progress: "Relatórios de progresso: ",
+        progressans:"Atualizações sobre o desenvolvimento do projeto e o desempenho da equipa.",
+        promotional: "Material Promocional Personalizado: ",
+        promotionalans:"Possibilidade de criar material promocional em conjunto com a equipa."
       }
     }
   };
