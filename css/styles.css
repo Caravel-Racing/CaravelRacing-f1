@@ -114,6 +114,53 @@ body{
   filter: none; 
 }
 
+.lang-trigger {
+  background: transparent;     
+  border: 0;                  
+  padding: 0;
+  margin: 0;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;                 
+  height: 36px;
+  cursor: pointer;
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  box-shadow: none;
+  -webkit-tap-highlight-color: transparent; 
+  border-radius: 6px;         
+}
+
+
+.lang-trigger img {
+  display: block;
+  width: 24px;
+  height: 24px;
+  pointer-events: none;        
+  user-select: none;
+}
+
+.lang-trigger:hover {
+  background: rgba(0,0,0,0.04);   
+}
+.lang-trigger:active {
+  background: rgba(0,0,0,0.06);   
+}
+
+.lang-trigger:focus-visible {
+  outline: 2px solid var(--accent, #c0182e);
+  outline-offset: 3px;
+  border-radius: 6px;
+}
+
+.lang-trigger[role="button"] {
+  text-decoration: none;
+  color: inherit;
+}
+
+.lang-trigger:focus { outline: none; }
 
 .brand{
   display: none;

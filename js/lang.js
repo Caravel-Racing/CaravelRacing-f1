@@ -338,5 +338,7 @@
 
   // run
   document.addEventListener('DOMContentLoaded', init);
+  window.showLangModal = showLangModal;
+  window.setLanguage = setLanguage;
 
 })();

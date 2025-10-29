@@ -17,7 +17,7 @@
     </div>
 
     <!-- Mobile hamburger (hidden on desktop) -->
-    <button class="nav-toggle" aria-controls="mobile-nav" aria-expanded="false" data-i18n-attr="aria-label" data-i18n="nav.openMenu">Abrir menu</button>
+    <button class="nav-toggle" aria-controls="mobile-nav" aria-expanded="false" aria-label="Menu">
       <span class="hamburger" aria-hidden="true">
         <span></span>
         <span></span>
@@ -39,6 +39,13 @@
        aria-label="Caravel Racing on Instagram" title="Instagram — Caravel Racing">
       <img src="images/instagram.png" alt="Instagram icon">
     </a>
+
+       <!-- Language selector (desktop) -->
+    <a class="header-social desktop-only" href="#" id="lang-toggle"
+       aria-label="Change language" title="Change language">
+      <img src="images/language.png" alt="Select language" />
+    </a>
+
 
     <h1 class="brand"><span class="brand-red">CAR</span><span class="brand-avel">AVEL Racing</span></h1>
   </div>
@@ -63,6 +70,12 @@
          class="mobile-social-link" aria-label="Caravel Racing on Instagram">
         <img src="images/instagram.png" alt="" aria-hidden="true" />
       </a>
+
+        <button id="lang-toggle-mobile" class="mobile-lang mobile-only lang-trigger"
+        aria-label="Change language" title="Change language"
+        aria-haspopup="dialog" aria-expanded="false">
+        <img src="images/language.png" alt="Select language" />
+      </button>
     </div>
 
   </div>
@@ -88,5 +101,6 @@
   </footer>
 </body>
 <script src="js/lang.js" defer></script>
+<script src="js/langbutton.js" defer></script>
 <script src="js/mobile-menu.js" defer></script>
 </html>

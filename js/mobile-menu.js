@@ -43,4 +43,38 @@
   mobileNav.querySelectorAll('.mobile-links a').forEach(a => {
     a.addEventListener('click', () => closeMenu());
   });
+
+    // lang close
+
+  const langDesktop = document.getElementById('lang-toggle');
+  const langMobile  = document.getElementById('lang-toggle-mobile');
+  const TRANSITION_DELAY = 220; // ms — adjust to match your CSS animation length
+
+  function revealLangModal() {
+    if (typeof window.showLangModal === 'function') {
+      window.showLangModal();
+    } else {
+      const modal = document.getElementById('lang-modal');
+      if (modal) modal.setAttribute('aria-hidden', 'false');
+    }
+
+    // move focus to modal close button for a11y (after a short delay)
+    const close = document.getElementById('lang-close');
+    if (close) setTimeout(() => close.focus(), TRANSITION_DELAY + 30);
+  }
+
+  function openLangFromTrigger(ev) {
+    if (ev && typeof ev.preventDefault === 'function') ev.preventDefault(); // anchors fallback
+
+    // if mobile menu open, close it first then open modal after transition
+    if (document.documentElement.classList.contains('mobile-menu-open')) {
+      closeMenu();
+      setTimeout(revealLangModal, TRANSITION_DELAY);
+    } else {
+      revealLangModal();
+    }
+  }
+
+  if (langDesktop) langDesktop.addEventListener('click', openLangFromTrigger);
+  if (langMobile)  langMobile.addEventListener('click', openLangFromTrigger);
 })();

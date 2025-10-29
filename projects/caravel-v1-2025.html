@@ -7,66 +7,79 @@
   <link rel="stylesheet" href="../css/styles.css">
 </head>
 <body>
-      <header class="site-header">
-    <div class="container header-inner">
-        <img class="site-logo" src="../images/logonobg.png" alt="Caravel Racing logo">
-        <div class="brand-stack" aria-hidden="false">
-          <span class="brand-top">Caravel</span>
-          <span class="brand-bottom">Racing</span>
-        </div>
-
-        <!-- Mobile hamburger (hidden on desktop) -->
-        <button class="nav-toggle" aria-controls="mobile-nav" aria-expanded="false" data-i18n-attr="aria-label" data-i18n="nav.openMenu">Abrir menu</button>
-          <span class="hamburger" aria-hidden="true">
-            <span></span>
-            <span></span>
-            <span></span>
-          </span>
-        </button>
-
-        <!-- Desktop nav (kept for larger screens) -->
-        <nav class="nav">
-          <a href="../index.html" data-i18n="nav.home">Home</a>
-          <a href="../projects.html" data-i18n="nav.projects">Projects</a>
-          <a href="../sobre-equipa.html" data-i18n="nav.about">About the Team</a>
-          <a href="../patrocinadores.html" data-i18n="nav.sponsors">Sponsors</a>
-          <a href="../contact.html" data-i18n="nav.contact">Contact Us</a>
-        </nav>
-
-        <a class="header-social desktop-only" href="https://instagram.com/caravelracing"
-          target="_blank" rel="noopener noreferrer"
-          aria-label="Caravel Racing on Instagram" title="Instagram — Caravel Racing">
-          <img src="../images/instagram.png" alt="Instagram icon">
-        </a>
-
-        <h1 class="brand"><span class="brand-red">CAR</span><span class="brand-avel">AVEL Racing</span></h1>
-      </div>
-
-    <!-- Mobile panel (hidden by default, slides in) -->
-    <div id="mobile-nav" class="mobile-nav" aria-hidden="true">
-      <div class="mobile-nav-panel">
-        <button class="nav-close" aria-label="Close menu">&times;</button>
-
-        <nav class="mobile-links" role="navigation" aria-label="Menu principal">
-          <a href="../index.html" data-i18n="nav.home">Home</a>
-          <a href="../projects.html" data-i18n="nav.projects">Projects</a>
-          <a href="../sobre-equipa.html" data-i18n="nav.about">About the Team</a>
-          <a href="../patrocinadores.html" data-i18n="nav.sponsors">Sponsors</a>
-          <a href="../contact.html" data-i18n="nav.contact">Contact Us</a>
-        </nav>
-
-        <!-- Socials placed below the links (mobile) -->
-        <div class="mobile-socials" aria-label="Social links">
-          <a href="https://instagram.com/caravelracing"
-            target="_blank" rel="noopener noreferrer"
-            class="mobile-social-link" aria-label="Caravel Racing on Instagram">
-            <img src="../images/instagram.png" alt="" aria-hidden="true" />
-          </a>
-        </div>
-
-      </div>
+  <header class="site-header">
+ <div class="container header-inner">
+    <img class="site-logo" src="../images/logonobg.png" alt="Caravel Racing logo">
+    <div class="brand-stack" aria-hidden="false">
+      <span class="brand-top">Caravel</span>
+      <span class="brand-bottom">Racing</span>
     </div>
-    </header>
+
+    <!-- Mobile hamburger (hidden on desktop) -->
+    <button class="nav-toggle" aria-controls="mobile-nav" aria-expanded="false" aria-label="Menu">
+      <span class="hamburger" aria-hidden="true">
+        <span></span>
+        <span></span>
+        <span></span>
+      </span>
+    </button>
+
+    <!-- Desktop nav (kept for larger screens) -->
+    <nav class="nav">
+      <a href="../index.html" data-i18n="nav.home">Home</a>
+      <a href="../projects.html" data-i18n="nav.projects">Projects</a>
+      <a href="../sobre-equipa.html" data-i18n="nav.about">About the Team</a>
+      <a href="../patrocinadores.html" data-i18n="nav.sponsors">Sponsors</a>
+      <a href="../contact.html" data-i18n="nav.contact">Contact Us</a>
+    </nav>
+
+    <a class="header-social desktop-only" href="https://instagram.com/caravelracing"
+       target="_blank" rel="noopener noreferrer"
+       aria-label="Caravel Racing on Instagram" title="Instagram — Caravel Racing">
+      <img src="../images/instagram.png" alt="Instagram icon">
+    </a>
+
+       <!-- Language selector (desktop) -->
+    <a class="header-social desktop-only" href="#" id="lang-toggle"
+       aria-label="Change language" title="Change language">
+      <img src="../images/language.png" alt="Select language" />
+    </a>
+
+
+    <h1 class="brand"><span class="brand-red">CAR</span><span class="brand-avel">AVEL Racing</span></h1>
+  </div>
+
+ <!-- Mobile panel (hidden by default, slides in) -->
+<div id="mobile-nav" class="mobile-nav" aria-hidden="true">
+  <div class="mobile-nav-panel">
+    <button class="nav-close" aria-label="Close menu">&times;</button>
+
+    <nav class="mobile-links" role="navigation" aria-label="Menu principal">
+      <a href="../index.html" data-i18n="nav.home">Home</a>
+      <a href="../projects.html" data-i18n="nav.projects">Projects</a>
+      <a href="../sobre-equipa.html" data-i18n="nav.about">About the Team</a>
+      <a href="../patrocinadores.html" data-i18n="nav.sponsors">Sponsors</a>
+      <a href="../contact.html" data-i18n="nav.contact">Contact Us</a>
+    </nav>
+
+    <!-- Socials placed below the links (mobile) -->
+    <div class="mobile-socials" aria-label="Social links">
+      <a href="https://instagram.com/caravelracing"
+         target="_blank" rel="noopener noreferrer"
+         class="mobile-social-link" aria-label="Caravel Racing on Instagram">
+        <img src="../images/instagram.png" alt="" aria-hidden="true" />
+      </a>
+
+        <button id="lang-toggle-mobile" class="mobile-lang mobile-only lang-trigger"
+        aria-label="Change language" title="Change language"
+        aria-haspopup="dialog" aria-expanded="false">
+        <img src="../images/language.png" alt="Select language" />
+      </button>
+    </div>
+
+  </div>
+</div>
+</header>
 
   <main class="container">
     <article class="project-detail">
@@ -121,5 +134,6 @@
   </footer>
 </body>
 <script src="../js/lang.js" defer></script>
+<script src="../js/langbutton.js" defer></script>
 <script src="../js/mobile-menu.js" defer></script>
 </html>
