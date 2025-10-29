@@ -5,7 +5,10 @@
     en: {
       meta: {
         title: "Caravel Racing",
-        description: "Caravel Racing — STEM Racing team 2025/26. Projects, members and results."
+        description: "Caravel Racing — STEM Racing team 2025/26. Projects, members and results.",
+        title: "Official homepage of Caravel Racing Team",
+        button1: "View Projects",
+        button2: "About the Team"
       },
       nav: {
         home: "Home",
@@ -45,19 +48,65 @@
         instagram: "Caravel Racing on Instagram"
       },
       projects: {
+        title:"Projects",
         one: "Project 1 - Caravel V1 -> Sketch",
-        oneinfo: "First car sketch made by our Graphic Engineer and our Aerodynamicist"
+        oneinfo: "First car sketch made by our Graphic Engineer and our Aerodynamicist",
+        view: "View Project"
+      },
+      about: {
+        members: "Members:",
+        membersans: "6",
+        nation: "Nationality:",
+        nationans: "Portuguese",
+        school: "School:",
+        goal:"Goals:",
+        goalans:"Participate in the 2025/26 season — learn regulations and compete at a regional/national level. (Technical goal: minimize drag and friction as much as possible.)",
+        skills:"Key team skills:",
+        skillsans: "CAD (Fusion 360), CFD, CNC/laser fabric, marketing/branding e project managment.",
+        events:"Planned events:",
+        eventsans:"Regional competitions (dates to be confirmed), local tests and demonstrations at the school.",
+        meetings:"Team Meetings:",
+        meetingsans:"Weekly meeting (every Friday at 8:00 PM).",
+        social:"Team Social Media:",
+        sponsors:"Sponsors Wanted:",
+        sponsorsans:"Domínio/DNS, materiais, roupa/fatos, apoio financeiro ou técnico (lista de benefícios dos patrocinadores disponível).",
+        notes:"Additional Notes:",
+        notesans: "We will keep this site updated with all projects (CAD, simulations, and test results) — available to sponsors and judges.",
+        roles: "Main Roles: "
+      },
+      sponsors: {
+        title:"Sponsors",
+        title2:"Sponsors Benefits",
+        button: "View Sponsor Benefits"
+      },
+      contact: {
+        title: "Contacts",
+      },
+      projectv1: {
+        title:"Caravel V1 - Sketch",
+        goal: "Goal: ",
+        goalans: "Focus on the regulations and learn them.",
+        process: "Process",
+        p1: "Read regulations",
+        p2: "Research and requirements",
+        p3: "Talk and plan",
+        p4: "Design",
+        result:"Result",
+        images:"Sketch Images"
       }
     },
     pt: {
       meta: {
         title: "Caravel Racing",
-        description: "Caravel Racing — Equipa inscrita na competição STEM Racing 2025/26. Projetos, membros e resultados."
+        description: "Caravel Racing — Equipa inscrita na competição STEM Racing 2025/26. Projetos, membros e resultados.",
+        title: "Página oficial da Equipa Caravel Racing",
+        button1: "Ver Projetos",
+        button2: "Sobre a Equipa"
       },
       nav: {
         home: "Início",
         projects: "Projetos",
-        about: "Conhecer a equipa",
+        about: "Sobre a Equipa",
         sponsors: "Patrocinadores",
         contact: "Contactos",
         openMenu: "Abrir menu"
@@ -68,8 +117,8 @@
       hero: {
         title: "Página oficial do Caravel Racing Team",
         viewProjects: "Ver Projetos",
-        about: "Conhecer a equipa",
-        breadcrumb: "Início • Projetos • Conhecer a equipa • Patrocinadores • Contactos"
+        about: "Sobre a Equipa",
+        breadcrumb: "Início • Projetos • Sobre a Equipa • Patrocinadores • Contactos"
       },
       kpis: {
         season_label: "Temporada",
@@ -92,28 +141,54 @@
         instagram: "Caravel Racing no Instagram"
       },
       projects: {
+        title:"Projetos",
         one: "Projeto 1 - Caravel V1 -> Esboço",
-        oneinfo: "Primeiro esboço de um carro feito pelo nosso Engenheiro Gráfico e pela nossa Engenheira da Aerodinâmica"
+        oneinfo: "Primeiro esboço de um carro feito pelo nosso Engenheiro Gráfico e pela nossa Engenheira da Aerodinâmica",
+        view: "Ver Projeto"
       },
       about: {
-        members: "Membros:",
+        members: "Membros: ",
         membersans: "6",
-        nation: "Nacionalidade:",
+        nation: "Nacionalidade: ",
         nationans: "Portuguesa",
-        school: "Escola:",
-        goal:"Objetivos:",
+        school: "Escola: ",
+        goal:"Objetivos: ",
         goalans:"Participar na época 2025/26 — aprender os regulamentos e competir a nível regional/nacional. (Objetivo técnico: minimizar ao máximo o arrasto e o atrito.)",
-        skills:"Competências-chave da equipa:",
+        skills:"Competências-chave da equipa: ",
         skillsans: "CAD (Fusion 360), CFD, fabrico CNC/laser, marketing/branding e gestão de projetos.",
-        events:"Eventos planeados:",
+        events:"Eventos planeados: ",
         eventsans:"Competições regionais (datas a confirmar), provas locais e demonstrações na escola.",
-        meetings:"Reuniões da Equipa:",
+        meetings:"Reuniões da Equipa: ",
         meetingsans:"Reunião semanal (todas as sextas-feiras às 20h).",
-        social:"Redes Sociais da Equipa:",
-        sponsors:"Patrocinadores procurados:",
+        social:"Redes Sociais da Equipa: ",
+        sponsors:"Patrocinadores procurados: ",
         sponsorsans:"Domínio/DNS, materiais, roupa/fatos, apoio financeiro ou técnico (lista de benefícios dos patrocinadores disponível).",
-        notes:"Notas adicionais:",
-        notesans: "Manteremos este site atualizado com todos os projetos (CAD, simulações e resultados de testes) — disponíveis para os patrocinadores e jurí."
+        notes:"Notas adicionais: ",
+        notesans: "Manteremos este site atualizado com todos os projetos (CAD, simulações e resultados de testes) — disponíveis para os patrocinadores e jurí.",
+        roles: "Funções principais: "
+      },
+      sponsors: {
+        title:"Patrocinadores",
+        title2:"Benefícios dos Patrocinadores",
+        button: "Ver benefícios"
+      },
+      contact: {
+        title: "Contactos",
+      },
+        projectv1: {
+        title:"Caravel V1 - Esboço",
+        goal: "Objetivo: ",
+        goalans: "Compreender os regulamentos.",
+        process: "Processo",
+        p1: "Ler os regulamentos",
+        p2: "Investigação e requisitos",
+        p3: "Falar e planear",
+        p4: "Desenhar",
+        result:"Resultado",
+        images:"Imagens do Esboço"
+      },
+      benefits: {
+        title: "Benefícios dos Patrocinadores"
       }
     }
   };
