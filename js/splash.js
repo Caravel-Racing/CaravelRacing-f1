@@ -3,6 +3,41 @@
     const splash = document.getElementById('splash');
     if (!splash) return;
 
+    const SPLASH_KEY = 'caravel_splash_shown_v1'; 
+    const urlParams = new URLSearchParams(location.search);
+    const forceShow = urlParams.get('showSplash') === '1';
+
+    function removeSplashImmediate() {
+      try {
+        splash.classList.add('hidden');
+      } catch (e) {}
+      try {
+        if (splash && splash.parentNode) splash.parentNode.removeChild(splash);
+      } catch (e) {}
+      try {
+        document.documentElement.classList.remove('splash-active');
+        document.body.classList.remove('splash-active');
+      } catch (e) {}
+      setTimeout(() => document.dispatchEvent(new Event('splash-complete')), 0);
+    }
+
+    window.addEventListener('pageshow', (ev) => {
+      try {
+        if (!forceShow && localStorage.getItem(SPLASH_KEY)) {
+          removeSplashImmediate();
+        }
+      } catch (e) {
+      }
+    });
+
+    try {
+      if (!forceShow && localStorage.getItem(SPLASH_KEY)) {
+        removeSplashImmediate();
+        return;
+      }
+    } catch (e) {
+    }
+
     const splashInner = splash.querySelector('.splash-inner');
     const splashBar   = splash.querySelector('.splash-bar');
     const fill        = splash.querySelector('.splash-fill');
@@ -49,7 +84,7 @@
     const splashGif = splash.querySelector('.splash-gif');
 
     // CONFIG
-    const totalMs = 3500;      
+    const totalMs = 3000;      
     const safetyExtra = 2000; 
 
     let progress = 0;
@@ -139,6 +174,12 @@
       num.textContent = '100';
       updateCar(100);
       updateLetters(100);
+
+      try {
+        localStorage.setItem(SPLASH_KEY, '1');
+      } catch (e) {
+      }
+
       setTimeout(() => {
         splash.classList.add('hidden');
         splash.addEventListener('transitionend', () => {
