@@ -6,6 +6,27 @@
   <title>Sobre a Equipa — Caravel Racing</title>
   <link rel="stylesheet" href="css/styles.css">
 </head>
+<!-- Language picker modal (insert before closing </body>) -->
+<div id="lang-modal" class="lang-modal" aria-hidden="true" role="dialog" aria-label="Language selector">
+  <div class="lang-panel" role="document" tabindex="-1">
+    <h3 data-i18n="lang.title">Choose language</h3>
+    <p data-i18n="lang.subtitle">Which language do you want to use?</p>
+
+    <div class="lang-buttons">
+      <button class="lang-btn" data-lang="en" aria-label="English">English</button>
+      <button class="lang-btn" data-lang="pt" aria-label="Português">Português</button>
+    </div>
+
+    <p class="lang-remember">
+      <label>
+        <input type="checkbox" id="remember-lang" />
+        <span data-i18n="lang.remember">Remember my choice</span>
+      </label>
+    </p>
+
+    <button id="lang-close" class="lang-close" aria-label="Close">×</button>
+  </div>
+</div>
 <body>
   <header class="site-header">
  <div class="container header-inner">
