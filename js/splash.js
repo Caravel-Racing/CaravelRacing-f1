@@ -1,95 +1,107 @@
-// splash (robust, localStorage + cookie fallback, debug via ?debug=1)
+// splash (show once, but show again when arriving from an external origin)
 (function(){
   const splash = document.getElementById('splash');
   if (!splash) return;
 
+  // CONFIG / helpers
   const SPLASH_KEY_BASE = 'caravel_splash_shown';
-  const SPLASH_VERSION = 'v1'; // bump to v2 when you want everyone to see it again
+  const SPLASH_VERSION = 'v1'; // bump to v2 to force-show for everyone
   const SPLASH_KEY = `${SPLASH_KEY_BASE}_${SPLASH_VERSION}`;
-  const urlParams = new URLSearchParams(location.search);
-  const forceShow = urlParams.get('showSplash') === '1';
-  const debug = urlParams.get('debug') === '1';
+  const params = new URLSearchParams(location.search);
+  const forceShow = params.get('showSplash') === '1';
+  const debug = params.get('debug') === '1';
+  function log(...a){ if (debug) console.log('[splash]', ...a); }
 
-  function log(...args) { if (debug) console.log('[splash]', ...args); }
-
-  // cookie helpers (fallback when localStorage unavailable)
-  function setCookie(name, value, days=365) {
+  // cookie fallback helpers (in case localStorage blocked)
+  function setCookie(name, value, days=365){
     try {
       const expires = new Date(Date.now() + days*864e5).toUTCString();
       document.cookie = name + '=' + encodeURIComponent(value) + '; expires=' + expires + '; path=/';
-    } catch (e) { /* no-op */ }
+    } catch(e){}
   }
-  function getCookie(name) {
+  function getCookie(name){
     try {
-      return document.cookie.split('; ').reduce((r, v) => {
-        const parts = v.split('=');
-        return parts[0] === name ? decodeURIComponent(parts.slice(1).join('=')) : r;
+      return document.cookie.split('; ').reduce((r,v)=>{
+        const p = v.split('=');
+        return p[0] === name ? decodeURIComponent(p.slice(1).join('=')) : r;
       }, null);
-    } catch (e) { return null; }
+    } catch(e){ return null; }
   }
 
-  function storageSet(key, value) {
+  function storageSet(key, value){
     try {
       localStorage.setItem(key, value);
-      log('storageSet -> localStorage', key);
+      log('stored in localStorage', key);
       return true;
-    } catch (e) {
-      // fallback to cookie
+    } catch(e){
       setCookie(key, value);
-      log('storageSet -> cookie fallback', key);
+      log('localStorage failed — used cookie', key);
       return false;
     }
   }
-
-  function storageGet(key) {
+  function storageGet(key){
     try {
       const v = localStorage.getItem(key);
-      log('storageGet localStorage', key, v);
+      log('localStorage read', key, v);
       return v;
-    } catch (e) {
+    } catch(e){
       const c = getCookie(key);
-      log('storageGet cookie fallback', key, c);
+      log('cookie read fallback', key, c);
       return c;
     }
   }
 
-  function removeSplashImmediate() {
-    log('removeSplashImmediate');
-    try { splash.classList.add('hidden'); } catch (e) {}
-    try { if (splash && splash.parentNode) splash.parentNode.removeChild(splash); } catch (e) {}
+  // determine whether the visitor arrived from an external origin
+  function isExternalReferrer(){
     try {
-      document.documentElement.classList.remove('splash-active');
-      document.body.classList.remove('splash-active');
-    } catch (e) {}
-    setTimeout(() => document.dispatchEvent(new Event('splash-complete')), 0);
+      if (!document.referrer) return false; // no referrer -> treat as internal/direct
+      const refOrigin = new URL(document.referrer).origin;
+      const curOrigin = location.origin;
+      const external = refOrigin !== curOrigin;
+      log('referrer check', document.referrer, 'refOrigin=', refOrigin, 'curOrigin=', curOrigin, 'external=', external);
+      return external;
+    } catch(e){
+      log('referrer parse error', e);
+      return false;
+    }
   }
 
-  // pageshow handler (bfcache/back-forward)
+  function removeSplashImmediate(){
+    log('removeSplashImmediate');
+    try { splash.classList.add('hidden'); } catch(e){}
+    try { if (splash && splash.parentNode) splash.parentNode.removeChild(splash); } catch(e){}
+    try { document.documentElement.classList.remove('splash-active'); document.body.classList.remove('splash-active'); } catch(e){}
+    setTimeout(()=>document.dispatchEvent(new Event('splash-complete')), 0);
+  }
+
+  // pageshow handler for bfcache/back-forward: only remove if we've already shown it
   window.addEventListener('pageshow', (ev) => {
     try {
-      if (!forceShow && storageGet(SPLASH_KEY)) {
-        log('pageshow: key present -> skip splash');
+      const external = isExternalReferrer();
+      if (!forceShow && storageGet(SPLASH_KEY) && !external) {
+        log('pageshow: key present and not external -> skip splash');
         removeSplashImmediate();
       } else {
-        log('pageshow: no key -> normal splash');
+        log('pageshow: showing splash (either no key or external referrer or forced)');
       }
-    } catch (e) {
+    } catch(e){
       log('pageshow error', e);
     }
   });
 
-  // If already shown (and not forced), skip immediately
+  // STARTUP check: if splash already shown and user did NOT arrive from external, skip immediately
   try {
-    if (!forceShow && storageGet(SPLASH_KEY)) {
-      log('startup: key present -> skipping splash');
+    const external = isExternalReferrer();
+    if (!forceShow && storageGet(SPLASH_KEY) && !external) {
+      log('startup: key present and not external -> skipping splash');
       removeSplashImmediate();
       return;
     }
-  } catch (e) {
+  } catch(e){
     log('startup storage check failed', e);
   }
 
-  // ---------- original splash logic (kept intact, with storage persist at end) ----------
+  // ---------- original splash logic (kept intact) ----------
   const splashInner = splash.querySelector('.splash-inner');
   const splashBar   = splash.querySelector('.splash-bar');
   const fill        = splash.querySelector('.splash-fill');
@@ -101,20 +113,13 @@
     if (!lettersWrap) return;
     const letterNodes = Array.from(lettersWrap.querySelectorAll('.splash-letter'));
     if (!letterNodes.length) return;
-
     const frag = document.createDocumentFragment();
     let word = document.createElement('span');
     word.className = 'splash-word';
-
     letterNodes.forEach((ln) => {
       const text = (ln.textContent || '').replace(/\u00A0/g, ' ').trim();
       if (text === '') {
-        if (word.childNodes.length) {
-          frag.appendChild(word);
-          word = document.createElement('span');
-          word.className = 'splash-word';
-        }
-
+        if (word.childNodes.length) { frag.appendChild(word); word = document.createElement('span'); word.className = 'splash-word'; }
         const spacer = document.createElement('span');
         spacer.className = 'splash-letter splash-space';
         spacer.innerHTML = '&nbsp;';
@@ -123,7 +128,6 @@
         word.appendChild(ln);
       }
     });
-
     if (word.childNodes.length) frag.appendChild(word);
     lettersWrap.innerHTML = '';
     lettersWrap.appendChild(frag);
@@ -134,8 +138,8 @@
   const splashGif = splash.querySelector('.splash-gif');
 
   // CONFIG
-  const totalMs = 3500;      
-  const safetyExtra = 2000; 
+  const totalMs = 3500;
+  const safetyExtra = 2000;
 
   let progress = 0;
   let running = true;
@@ -172,7 +176,7 @@
       } else if (idx === Math.floor(pos) + 1){
         const partial = Math.max(0, Math.min(1, pos - Math.floor(pos)));
         el.style.opacity = String(partial);
-        const y = (1 - partial) * 8; 
+        const y = (1 - partial) * 8;
         const s = 0.98 + (partial * 0.02);
         el.style.transform = `translateY(${y}px) scale(${s})`;
       } else {
@@ -219,12 +223,12 @@
     updateCar(100);
     updateLetters(100);
 
-    // Persist that we've shown the splash (so future visits skip it)
+    // Persist that we've shown the splash (so future visits skip it unless coming from external)
     try {
       storageSet(SPLASH_KEY, '1');
       log('finishNow: persisted key', SPLASH_KEY);
-    } catch (e) {
-      log('finishNow: persist failed', e);
+    } catch(e){
+      log('finishNow persist error', e);
     }
 
     setTimeout(() => {
@@ -262,14 +266,11 @@
     if (!splashGif || !splashGif.parentNode) return;
     const src = (splashGif.getAttribute('src') || '').split('?')[0];
     const newGif = document.createElement('img');
-
     newGif.className = splashGif.className;
     newGif.alt = splashGif.alt || '';
     newGif.setAttribute('aria-hidden', 'true');
     newGif.style.pointerEvents = 'none';
-
     newGif.src = src + '?_=' + Date.now();
-
     newGif.addEventListener('load', () => {
       if (splashGif.parentNode) splashGif.parentNode.replaceChild(newGif, splashGif);
     }, { once: true });
@@ -279,11 +280,7 @@
   }
 
   restartGif();
-
-  window.addEventListener('pageshow', (ev) => {
-    restartGif();
-  });
-
+  window.addEventListener('pageshow', (ev) => restartGif());
   document.addEventListener('visibilitychange', () => {
     if (document.visibilityState === 'visible') restartGif();
   });
