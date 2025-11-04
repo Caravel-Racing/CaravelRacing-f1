@@ -242,6 +242,34 @@ body{
   padding:1rem;
   margin-top:2rem;
   text-align:center;
+  position:relative;
+}
+
+.site-footer .footer-sponsors {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  display: flex;
+  gap: .6rem;
+  align-items: center;
+  justify-content: center;
+}
+
+.site-footer .footer-sponsors a img {
+  height: 20px;
+  width: auto;
+  display: block;
+  filter: grayscale(100%);
+  opacity: 0.85;
+  transition: filter .18s ease, opacity .18s ease, transform .18s ease;
+}
+
+.site-footer .footer-sponsors a:hover img,
+.site-footer .footer-sponsors a:focus img {
+  filter: none;
+  opacity: 1;
+  transform: translateY(-2px);
 }
 
 /* language modal */
@@ -274,6 +302,55 @@ body{
 
 table{width:100%;border-collapse:collapse;margin-top:1rem}
 table th,table td{padding:0.4rem;border:1px solid #e6e6e6;text-align:left;font-size:0.95rem}
+
+
+
+/* Ensure wrapper & images align and cutout overlays exactly */
+.photo-wrap {
+  position: relative;
+  display: block;
+  max-width: 900px; /* keep or change to your layout */
+  margin: 0 auto;
+}
+
+.photo-wrap .base-photo,
+.photo-wrap .cutout {
+  display: block;
+  width: 100%;
+  height: auto;
+  user-select: none;
+  -webkit-user-drag: none;
+}
+
+/* overlay must exactly cover the base image */
+.cutout {
+  position: absolute;
+  left: 0;
+  top: 0;
+  pointer-events: none; /* so pointer hits the wrapper, not the image */
+  opacity: 0;
+  transform-origin: center;
+  transition: transform .28s ease, opacity .28s ease, filter .28s ease;
+  z-index: 2;
+  filter: drop-shadow(0 10px 28px rgba(0,0,0,0.35));
+}
+
+/* active/pop state */
+.photo-wrap.pop .cutout {
+  opacity: 1;
+  transform: scale(1.06);
+  z-index: 999;
+}
+
+/* optional: subtle dim of background to make Diogo pop */
+.photo-wrap.pop .base-photo {
+  filter: brightness(.92);
+  transition: filter .28s ease;
+}
+
+
+
+
 
 @media (max-width:600px){
   .site-header .container{
@@ -632,7 +709,7 @@ html.mobile-menu-open .mobile-nav::before{
 }
 
 
-@media (max-width: 780px)  {
+@media (max-width: 830px)  {
   .header-social {             
   display: none;
 }
@@ -673,6 +750,20 @@ html.mobile-menu-open .mobile-nav::before{
     top: 50%;
     transform: translateY(-50%);
     z-index: 1200;
+  }
+
+.site-footer .footer-sponsors {
+    position: static;
+    transform: none;
+    margin: .5rem 0;
+    justify-content: center;
+  }
+
+  .site-footer .container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: .5rem;
   }
 
 }
@@ -745,4 +836,6 @@ html.mobile-menu-open .mobile-nav::before{
     transform: translateY(-50%);
     z-index: 1200;
   }
+
+  
 }

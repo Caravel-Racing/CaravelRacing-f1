@@ -186,6 +186,21 @@
       <p data-i18n="hero.breadcrumb">Home • Projects • About the Team • Sponsors • Contact Us</p>
     </section>
 
+
+    <div class="photo-wrap" id="photoWrap">
+      <img src="images/group.png" alt="group" class="base-photo">
+      <!-- add crossorigin so the image can be sampled by canvas -->
+      <img src="images/diogobg.png" alt="Diogo" id="diogoCutout" class="cutout" crossorigin="anonymous">
+    </div>
+
+    <ul class="people-list">
+      <li id="diogoName">Diogo</li>
+
+    </ul>
+
+
+
+
       <section class="kpis" aria-label="Indicadores">
         <div class="card"><strong data-i18n="kpis.season_label">Season</strong><p data-i18n="kpis.season">2025/26</p></div>
         <div class="card"><strong data-i18n="kpis.avg_label">Avg. Run</strong><p data-i18n="kpis.avg">-</p></div>
@@ -194,23 +209,41 @@
     </section>
   </main>
 
+
   <footer class="site-footer">
     <div class="container" style="display:flex;flex-wrap:wrap;gap:1rem;align-items:center;justify-content:space-between;">
       <div>
         <p style="margin:0">© Caravel Racing — Portugal</p>
         <p style="margin:0;font-size:.9rem;color:#9a9a9a;">Contact: <a href="mailto:caravelracing@gmail.com">caravelracing@gmail.com</a></p>
       </div>
-      <div style="display:flex;gap:.6rem;align-items:center;">
-        <a href="https://instagram.com/caravelracing" aria-label="Instagram">Instagram</a>
+
+      <!-- Sponsors (middle) -->
+      <div class="footer-sponsors" aria-label="Sponsors">
+        <a href="https://www.manuport-logistics.com/" target="_blank" rel="noopener noreferrer" aria-label="Sponsor One">
+          <img src="images/manuport.png" alt="manuport-logistics">
+        </a>
       </div>
+
+      <div style="display:flex;">
+        <div class="mobile-socials" aria-label="Social links">
+        <a href="https://instagram.com/caravelracing"
+          target="_blank" rel="noopener noreferrer"
+          class="mobile-social-link" aria-label="Caravel Racing on Instagram">
+          <img src="images/instagram.png" alt="" aria-hidden="true" />
+        </a>
+        </div>
+      </div>
+      
+      
     </div>
   </footer>
+
 
   <!-- === SCRIPTS === -->
   <script src="js/splash.js" defer></script>
   <script src="js/lang.js" defer></script>
   <script src="js/langbutton.js" defer></script>
   <script src="js/mobile-menu.js" defer></script>
-
+  <script src="js/groupimage.js" defer></script>
 </body>
 </html>
