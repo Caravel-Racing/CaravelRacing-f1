@@ -203,7 +203,7 @@
   function pageForMember(m) {
     if (!m || !m.img) return null;
     if (m.img.dataset && m.img.dataset.page) return m.img.dataset.page;
-    if (m.img.id) return m.img.id.replace(/Cutout$/i, '') + '.html';
+    if (m.img.id) return m.img.id.replace('members/' + /Cutout$/i, '') + '.html';
     return null;
   }
 
