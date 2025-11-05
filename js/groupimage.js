@@ -1,73 +1,118 @@
-
-/* Pixel-hover: sample the same-size transparent PNG under the mouse.
-   Works with #photoWrap and #diogoCutout from your HTML.
-*/
+// ...existing code...
 (function(){
   const wrapper = document.getElementById('photoWrap');
-  const diogoImg = document.getElementById('diogoCutout');
-  const nameElem = document.getElementById('diogoName');
 
-  if (!wrapper || !diogoImg) {
-    console.warn('photoWrap or diogoCutout not found — check IDs.');
+  // list all members and their DOM IDs
+  const MEMBERS = [
+    { imgId: 'diogoCutout', nameId: 'diogoName' },
+    { imgId: 'martimCutout', nameId: 'martimName' },
+    { imgId: 'marianaCutout', nameId: 'marianaName' },
+    { imgId: 'ferreiraCutout', nameId: 'ferreiraName' },
+    { imgId: 'pedroCutout', nameId: 'pedroName' },
+    { imgId: 'franciscoCutout', nameId: 'franciscoName' }
+  ];
+
+  if (!wrapper) {
+    console.warn('photoWrap not found — check ID.');
     return;
   }
 
-  // Offscreen canvas to sample pixels
-  const off = document.createElement('canvas');
-  const offCtx = off.getContext('2d');
+  // resolve DOM elements and create per-member canvas state
+  const members = MEMBERS.map(m => ({
+    img: document.getElementById(m.imgId) || null,
+    nameElem: document.getElementById(m.nameId) || null,
+    canvas: document.createElement('canvas'),
+    ctx: null,
+    ready: false,
+    tainted: false
+  }));
 
-  let imgReady = false;
-  let tainted = false;
+  // ensure at least one cutout exists
+  if (members.every(m => !m.img)) {
+    console.warn('No cutout images found — add images with IDs:', MEMBERS.map(m=>m.imgId).join(', '));
+    return;
+  }
+
+  members.forEach(m => {
+    m.ctx = m.canvas.getContext && m.canvas.getContext('2d');
+  });
+
+  const ALPHA_THRESHOLD = 20; // 0-255
   let lastInside = false;
-  const ALPHA_THRESHOLD = 20; // 0-255; raise to reduce edge hits
+  let raf = null;
 
-  function prepareCanvas() {
-    if (!diogoImg.naturalWidth || !diogoImg.naturalHeight) return;
-    off.width = diogoImg.naturalWidth;
-    off.height = diogoImg.naturalHeight;
+  function prepareMemberCanvas(idx) {
+    const m = members[idx];
+    if (!m || !m.img || !m.ctx) return;
+
+    if (!m.img.naturalWidth || !m.img.naturalHeight) return;
+    m.canvas.width = m.img.naturalWidth;
+    m.canvas.height = m.img.naturalHeight;
+
     try {
-      offCtx.clearRect(0,0,off.width, off.height);
-      offCtx.drawImage(diogoImg, 0, 0, off.width, off.height);
-      // attempt to read pixel to detect taint
-      offCtx.getImageData(0,0,1,1);
-      imgReady = true;
-      tainted = false;
+      m.ctx.clearRect(0,0,m.canvas.width,m.canvas.height);
+      m.ctx.drawImage(m.img, 0, 0, m.canvas.width, m.canvas.height);
+      // test read
+      m.ctx.getImageData(0,0,1,1);
+      m.ready = true;
+      m.tainted = false;
     } catch (err) {
-      // Try to reload the image with crossOrigin and draw that one
+      // attempt reload with crossOrigin
       const alt = new Image();
       alt.crossOrigin = 'anonymous';
       alt.onload = () => {
         try {
-          off.width = alt.naturalWidth || diogoImg.naturalWidth;
-          off.height = alt.naturalHeight || diogoImg.naturalHeight;
-          offCtx.clearRect(0,0,off.width, off.height);
-          offCtx.drawImage(alt, 0, 0, off.width, off.height);
-          offCtx.getImageData(0,0,1,1); // test again
-          imgReady = true;
-          tainted = false;
-          // replace for future draws (not strictly necessary)
+          m.canvas.width = alt.naturalWidth || m.canvas.width;
+          m.canvas.height = alt.naturalHeight || m.canvas.height;
+          m.ctx.clearRect(0,0,m.canvas.width,m.canvas.height);
+          m.ctx.drawImage(alt, 0, 0, m.canvas.width, m.canvas.height);
+          m.ctx.getImageData(0,0,1,1);
+          m.ready = true;
+          m.tainted = false;
         } catch (e2) {
-          tainted = true;
-          imgReady = false;
-          console.warn('diogo PNG cannot be sampled due to cross-origin restrictions. Falling back to bounding-box hover.');
+          m.tainted = true;
+          m.ready = false;
+          console.warn(`${m.img.id} cannot be sampled due to cross-origin restrictions.`);
         }
       };
       alt.onerror = () => {
-        tainted = true;
-        imgReady = false;
-        console.warn('Failed loading alt diogo image; falling back to bounding-box hover.');
+        m.tainted = true;
+        m.ready = false;
+        console.warn(`Failed loading alt image for ${m.img.id}; will fallback to bounding-box hover.`);
       };
-      // set src after crossOrigin
-      alt.src = diogoImg.src + (diogoImg.src.indexOf('?') === -1 ? '?cachebust=1' : '&cachebust=1');
+      alt.src = m.img.src + (m.img.src.indexOf('?') === -1 ? '?cachebust=1' : '&cachebust=1');
     }
   }
 
-  if (diogoImg.complete) prepareCanvas();
-  diogoImg.addEventListener('load', prepareCanvas);
-  diogoImg.addEventListener('error', ()=>console.warn('Failed loading diogo image'));
+  // prepare all canvases
+  members.forEach((m, i) => {
+    if (m.img) {
+      if (m.img.complete) prepareMemberCanvas(i);
+      m.img.addEventListener('load', () => prepareMemberCanvas(i));
+      m.img.addEventListener('error', () => console.warn(`Failed loading ${m.img.id}`));
+      // ensure cutouts start hidden (CSS may do this already)
+      m.img.style.opacity = '0';
+      m.img.style.transition = 'opacity .15s linear';
+      m.img.style.pointerEvents = 'none'; // let wrapper receive events
+      m.img.setAttribute('aria-hidden', 'true');
+    }
+  });
 
-  // requestAnimationFrame throttling
-  let raf = null;
+  function anyCanvasReady() {
+    return members.some(m => m.ready && !m.tainted);
+  }
+
+  function showNoCutout() {
+    // hide all cutouts and remove pop
+    members.forEach(m => { if (m.img) m.img.style.opacity = '0'; });
+    wrapper.classList.remove('pop');
+    lastInside = false;
+  }
+
+  function showMember(idx) {
+    members.forEach((m, i) => { if (m.img) m.img.style.opacity = (i === idx ? '1' : '0'); });
+    if (!lastInside) { wrapper.classList.add('pop'); lastInside = true; }
+  }
 
   function handlePointer(clientX, clientY) {
     if (raf) cancelAnimationFrame(raf);
@@ -79,69 +124,74 @@
 
     // outside wrapper -> hide
     if (clientX < rect.left || clientX > rect.right || clientY < rect.top || clientY > rect.bottom) {
-      if (lastInside) { wrapper.classList.remove('pop'); lastInside = false; }
+      if (raf) { cancelAnimationFrame(raf); raf = null; }
+      showNoCutout();
       return;
     }
 
-    // fallback: if canvas is tainted or not ready, show when inside wrapper
-    if (tainted || !imgReady) {
+    // if no canvases are readable -> fallback to bounding-box (show pop for any hover)
+    if (!anyCanvasReady()) {
       if (!lastInside) { wrapper.classList.add('pop'); lastInside = true; }
       return;
     }
 
-    // map mouse coords to image natural pixels
     const x = clientX - rect.left;
     const y = clientY - rect.top;
 
-    const scaleX = off.width / rect.width;
-    const scaleY = off.height / rect.height;
+    // check members in DOM order reversed (last drawn on top)
+    for (let i = members.length - 1; i >= 0; i--) {
+      const m = members[i];
+      if (!m || !m.img || !m.ctx || m.tainted || !m.ready) continue;
 
-    const nx = Math.floor(x * scaleX);
-    const ny = Math.floor(y * scaleY);
+      const scaleX = m.canvas.width / rect.width;
+      const scaleY = m.canvas.height / rect.height;
+      const nx = Math.floor(x * scaleX);
+      const ny = Math.floor(y * scaleY);
 
-    if (nx < 0 || ny < 0 || nx >= off.width || ny >= off.height) {
-      if (lastInside) { wrapper.classList.remove('pop'); lastInside = false; }
-      return;
+      if (nx < 0 || ny < 0 || nx >= m.canvas.width || ny >= m.canvas.height) continue;
+
+      try {
+        const p = m.ctx.getImageData(nx, ny, 1, 1).data;
+        if (p[3] > ALPHA_THRESHOLD) {
+          showMember(i);
+          return;
+        }
+      } catch (err) {
+        // mark tainted and continue; fallback will apply if none left readable
+        m.tainted = true;
+        console.warn(`Pixel sampling failed for ${m.img.id}; marking tainted.`);
+      }
     }
 
-    try {
-      const p = offCtx.getImageData(nx, ny, 1, 1).data;
-      const alpha = p[3];
-      if (alpha > ALPHA_THRESHOLD) {
-        if (!lastInside) { wrapper.classList.add('pop'); lastInside = true; }
-      } else {
-        if (lastInside) { wrapper.classList.remove('pop'); lastInside = false; }
-      }
-    } catch (err) {
-      // unexpected failure -> fallback to bounding-box
-      tainted = true;
-      if (!lastInside) { wrapper.classList.add('pop'); lastInside = true; }
-      console.warn('Pixel sampling failed mid-run; switching to bounding-box behavior.');
+    // no member hit -> hide
+    if (lastInside) {
+      showNoCutout();
     }
   }
 
-  // Mouse events
+  // mouse & leave
   wrapper.addEventListener('mousemove', (e) => handlePointer(e.clientX, e.clientY));
-  wrapper.addEventListener('mouseleave', () => { if (raf) cancelAnimationFrame(raf); wrapper.classList.remove('pop'); lastInside = false; });
+  wrapper.addEventListener('mouseleave', () => { if (raf) cancelAnimationFrame(raf); showNoCutout(); });
 
-  // Touch support: use touchmove for continuous, touchend to hide
+  // touch support
   wrapper.addEventListener('touchstart', (ev) => {
     const t = ev.touches[0];
     if (t) handlePointer(t.clientX, t.clientY);
-  }, {passive: true});
+  }, {passive:true});
   wrapper.addEventListener('touchmove', (ev) => {
     const t = ev.touches[0];
     if (t) handlePointer(t.clientX, t.clientY);
-  }, {passive: true});
-  wrapper.addEventListener('touchend', () => { if (raf) cancelAnimationFrame(raf); wrapper.classList.remove('pop'); lastInside = false; });
+  }, {passive:true});
+  wrapper.addEventListener('touchend', () => { if (raf) cancelAnimationFrame(raf); showNoCutout(); });
 
-  // Keyboard accessibility: focus on the name shows the pop
-  if (nameElem) {
-    nameElem.addEventListener('focus', ()=> wrapper.classList.add('pop'));
-    nameElem.addEventListener('blur', ()=> wrapper.classList.remove('pop'));
-    if (!nameElem.hasAttribute('tabindex')) nameElem.setAttribute('tabindex','0');
-  }
+  // keyboard accessibility: focus on name elements
+  members.forEach((m, i) => {
+    if (!m.nameElem) return;
+    if (!m.nameElem.hasAttribute('tabindex')) m.nameElem.setAttribute('tabindex','0');
+    m.nameElem.addEventListener('focus', () => { showMember(i); });
+    m.nameElem.addEventListener('blur', () => { showNoCutout(); });
+  });
 
-  // in case image was cached and natural dims not ready earlier
-  setTimeout(prepareCanvas, 120);
+  // try again in case images were cached
+  setTimeout(() => members.forEach((_, i) => prepareMemberCanvas(i)), 120);
 })();
