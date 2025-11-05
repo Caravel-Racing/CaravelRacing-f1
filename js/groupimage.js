@@ -205,6 +205,49 @@
     return null;
   }
 
+  // --- NEW: determine which member (if any) is under a pointer ---
+  function hitMemberAt(clientX, clientY) {
+    const rect = wrapper.getBoundingClientRect();
+    if (clientX < rect.left || clientX > rect.right || clientY < rect.top || clientY > rect.bottom) return -1;
+    // If no canvases readable, return -1 so click handler falls back to visibleMemberIndex()
+    if (!anyCanvasReady()) return -1;
+
+    const x = clientX - rect.left;
+    const y = clientY - rect.top;
+
+    for (let i = members.length - 1; i >= 0; i--) {
+      const m = members[i];
+      if (!m || !m.img || !m.ctx || m.tainted || !m.ready) continue;
+
+      const scaleX = m.canvas.width / rect.width;
+      const scaleY = m.canvas.height / rect.height;
+      const nx = Math.floor(x * scaleX);
+      const ny = Math.floor(y * scaleY);
+
+      if (nx < 0 || ny < 0 || nx >= m.canvas.width || ny >= m.canvas.height) continue;
+
+      try {
+        const p = m.ctx.getImageData(nx, ny, 1, 1).data;
+        if (p[3] > ALPHA_THRESHOLD) return i;
+      } catch (err) {
+        m.tainted = true;
+        console.warn(`Pixel sampling failed for ${m.img.id}; marking tainted.`);
+      }
+    }
+    return -1;
+  }
+
+  // --- NEW: fallback to the currently visible (popped) member index ---
+  function visibleMemberIndex() {
+    for (let i = 0; i < members.length; i++) {
+      const m = members[i];
+      if (!m || !m.img) continue;
+      const op = parseFloat(getComputedStyle(m.img).opacity || '0');
+      if (op > 0.5) return i;
+    }
+    return -1;
+  }
+
   function navigateToPage(target, openInNewTab) {
     if (!target) return;
     if (openInNewTab) window.open(target, '_blank', 'noopener');
@@ -213,9 +256,8 @@
 
   // Click handler on wrapper: prefer precise pixel-sampling hit, fallback to visible image
   wrapper.addEventListener('click', function (e) {
-    // try pixel-sampling-based hit (function defined previously in your script)
-    const hit = (typeof hitMemberAt === 'function') ? hitMemberAt(e.clientX, e.clientY) : -1;
-    const idx = (hit !== -1) ? hit : ((typeof visibleMemberIndex === 'function') ? visibleMemberIndex() : -1);
+    const hit = hitMemberAt(e.clientX, e.clientY);
+    const idx = (hit !== -1) ? hit : visibleMemberIndex();
     if (idx === -1) return;
     const target = pageForMember(members[idx]);
     if (!target) return;
@@ -227,8 +269,8 @@
   wrapper.addEventListener('touchend', function (ev) {
     const t = ev.changedTouches && ev.changedTouches[0];
     if (!t) return;
-    const hit = (typeof hitMemberAt === 'function') ? hitMemberAt(t.clientX, t.clientY) : -1;
-    const idx = (hit !== -1) ? hit : ((typeof visibleMemberIndex === 'function') ? visibleMemberIndex() : -1);
+    const hit = hitMemberAt(t.clientX, t.clientY);
+    const idx = (hit !== -1) ? hit : visibleMemberIndex();
     if (idx === -1) return;
     const target = pageForMember(members[idx]);
     if (!target) return;
