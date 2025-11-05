@@ -192,6 +192,31 @@
     m.nameElem.addEventListener('blur', () => { showNoCutout(); });
   });
 
+
+  
+document.getElementById('diogoCutout').addEventListener('click', function() {
+  showModal('members/diogo.html');
+});
+
+function showModal(url) {
+  const modal = document.getElementById('diogoModal');
+  const iframe = modal.querySelector('iframe');
+  iframe.src = url; 
+  modal.style.display = "block"; 
+}
+
+document.getElementById('modalClose').addEventListener('click', function() {
+  const modal = document.getElementById('diogoModal');
+  modal.style.display = "none"; 
+});
+
+window.addEventListener('click', function(event) {
+  const modal = document.getElementById('diogoModal');
+  if (event.target === modal) {
+    modal.style.display = "none"; 
+  }
+});
+
   // try again in case images were cached
   setTimeout(() => members.forEach((_, i) => prepareMemberCanvas(i)), 120);
 })();
