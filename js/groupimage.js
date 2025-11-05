@@ -103,16 +103,27 @@
   }
 
   function showNoCutout() {
-    // hide all cutouts and remove pop
-    members.forEach(m => { if (m.img) m.img.style.opacity = '0'; });
+    members.forEach(m => { 
+        if (m.img) {
+            m.img.style.opacity = '0';
+            m.img.style.pointerEvents = 'none';
+        } 
+    });
     wrapper.classList.remove('pop');
     lastInside = false;
   }
 
+
   function showMember(idx) {
-    members.forEach((m, i) => { if (m.img) m.img.style.opacity = (i === idx ? '1' : '0'); });
+    members.forEach((m, i) => { 
+        if (m.img) {
+            m.img.style.opacity = (i === idx ? '1' : '0');
+            // Enable pointer events when visible
+            m.img.style.pointerEvents = (i === idx ? 'auto' : 'none');
+        } 
+    });
     if (!lastInside) { wrapper.classList.add('pop'); lastInside = true; }
-  }
+}
 
   function handlePointer(clientX, clientY) {
     if (raf) cancelAnimationFrame(raf);
@@ -194,27 +205,25 @@
 
 
   
-document.getElementById('diogoCutout').addEventListener('click', function() {
-  showModal('members/diogo.html');
+document.getElementById('diogoCutout').addEventListener('click', function(e) {
+    const modal = document.getElementById('diogoModal');
+    const iframe = modal.querySelector('iframe');
+    iframe.src = 'members/diogo.html';
+    modal.style.display = "block";
+    e.stopPropagation(); // Prevent event bubbling
 });
 
-function showModal(url) {
-  const modal = document.getElementById('diogoModal');
-  const iframe = modal.querySelector('iframe');
-  iframe.src = url; 
-  modal.style.display = "block"; 
-}
-
+// Close modal functionality
 document.getElementById('modalClose').addEventListener('click', function() {
-  const modal = document.getElementById('diogoModal');
-  modal.style.display = "none"; 
+    const modal = document.getElementById('diogoModal');
+    modal.style.display = "none";
 });
 
 window.addEventListener('click', function(event) {
-  const modal = document.getElementById('diogoModal');
-  if (event.target === modal) {
-    modal.style.display = "none"; 
-  }
+    const modal = document.getElementById('diogoModal');
+    if (event.target === modal) {
+        modal.style.display = "none";
+    }
 });
 
   // try again in case images were cached
