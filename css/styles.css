@@ -709,6 +709,8 @@ html.mobile-menu-open .mobile-nav::before{
 }
 
 
+
+
 @media (max-width: 830px)  {
   .header-social {             
   display: none;
@@ -838,4 +840,56 @@ html.mobile-menu-open .mobile-nav::before{
   }
 
   
+}
+
+
+/* members info layout */
+.members-info { margin: 2rem auto; display: grid; gap: 1.25rem; }
+
+.member-card {
+  display: grid;
+  grid-template-columns: 120px 1fr;
+  gap: 1rem;
+  align-items: center;
+  padding: 1rem;
+  border-radius: 10px;
+  background: #b30000; /* change according to theme */
+  box-shadow: 0 2px 6px rgba(0,0,0,0.06);
+  border: 1px solid rgba(0,0,0,0.04);
+}
+
+.member-photo {
+  max-width: 250px;
+  height: auto;
+  display: block;
+  border-radius: 8px;
+  object-fit: contain;
+}
+
+.member-name {
+  font-size: 1.6rem;
+  margin: 0 0 .25rem;
+  line-height: 1;
+  color: #ffffff
+}
+
+.member-role {
+  margin: 0 0 .5rem;
+  font-size: 1rem;
+  color: #000000;
+}
+
+.member-bio {
+  margin: 0;
+  font-size: .90rem;
+  color: #ffffff;
+}
+
+/* Responsive — stacked on small screens */
+@media (max-width: 700px) {
+  .member-card { grid-template-columns: 1fr; }
+  .member-photo { max-width: 180px; margin: 0 auto; }
+  .member-name { text-align: center; }
+  .member-role { text-align: center; }
+  .member-bio { text-align: center; }
 }
