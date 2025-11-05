@@ -103,27 +103,16 @@
   }
 
   function showNoCutout() {
-    members.forEach(m => { 
-        if (m.img) {
-            m.img.style.opacity = '0';
-            m.img.style.pointerEvents = 'none';
-        } 
-    });
+    // hide all cutouts and remove pop
+    members.forEach(m => { if (m.img) m.img.style.opacity = '0'; });
     wrapper.classList.remove('pop');
     lastInside = false;
   }
 
-
   function showMember(idx) {
-    members.forEach((m, i) => { 
-        if (m.img) {
-            m.img.style.opacity = (i === idx ? '1' : '0');
-            // Enable pointer events when visible
-            m.img.style.pointerEvents = (i === idx ? 'auto' : 'none');
-        } 
-    });
+    members.forEach((m, i) => { if (m.img) m.img.style.opacity = (i === idx ? '1' : '0'); });
     if (!lastInside) { wrapper.classList.add('pop'); lastInside = true; }
-}
+  }
 
   function handlePointer(clientX, clientY) {
     if (raf) cancelAnimationFrame(raf);
@@ -203,29 +192,113 @@
     m.nameElem.addEventListener('blur', () => { showNoCutout(); });
   });
 
-
-  
-document.getElementById('diogoCutout').addEventListener('click', function(e) {
-    const modal = document.getElementById('diogoModal');
-    const iframe = modal.querySelector('iframe');
-    iframe.src = 'members/diogo.html';
-    modal.style.display = "block";
-    e.stopPropagation(); // Prevent event bubbling
-});
-
-// Close modal functionality
-document.getElementById('modalClose').addEventListener('click', function() {
-    const modal = document.getElementById('diogoModal');
-    modal.style.display = "none";
-});
-
-window.addEventListener('click', function(event) {
-    const modal = document.getElementById('diogoModal');
-    if (event.target === modal) {
-        modal.style.display = "none";
-    }
-});
-
   // try again in case images were cached
   setTimeout(() => members.forEach((_, i) => prepareMemberCanvas(i)), 120);
+
+
+    // -------------------------
+  // click / keyboard -> open member page
+  // -------------------------
+
+  function pageForMember(m) {
+    if (!m || !m.img) return null;
+    if (m.img.dataset && m.img.dataset.page) return m.img.dataset.page;
+    if (m.img.id) return m.img.id.replace(/Cutout$/i, '') + '.html';
+    return null;
+  }
+
+  // Try to determine which member is under clientX,clientY by sampling canvases.
+  function hitMemberAt(clientX, clientY) {
+    const rect = wrapper.getBoundingClientRect();
+    if (clientX < rect.left || clientX > rect.right || clientY < rect.top || clientY > rect.bottom) return -1;
+    const x = clientX - rect.left;
+    const y = clientY - rect.top;
+
+    for (let i = members.length - 1; i >= 0; i--) {
+      const m = members[i];
+      if (!m || !m.img || !m.ctx || m.tainted || !m.ready) continue;
+
+      const scaleX = m.canvas.width / rect.width;
+      const scaleY = m.canvas.height / rect.height;
+      const nx = Math.floor(x * scaleX);
+      const ny = Math.floor(y * scaleY);
+
+      if (nx < 0 || ny < 0 || nx >= m.canvas.width || ny >= m.canvas.height) continue;
+
+      try {
+        const p = m.ctx.getImageData(nx, ny, 1, 1).data;
+        if (p[3] > ALPHA_THRESHOLD) return i;
+      } catch (err) {
+        // sampling failed (tainted?) -> mark and continue
+        m.tainted = true;
+        console.warn(`Pixel sampling failed for ${m.img.id} (during click); marking tainted.`);
+      }
+    }
+    return -1;
+  }
+
+  // Find the currently visible member by CSS opacity (fallback)
+  function visibleMemberIndex() {
+    for (let i = members.length - 1; i >= 0; i--) {
+      const m = members[i];
+      if (!m || !m.img) continue;
+      // prefer inline style if set; otherwise use computed style
+      const inline = m.img.style && m.img.style.opacity;
+      const opacity = inline !== undefined && inline !== '' ? parseFloat(inline) : parseFloat(getComputedStyle(m.img).opacity || '0');
+      if (!isNaN(opacity) && opacity > 0.5) return i;
+    }
+    return -1;
+  }
+
+  // Navigate helper (supports ctrl/meta click -> new tab)
+  function navigateTo(page, openInNewTab) {
+    if (!page) return;
+    if (openInNewTab) window.open(page, '_blank');
+    else window.location.href = page;
+  }
+
+  // wrapper click: sample first, fallback to visible opacity member
+  wrapper.addEventListener('click', (e) => {
+    // prefer precise sampling
+    const hit = hitMemberAt(e.clientX, e.clientY);
+    const idx = hit !== -1 ? hit : visibleMemberIndex();
+    if (idx === -1) return; // nothing to do
+    const page = pageForMember(members[idx]);
+    if (!page) return;
+    const newTab = e.ctrlKey || e.metaKey || e.shiftKey;
+    navigateTo(page, newTab);
+  });
+
+  // Also handle touchend similarly (touchend has no coordinates in some browsers — use changedTouches)
+  wrapper.addEventListener('touchend', (ev) => {
+    const t = ev.changedTouches && ev.changedTouches[0];
+    if (!t) return;
+    const hit = hitMemberAt(t.clientX, t.clientY);
+    const idx = hit !== -1 ? hit : visibleMemberIndex();
+    if (idx === -1) return;
+    const page = pageForMember(members[idx]);
+    if (!page) return;
+    // open in same tab for touch
+    navigateTo(page, false);
+  }, {passive:true});
+
+  // Keyboard: if a name element has focus and user presses Enter/Space -> open that member page
+  members.forEach((m, i) => {
+    if (!m.nameElem) return;
+    m.nameElem.addEventListener('keydown', (ev) => {
+      if (ev.key === 'Enter' || ev.key === ' ') {
+        ev.preventDefault();
+        const page = pageForMember(members[i]);
+        if (page) navigateTo(page, ev.ctrlKey || ev.metaKey);
+      }
+    });
+    // optional: make nameElem announce it opens the member page (aria)
+    try {
+      m.nameElem.setAttribute('role', 'link');
+      if (!m.nameElem.getAttribute('aria-label') && m.img && m.img.alt) {
+        m.nameElem.setAttribute('aria-label', m.img.alt + ' — open profile');
+      }
+    } catch (e) { /* ignore DOM attr errors */ }
+  });
+
 })();
