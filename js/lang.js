@@ -106,6 +106,32 @@
         progressans:"Updates on project development and team performance.",
         promotional: "Custom Promotional Material: ",
         promotionalans:"Possibility to create promotional material jointly with the team."
+      },
+      members: {
+        name: "Mariana Santos",
+        mariana_role: "Team Manager & Aerodynamicist",
+        mariana_bio: "Oversees the entire team, distributes tasks and responsibilities, and assists in all aspects of car development and business. Helps with car planning, contributing ideas to improve aerodynamics, and conducts CFD testing",
+        mariana_skills: "Key skills: Fast learner, Eloquent, Tenacious",
+        name: "Diogo Lopes",
+        diogo_role: "Finance & Business Development Manager",
+        diogo_bio: "Responsible for the team's accounting and for seeking sponsors that benefit the team. Ensures long-term connections with other companies and good management of monetary transactions",
+        diogo_skills: "Key skills: Responsible, Organized, Interactive",
+        name: "Martim Triufante",
+        martim_role: "All-Round Engineer",
+        martim_bio: "Contributes to all engineering areas. Responsible for providing ideas for the car's format, researching the best materials to use and their machining (CAM)",
+        martim_skills: "Key skills: Ingenuity, Adaptable, Creative",
+        name: "Martim Ferreira",
+        ferreira_role: "Graphic Designer & CAD Engineer",
+        ferreira_bio: "Responsible for creating the team's website, the car's style and color scheme, and developing the team's visual identity, ensuring the team presents a professional image. Creates CAD drawings of the car and renderings",
+        ferreira_skills: "Key skills: Ambitious, Dynamic, Resilient",
+        name: "Pedro Guedes",
+        pedro_role: "Marketing Director",
+        pedro_bio: "Responsible for providing visibility to the team through activities/events, social media, and other types of advertising. Digitally creates the logo, images, and videos and represents the team in the media",
+        pedro_skills: "Key skills: Creative, Communicative, Productive",
+        name: "Francisco Silva",
+        francisco_role: "Resource & Logistics Manager", 
+        francisco_bio: "Seeks to find the best companies that supply materials and services. Responsible for ensuring that all necessary materials arrive in a timely manner, guaranteeing their availability for other team members",
+        francisco_skills: "Key skills: Analytical, Flexible, Committed"
       }
     },
     pt: {
@@ -212,8 +238,34 @@
         progressans:"Atualizações sobre o desenvolvimento do projeto e o desempenho da equipa.",
         promotional: "Material Promocional Personalizado: ",
         promotionalans:"Possibilidade de criar material promocional em conjunto com a equipa."
-      }
+      },
+      members: {
+        mariana_name: "Mariana Santos",
+        mariana_role: "Gestora de Equipa & Aerodinamicista",
+        mariana_bio: "Supervisiona toda a equipa, distribui tarefas e responsabilidades e auxilia em todos os aspetos do desenvolvimento do carro e do negócio. Ajuda no planeamento do carro, contribuindo com ideias para melhorar a aerodinâmica e realiza testes CFD",
+        mariana_skills: "Competências: Rápida aprendizagem, Eloquente, Tenaz",
+        name: "Diogo Lopes",
+        diogo_role: "Gestor Financeiro & Desenvolvimento de Negócio",
+        diogo_bio: "Responsável pela contabilidade da equipa e por procurar patrocinadores que beneficiem a equipa. Garante ligações duradouras com outras empresas e boa gestão das transações monetárias",
+        diogo_skills: "Competências: Responsável, Organizado, Interativo",
+        name: "Martim Triufante",
+        martim_role: "Engenheiro Geral",
+        martim_bio: "Contribui para todas as áreas de engenharia. Responsável por dar ideias para o formato do automóvel, pesquisando sobre os melhores materiais a utilizar e respetiva maquinação (CAM)",
+        msrtim_skills: "Competências: Engenhoso, Adaptável, Criativo",
+        name: "Martim Ferreira",
+        ferreira_role: "Designer Gráfico & Engenheiro CAD",
+        ferreira_bio: "Responsável pela criação do site da equipa, pelo estilo e esquema de cores do carro e pelo desenvolvimento da identidade visual da equipa, garantindo que a equipa apresenta uma imagem profissional. Cria desenhos CAD do carro e renderizações",
+        ferreira_skills: "Competências: Ambicioso, Dinâmico, Resiliente",
+        name: "Pedro Guedes",
+        pedro_role: "Diretor de Marketing",
+        pedro_bio: "Responsável por dar visibilidade à equipa através de atividades/eventos, redes sociais e outros tipos de publicidade. Cria digitalmente o logótipo, imagens e vídeos e representa a equipa nos média",
+        pedro_skills: "Competências: Criativo, Comunicativo, Produtivo",
+        name: "Francisco Silva",
+        francisco_role: "Gestor de Recursos & Logística",
+        francisco_bio: "Procura encontrar as melhores empresas fornecedoras de materiais e serviços. Responsável por garantir que todos os materiais necessários chegam atempadamente, garantindo a sua disponibilidade para os outros membros da equipa",
+        francisco_skills: "Competências: Analítico, Flexível, Empenhado"
     }
+    },
   };
 
   // utility to get nested key
