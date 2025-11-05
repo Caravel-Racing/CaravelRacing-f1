@@ -871,15 +871,28 @@ html.mobile-menu-open .mobile-nav::before{
  .member-name {
   font-size: 2.5rem; /* larger to match 250px photo */
   margin: 0 0 .6rem;
-   line-height: 1.5;
-   color: #ffffff;
+  line-height: 1.5;
+  color: #ffffff;
   font-family: "GreatsRaceItalic";
   font-weight: 400;
+  position: relative;
+  padding-bottom: .8rem; /* space for separator */
+ }
+
+ /* separator line under the name */
+ .member-name::after {
+  content: "";
+  display: block;
+  width: 390px;
+  height: 3px;
+  background: #db4040;
+  border-radius: 2px;
+  margin-top: .45rem;
  }
 
  .member-role {
   margin: 0 0 .5rem;
-  font-size: 1.05rem; /* slightly larger */
+  font-size: 1.3rem; /* slightly larger */
    color: #000000;
  }
 
@@ -896,6 +909,7 @@ html.mobile-menu-open .mobile-nav::before{
   .member-card { grid-template-columns: 1fr; }
   .member-photo { max-width: 180px; width: 100%; height: auto; margin: 0 auto; object-fit: contain; }
   .member-name { text-align: center; font-size: 1.4rem; }
+  .member-name::after { margin-left: auto; margin-right: auto; }
   .member-role { text-align: center; font-size: 0.95rem; }
   .member-bio { text-align: center; font-size: 0.95rem; }
  }
