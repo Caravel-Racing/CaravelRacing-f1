@@ -196,36 +196,26 @@
   setTimeout(() => members.forEach((_, i) => prepareMemberCanvas(i)), 120);
 
 
-  
-  // --- NAVIGATE TO members/info.html#anchor on click/tap ---
+
+    // --- NAVIGATE to members/info.html#id on click/tap ---
   function pageForMember(m) {
     if (!m || !m.img) return null;
-    // prefer explicit data-page
     if (m.img.dataset && m.img.dataset.page) return m.img.dataset.page;
-    // fallback to page derived from id -> members/info.html#diogo
     if (m.img.id) return 'members/info.html#' + m.img.id.replace(/Cutout$/i, '');
     return null;
   }
 
   function navigateToPage(target, openInNewTab) {
     if (!target) return;
-    // if it's a local hash only (e.g. "#diogo"), make it a members page anchor
-    if (target.startsWith('#')) {
-      // navigate to members page with hash
-      const url = 'members/info.html' + target;
-      if (openInNewTab) window.open(url, '_blank');
-      else window.location.href = url;
-      return;
-    }
-    // otherwise target is a path like "members/info.html#diogo" or full URL
-    if (openInNewTab) window.open(target, '_blank');
+    if (openInNewTab) window.open(target, '_blank', 'noopener');
     else window.location.href = target;
   }
 
-  // wrapper click: use sampling first, fallback to visible image
+  // Click handler on wrapper: prefer precise pixel-sampling hit, fallback to visible image
   wrapper.addEventListener('click', function (e) {
-    const hit = typeof hitMemberAt === 'function' ? hitMemberAt(e.clientX, e.clientY) : -1;
-    const idx = hit !== -1 ? hit : (typeof visibleMemberIndex === 'function' ? visibleMemberIndex() : -1);
+    // try pixel-sampling-based hit (function defined previously in your script)
+    const hit = (typeof hitMemberAt === 'function') ? hitMemberAt(e.clientX, e.clientY) : -1;
+    const idx = (hit !== -1) ? hit : ((typeof visibleMemberIndex === 'function') ? visibleMemberIndex() : -1);
     if (idx === -1) return;
     const target = pageForMember(members[idx]);
     if (!target) return;
@@ -233,19 +223,17 @@
     navigateToPage(target, openNew);
   });
 
-  // touchend handling
+  // Touch support (tap)
   wrapper.addEventListener('touchend', function (ev) {
     const t = ev.changedTouches && ev.changedTouches[0];
     if (!t) return;
-    const hit = typeof hitMemberAt === 'function' ? hitMemberAt(t.clientX, t.clientY) : -1;
-    const idx = hit !== -1 ? hit : (typeof visibleMemberIndex === 'function' ? visibleMemberIndex() : -1);
+    const hit = (typeof hitMemberAt === 'function') ? hitMemberAt(t.clientX, t.clientY) : -1;
+    const idx = (hit !== -1) ? hit : ((typeof visibleMemberIndex === 'function') ? visibleMemberIndex() : -1);
     if (idx === -1) return;
     const target = pageForMember(members[idx]);
     if (!target) return;
-    // open in same tab on touch
     navigateToPage(target, false);
   }, {passive:true});
-
 
 })();
 
