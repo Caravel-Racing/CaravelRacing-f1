@@ -56,6 +56,8 @@
       about: {
         members: "Members: ",
         membersans: "6",
+        view_members: "View Members: ",
+        view_membersans: "Here",
         nation: "Nationality: ",
         nationans: "Portuguese",
         school: "School: ",
@@ -187,6 +189,8 @@
       },
       about: {
         members: "Membros: ",
+        view_members: "Ver Membros: ",
+        view_membersans: "Aqui",
         membersans: "6",
         nation: "Nacionalidade: ",
         nationans: "Portuguesa",
@@ -204,7 +208,6 @@
         sponsorsans:"Domínio/DNS, materiais, roupa/fatos, apoio financeiro ou técnico (lista de benefícios dos patrocinadores disponível).",
         notes:"Notas adicionais: ",
         notesans: "Manteremos este site atualizado com todos os projetos (CAD, simulações e resultados de testes) — disponíveis para os patrocinadores e jurí.",
-        roles: "Funções principais: "
       },
       sponsors: {
         title:"Patrocinadores",
@@ -251,7 +254,7 @@
         name: "Martim Triufante",
         martim_role: "Engenheiro Geral",
         martim_bio: "Contribui para todas as áreas de engenharia. Responsável por dar ideias para o formato do automóvel, pesquisando sobre os melhores materiais a utilizar e respetiva maquinação (CAM)",
-        msrtim_skills: "Competências: Engenhoso, Adaptável, Criativo",
+        martim_skills: "Competências: Engenhoso, Adaptável, Criativo",
         name: "Martim Ferreira",
         ferreira_role: "Designer Gráfico & Engenheiro CAD",
         ferreira_bio: "Responsável pela criação do site da equipa, pelo estilo e esquema de cores do carro e pelo desenvolvimento da identidade visual da equipa, garantindo que a equipa apresenta uma imagem profissional. Cria desenhos CAD do carro e renderizações",

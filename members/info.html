@@ -1,79 +1,105 @@
 <!doctype html>
 <html lang="pt-PT">
-    <link rel="stylesheet" href="../css/styles.css">
-    <header class="site-header">
-        <div class="container header-inner">
-            <img class="site-logo" src="../images/logonobg.png" alt="Caravel Racing logo">
-            <div class="brand-stack" aria-hidden="false">
-            <span class="brand-top">Caravel</span>
-            <span class="brand-bottom">Racing</span>
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width,initial-scale=1">
+        <link rel="stylesheet" href="../css/styles.css">
+    </head>
+    <body>
+        <!-- language modal (same as index.html) -->
+        <div id="lang-modal" class="lang-modal" aria-hidden="true" role="dialog" aria-label="Language selector">
+          <div class="lang-panel" role="document">
+            <h3 data-i18n="lang.title">Choose language</h3>
+            <p data-i18n="lang.subtitle">Which language do you want to use?</p>
+
+            <div class="lang-buttons">
+              <button class="lang-btn" data-lang="en" aria-label="English">English</button>
+              <button class="lang-btn" data-lang="pt" aria-label="Português">Português</button>
             </div>
 
-            <!-- Mobile hamburger (hidden on desktop) -->
-            <button class="nav-toggle" aria-controls="mobile-nav" aria-expanded="false" aria-label="Menu">
-            <span class="hamburger" aria-hidden="true">
-                <span></span>
-                <span></span>
-                <span></span>
-            </span>
-            </button>
+            <p class="lang-remember">
+              <label>
+                <input type="checkbox" id="remember-lang" />
+                <span data-i18n="lang.remember">Remember my choice</span>
+              </label>
+            </p>
 
-            <!-- Desktop nav (kept for larger screens) -->
-            <nav class="nav">
-            <a href="../index.html" data-i18n="nav.home">Home</a>
-            <a href="../projects.html" data-i18n="nav.projects">Projects</a>
-            <a href="../sobre-equipa.html" data-i18n="nav.about">About the Team</a>
-            <a href="../patrocinadores.html" data-i18n="nav.sponsors">Sponsors</a>
-            <a href="../contact.html" data-i18n="nav.contact">Contact Us</a>
-            </nav>
-
-            <a class="header-social desktop-only" href="https://instagram.com/caravelracing"
-            target="_blank" rel="noopener noreferrer"
-            aria-label="Caravel Racing on Instagram" title="Instagram — Caravel Racing">
-            <img src="../images/instagram.png" alt="Instagram icon">
-            </a>
-
-            <!-- Language selector (desktop) -->
-            <a class="header-social desktop-only" href="#" id="lang-toggle"
-            aria-label="Change language" title="Change language">
-            <img src="../images/language.png" alt="Select language" />
-            </a>
-
-
-            <h1 class="brand"><span class="brand-red">CAR</span><span class="brand-avel">AVEL Racing</span></h1>
+            <button id="lang-close" class="lang-close" aria-label="Close">×</button>
+          </div>
         </div>
+        <header class="site-header">
+            <div class="container header-inner">
+                <img class="site-logo" src="../images/logonobg.png" alt="Caravel Racing logo">
+                    <div class="brand-stack" aria-hidden="false">
+                    <span class="brand-top">Caravel</span>
+                    <span class="brand-bottom">Racing</span>
+                    </div>
 
-    <!-- Mobile panel (hidden by default, slides in) -->
-        <div id="mobile-nav" class="mobile-nav" aria-hidden="true">
-            <div class="mobile-nav-panel">
-                <button class="nav-close" aria-label="Close menu">&times;</button>
+                    <!-- Mobile hamburger (hidden on desktop) -->
+                    <button class="nav-toggle" aria-controls="mobile-nav" aria-expanded="false" aria-label="Menu">
+                    <span class="hamburger" aria-hidden="true">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                    </span>
+                    </button>
 
-                <nav class="mobile-links" role="navigation" aria-label="Menu principal">
-                <a href="../index.html" data-i18n="nav.home">Home</a>
-                <a href="../projects.html" data-i18n="nav.projects">Projects</a>
-                <a href="../sobre-equipa.html" data-i18n="nav.about">About the Team</a>
-                <a href="../patrocinadores.html" data-i18n="nav.sponsors">Sponsors</a>
-                <a href="../contact.html" data-i18n="nav.contact">Contact Us</a>
-                </nav>
+                    <!-- Desktop nav (kept for larger screens) -->
+                    <nav class="nav">
+                    <a href="../index.html" data-i18n="nav.home">Home</a>
+                    <a href="../projects.html" data-i18n="nav.projects">Projects</a>
+                    <a href="../sobre-equipa.html" data-i18n="nav.about">About the Team</a>
+                    <a href="../patrocinadores.html" data-i18n="nav.sponsors">Sponsors</a>
+                    <a href="../contact.html" data-i18n="nav.contact">Contact Us</a>
+                    </nav>
 
-                <!-- Socials placed below the links (mobile) -->
-                <div class="mobile-socials" aria-label="Social links">
-                <a href="https://instagram.com/caravelracing"
+                    <a class="header-social desktop-only" href="https://instagram.com/caravelracing"
                     target="_blank" rel="noopener noreferrer"
-                    class="mobile-social-link" aria-label="Caravel Racing on Instagram">
-                    <img src="../images/instagram.png" alt="" aria-hidden="true" />
-                </a>
+                    aria-label="Caravel Racing on Instagram" title="Instagram — Caravel Racing">
+                    <img src="../images/instagram.png" alt="Instagram icon">
+                    </a>
 
-                    <button id="lang-toggle-mobile" class="mobile-lang mobile-only lang-trigger"
-                    aria-label="Change language" title="Change language"
-                    aria-haspopup="dialog" aria-expanded="false">
+                    <!-- Language selector (desktop) -->
+                    <a class="header-social desktop-only" href="#" id="lang-toggle"
+                    aria-label="Change language" title="Change language">
                     <img src="../images/language.png" alt="Select language" />
-                </button>
+                    </a>
+
+
+                    <h1 class="brand"><span class="brand-red">CAR</span><span class="brand-avel">AVEL Racing</span></h1>
                 </div>
 
+                <!-- Mobile panel (hidden by default, slides in) -->
+                <div id="mobile-nav" class="mobile-nav" aria-hidden="true">
+                <div class="mobile-nav-panel">
+                    <button class="nav-close" aria-label="Close menu">&times;</button>
+
+                    <nav class="mobile-links" role="navigation" aria-label="Menu principal">
+                    <a href="../index.html" data-i18n="nav.home">Home</a>
+                    <a href="../projects.html" data-i18n="nav.projects">Projects</a>
+                    <a href="../sobre-equipa.html" data-i18n="nav.about">About the Team</a>
+                    <a href="../patrocinadores.html" data-i18n="nav.sponsors">Sponsors</a>
+                    <a href="../contact.html" data-i18n="nav.contact">Contact Us</a>
+                    </nav>
+
+                    <!-- Socials placed below the links (mobile) -->
+                    <div class="mobile-socials" aria-label="Social links">
+                    <a href="https://instagram.com/caravelracing"
+                        target="_blank" rel="noopener noreferrer"
+                        class="mobile-social-link" aria-label="Caravel Racing on Instagram">
+                        <img src="../images/instagram.png" alt="" aria-hidden="true" />
+                    </a>
+
+                        <button id="lang-toggle-mobile" class="mobile-lang mobile-only lang-trigger"
+                        aria-label="Change language" title="Change language"
+                        aria-haspopup="dialog" aria-expanded="false">
+                        <img src="../images/language.png" alt="Select language" />
+                    </button>
+                    </div>
+
+                </div>
             </div>
-        </div>
-    </header>
+        </header>
 
 
     <section id="members-info" class="container members-info" aria-label="Members information">
@@ -91,7 +117,7 @@
 
         <!-- Diogo -->
         <article id="diogo" class="member-card" aria-labelledby="diogo-name">
-            <img src="../images/unknown.png" alt="Diogo — Caravel Racing" class="member-photo">
+            <img src="../images/diogo.png" alt="Diogo — Caravel Racing" class="member-photo">
             <div class="member-meta">
             <h2 id="diogo-name" class="member-name">Diogo Lopes</h2>
             <p class="member-role"data-i18n="members.diogo_role">Finance & Business Development Manager</p>
@@ -113,7 +139,7 @@
 
         <!-- Ferreira -->
         <article id="ferreira" class="member-card" tabindex="-1" aria-labelledby="ferreira-name">
-            <img src="../images/unknown.png" alt="Ferreira — Caravel Racing" class="member-photo">
+            <img src="../images/ferreira.png" alt="Ferreira — Caravel Racing" class="member-photo">
             <div class="member-meta">
             <h2 id="ferreira-name" class="member-name">Martim Ferreira</h2>
             <p class="member-role"data-i18n="members.ferreira_role">Graphic Designer & CAD Engineer</p>
@@ -128,7 +154,7 @@
             <div class="member-meta">
             <h2 id="pedro-name" class="member-name">Pedro Guedes</h2>
             <p class="member-role"data-i18n="members.pedro_role">Marketing Director</p>
-            <p class="member-bio"data-i18n="members.francisco_bio">Responsible for providing visibility to the team through activities/events, social media, and other types of advertising. Digitally creates the logo, images, and videos and represents the team in the media</p>
+            <p class="member-bio"data-i18n="members.pedro_bio">Responsible for providing visibility to the team through activities/events, social media, and other types of advertising. Digitally creates the logo, images, and videos and represents the team in the media</p>
             <p class="member-bio"data-i18n="members.pedro_skills">Key skills: Creative, Communicative, productive</p>
         </div>
         </article>
@@ -174,12 +200,12 @@
     </footer>
 
 
-    <!-- === SCRIPTS === -->
-    <script src="../js/splash.js" defer></script>
-    <script src="../js/lang.js" defer></script>
-    <script src="../js/langbutton.js" defer></script>
-    <script src="../js/mobile-menu.js" defer></script>
-    <script src="../js/groupimage.js" defer></script>
-    <script src="../js/smoothscrollinfo.js" defer></script>
+        <!-- === SCRIPTS === -->
+        <script src="../js/splash.js" defer></script>
+        <script src="../js/lang.js" defer></script>
+        <script src="../js/langbutton.js" defer></script>
+        <script src="../js/mobile-menu.js" defer></script>
+        <script src="../js/groupimage.js" defer></script>
+        <script src="../js/smoothscrollinfo.js" defer></script>
     </body>
 </html>
