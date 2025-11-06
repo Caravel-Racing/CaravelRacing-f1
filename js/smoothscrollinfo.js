@@ -27,7 +27,7 @@
       // cancel any automatic jump that might have occurred
       window.scrollTo(0, 0);
       // give layout a moment, then smooth scroll
-      setTimeout(() => scrollToHash(location.hash), 150);
+      setTimeout(() => scrollToHash(location.hash), 350);
     }
   });
 
