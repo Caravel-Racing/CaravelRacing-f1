@@ -31,10 +31,15 @@ body{
 .site-header {
   background-color: #000000;
   color: #ffffff;   
-  position: relative;
+  position: sticky;
   width: 100%;
-  overflow: hidden;
-  padding: 0.5rem;         
+  overflow: visible;
+  padding: 0.5rem;      
+  z-index: 1200;
+  backdrop-filter: blur(6px) saturate(120%);  
+  transition: box-shadow 180ms ease; 
+  top: 0;
+  
 }
 
 .site-header .header-inner {
