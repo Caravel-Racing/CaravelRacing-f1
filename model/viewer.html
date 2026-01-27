@@ -50,13 +50,15 @@
       <div id="controlsWarn" class="warn" style="display:none">OrbitControls unavailable — keyboard rotate enabled</div>
     </div>
   </div>
+
+  <script async src="https://unpkg.com/three@0.161.0/build/three.module.js"></script>
 <!-- replace the old scripts with a single module script -->
 <script type="module">
-import * as THREE from 'https://unpkg.com/three@0.153.0/build/three.module.js';
-import { OrbitControls } from 'https://unpkg.com/three@0.153.0/examples/jsm/controls/OrbitControls.js';
-import { FBXLoader } from 'https://unpkg.com/three@0.153.0/examples/jsm/loaders/FBXLoader.js';
+  import * as THREE from 'https://unpkg.com/three@0.153.0/build/three.module.js';
+  import { OrbitControls } from 'https://unpkg.com/three@0.153.0/examples/jsm/controls/OrbitControls.js';
+  import { FBXLoader } from 'https://unpkg.com/three@0.153.0/examples/jsm/loaders/FBXLoader.js';
 
-const MODEL_PATH = 'caravel-v1.fbx';
+const MODEL_PATH = './caravel-v1.fbx';
 
 function showFatal(msg) {
   const v = document.getElementById('viewer');
