@@ -50,139 +50,117 @@
       <div id="controlsWarn" class="warn" style="display:none">OrbitControls unavailable — keyboard rotate enabled</div>
     </div>
   </div>
+<!-- replace the old scripts with a single module script -->
+<script type="module">
+import * as THREE from 'https://unpkg.com/three@0.153.0/build/three.module.js';
+import { OrbitControls } from 'https://unpkg.com/three@0.153.0/examples/jsm/controls/OrbitControls.js';
+import { FBXLoader } from 'https://unpkg.com/three@0.153.0/examples/jsm/loaders/FBXLoader.js';
 
-<script>
-  const MODEL_PATH = 'caravel-v1.fbx';
+const MODEL_PATH = 'caravel-v1.fbx';
 
-  console.assert(window.THREE, 'THREE failed to load');
+function showFatal(msg) {
+  const v = document.getElementById('viewer');
+  v.innerHTML = '<div class="fatal"><div>' + msg + '</div></div>';
+}
 
-  function showFatal(msg) {
-    const v = document.getElementById('viewer');
-    v.innerHTML = '<div class="fatal"><div>' + msg + '</div></div>';
+try {
+  const scene = new THREE.Scene();
+  scene.background = new THREE.Color(0x0a0a0a);
+
+  const headerHeight = document.querySelector('header').offsetHeight;
+  const camera = new THREE.PerspectiveCamera(45, window.innerWidth / (window.innerHeight - headerHeight), 0.01, 2000);
+  camera.position.set(0, 2, 6);
+
+  const renderer = new THREE.WebGLRenderer({ antialias: true });
+  renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+  renderer.setSize(window.innerWidth, window.innerHeight - headerHeight);
+  // keep compatibility with older/newer properties:
+  if (renderer.outputColorSpace !== undefined && THREE.SRGBColorSpace !== undefined) {
+    renderer.outputColorSpace = THREE.SRGBColorSpace;
+  } else if (renderer.outputEncoding !== undefined && THREE.sRGBEncoding !== undefined) {
+    renderer.outputEncoding = THREE.sRGBEncoding;
+  }
+  document.getElementById('viewer').appendChild(renderer.domElement);
+
+  scene.add(new THREE.HemisphereLight(0xffffff, 0x222222, 0.6));
+  const dir = new THREE.DirectionalLight(0xffffff, 0.8);
+  dir.position.set(5, 10, 7);
+  scene.add(dir);
+
+  let controls = null;
+  try {
+    controls = new OrbitControls(camera, renderer.domElement);
+    controls.enableDamping = true;
+  } catch (err) {
+    document.getElementById('controlsWarn').style.display = 'block';
   }
 
-  function loadScript(src) {
-    return new Promise((resolve, reject) => {
-      const s = document.createElement('script');
-      s.src = src;
-      s.onload = resolve;
-      s.onerror = reject;
-      document.head.appendChild(s);
-    });
+  const loader = new FBXLoader();
+
+  let model = null;
+
+  function frame(obj) {
+    const box = new THREE.Box3().setFromObject(obj);
+    const size = box.getSize(new THREE.Vector3());
+    const max = Math.max(size.x, size.y, size.z);
+    const center = box.getCenter(new THREE.Vector3());
+    obj.position.sub(center);
+    const fov = camera.fov * Math.PI / 180;
+    let z = Math.abs(max / 2 / Math.tan(fov / 2)) * 1.6;
+    camera.position.set(0, max * 0.3 + 0.5, z + 0.5);
+    camera.near = Math.max(0.001, z / 1000);
+    camera.far = z * 100;
+    camera.updateProjectionMatrix();
+    if (controls) {
+      controls.target.set(0, max * 0.12, 0);
+      controls.update();
+    }
   }
 
-  async function ensureFBXLoader() {
-    if (window.FBXLoader || THREE.FBXLoader) return true;
-    try {
-      await loadScript('https://unpkg.com/three@0.153.0/examples/js/loaders/FBXLoader.js');
-      if (window.FBXLoader || THREE.FBXLoader) return true;
-    } catch {}
-    try {
-      await loadScript('https://cdn.jsdelivr.net/npm/three@0.153.0/examples/js/loaders/FBXLoader.js');
-      if (window.FBXLoader || THREE.FBXLoader) return true;
-    } catch {}
-    return false;
+  loader.load(MODEL_PATH, obj => {
+    model = obj;
+    scene.add(model);
+    frame(model);
+  }, undefined, err => {
+    console.error(err);
+    showFatal('Failed to load ' + MODEL_PATH + '. Make sure the file is reachable at ' + MODEL_PATH);
+  });
+
+  const key = {};
+  window.addEventListener('keydown', e => key[e.key.toLowerCase()] = true);
+  window.addEventListener('keyup', e => key[e.key.toLowerCase()] = false);
+
+  function fallback(dt) {
+    if (controls) return;
+    const s = 1.2;
+    if (key['a'] || key['arrowleft']) camera.rotation.y += s * dt;
+    if (key['d'] || key['arrowright']) camera.rotation.y -= s * dt;
+    if (key['w'] || key['arrowup']) camera.rotation.x += s * dt;
+    if (key['s'] || key['arrowdown']) camera.rotation.x -= s * dt;
   }
 
-  (async function init() {
-    const ok = await ensureFBXLoader();
-    if (!ok) {
-      showFatal('FBXLoader could not be loaded in this environment.<br/>Try a different browser or host this page yourself.');
-      return;
-    }
+  let last = performance.now();
+  function loop() {
+    const now = performance.now();
+    const dt = (now - last) / 1000; last = now;
+    if (controls) controls.update(); else fallback(dt);
+    renderer.render(scene, camera);
+    requestAnimationFrame(loop);
+  }
+  loop();
 
-    const scene = new THREE.Scene();
-    scene.background = new THREE.Color(0x0a0a0a);
+  window.addEventListener('resize', () => {
+    const h = document.querySelector('header').offsetHeight;
+    camera.aspect = window.innerWidth / (window.innerHeight - h);
+    camera.updateProjectionMatrix();
+    renderer.setSize(window.innerWidth, window.innerHeight - h);
+  });
 
-    const headerHeight = document.querySelector('header').offsetHeight;
-    const camera = new THREE.PerspectiveCamera(45, window.innerWidth / (window.innerHeight - headerHeight), 0.01, 2000);
-    camera.position.set(0, 2, 6);
-
-    const renderer = new THREE.WebGLRenderer({ antialias:true });
-    renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
-    renderer.setSize(window.innerWidth, window.innerHeight - headerHeight);
-    if (renderer.outputColorSpace !== undefined) renderer.outputColorSpace = THREE.SRGBColorSpace;
-    document.getElementById('viewer').appendChild(renderer.domElement);
-
-    scene.add(new THREE.HemisphereLight(0xffffff, 0x222222, 0.6));
-    const dir = new THREE.DirectionalLight(0xffffff, 0.8);
-    dir.position.set(5, 10, 7);
-    scene.add(dir);
-
-    const OrbitControlsCtor = window.OrbitControls || THREE.OrbitControls || null;
-    let controls = null;
-    if (OrbitControlsCtor) {
-      controls = new OrbitControlsCtor(camera, renderer.domElement);
-      controls.enableDamping = true;
-    } else {
-      document.getElementById('controlsWarn').style.display = 'block';
-    }
-
-    const FBXLoaderCtor = window.FBXLoader || THREE.FBXLoader;
-    console.assert(FBXLoaderCtor, 'FBXLoader constructor resolved');
-    const loader = new FBXLoaderCtor();
-
-    let model = null;
-
-    function frame(obj) {
-      const box = new THREE.Box3().setFromObject(obj);
-      const size = box.getSize(new THREE.Vector3());
-      const max = Math.max(size.x, size.y, size.z);
-      const center = box.getCenter(new THREE.Vector3());
-      obj.position.sub(center);
-      const fov = camera.fov * Math.PI / 180;
-      let z = Math.abs(max / 2 / Math.tan(fov / 2)) * 1.6;
-      camera.position.set(0, max * 0.3 + 0.5, z + 0.5);
-      camera.near = Math.max(0.001, z / 1000);
-      camera.far = z * 100;
-      camera.updateProjectionMatrix();
-      if (controls) {
-        controls.target.set(0, max * 0.12, 0);
-        controls.update();
-      }
-    }
-
-    loader.load(MODEL_PATH, obj => {
-      model = obj;
-      scene.add(model);
-      frame(model);
-    }, undefined, err => {
-      console.error(err);
-      showFatal('Failed to load caravel-v1.fbx.<br/>Make sure the file is reachable at ' + MODEL_PATH);
-    });
-
-    const key = {};
-    window.addEventListener('keydown', e => key[e.key.toLowerCase()] = true);
-    window.addEventListener('keyup', e => key[e.key.toLowerCase()] = false);
-
-    function fallback(dt) {
-      if (controls) return;
-      const s = 1.2;
-      if (key['a']||key['arrowleft']) camera.rotation.y += s*dt;
-      if (key['d']||key['arrowright']) camera.rotation.y -= s*dt;
-      if (key['w']||key['arrowup']) camera.rotation.x += s*dt;
-      if (key['s']||key['arrowdown']) camera.rotation.x -= s*dt;
-    }
-
-    let last = performance.now();
-    function loop(){
-      const now = performance.now();
-      const dt = (now-last)/1000; last = now;
-      if (controls) controls.update(); else fallback(dt);
-      renderer.render(scene,camera);
-      requestAnimationFrame(loop);
-    }
-    loop();
-
-    window.addEventListener('resize', () => {
-      const h = document.querySelector('header').offsetHeight;
-      camera.aspect = window.innerWidth / (window.innerHeight - h);
-      camera.updateProjectionMatrix();
-      renderer.setSize(window.innerWidth, window.innerHeight - h);
-    });
-
-    console.assert(!document.getElementById('file'), 'file input must not exist');
-  })();
+} catch (err) {
+  console.error(err);
+  showFatal('Initialization failed: ' + (err.message || err));
+}
 </script>
+
 </body>
 </html>
