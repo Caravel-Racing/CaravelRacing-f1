@@ -148,6 +148,8 @@
         home: "Início",
         projects: "Projetos",
         about: "Sobre a Equipa",
+        about2: "A Tripulação",
+        about3: "Informações",
         sponsors: "Patrocinadores",
         contact: "Contactos",
         openMenu: "Abrir menu"
