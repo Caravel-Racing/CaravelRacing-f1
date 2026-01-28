@@ -1,35 +1,103 @@
-
 <!doctype html>
 <html lang="pt-PT">
 <head>
+  <link rel="preload" href="/fonts/SpeedDemon.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="/fonts/SpeedDemon.ttf" as="font" type="font/truetype" crossorigin>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1">
-  <title>Sponsors — Caravel Racing</title>
+
+  <title>Caravel Racing</title>
+  <meta name="description" content="Equipa inscrita na competição STEM Racing na temporada 2025/26 — Caravel Racing. Projetos, membros e resultados da equipa portuguesa.">
+  <link rel="icon" href="/favicon.ico">
+  <link rel="icon" href="https://caravelracing.com/favicon.ico">
+  <link rel="icon" href="/favicon-32x32.png" sizes="32x32" type="image/png">
+  <link rel="icon" href="/favicon-16x16.png" sizes="16x16" type="image/png">
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png" sizes="180x180">
+
+  <meta name="theme-color" content="#c0182e">
+  <meta name="msapplication-TileColor" content="#c0182e">
+  <meta name="msapplication-TileImage" content="/favicon-32x32.png">
+
+  <link rel="canonical" href="https://caravelracing.com/">
+
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Caravel Racing">
+  <meta property="og:site_name" content="Caravel Racing">
+  <meta property="og:description" content="Equipa inscrita na competição STEM Racing na temporada 2025/26 — Caravel Racing.">
+  <meta property="og:url" content="https://caravelracing.com/">
+  <meta property="og:image" content="https://caravelracing.com/images/logonobg.png">
+  <meta property="og:image:alt" content="Caravel Racing logo">
+
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Caravel Racing">
+  <meta name="twitter:description" content="Equipa inscrita na competição STEM Racing na temporada 2025/26 — Caravel Racing.">
+  <meta name="twitter:image" content="https://caravelracing.com/images/logonobg.png">
+
   <link rel="stylesheet" href="css/styles.css">
 </head>
-<!-- Language picker modal (insert before closing </body>) -->
-<div id="lang-modal" class="lang-modal" aria-hidden="true" role="dialog" aria-label="Language selector">
-  <div class="lang-panel" role="document" tabindex="-1">
-    <h3 data-i18n="lang.title">Choose language</h3>
-    <p data-i18n="lang.subtitle">Which language do you want to use?</p>
-
-    <div class="lang-buttons">
-      <button class="lang-btn" data-lang="en" aria-label="English">English</button>
-      <button class="lang-btn" data-lang="pt" aria-label="Português">Português</button>
-    </div>
-
-    <p class="lang-remember">
-      <label>
-        <input type="checkbox" id="remember-lang" />
-        <span data-i18n="lang.remember">Remember my choice</span>
-      </label>
-    </p>
-
-    <button id="lang-close" class="lang-close" aria-label="Close">×</button>
-  </div>
-</div>
-
 <body>
+  <div id="splash" class="splash-overlay" aria-hidden="false">
+    <div class="splash-inner">
+
+      <div class="splash-gif-wrap" aria-hidden="true">
+        <img src="images/logogifs.gif" alt="Caravel Racing animated logo" class="splash-gif">
+      </div>
+
+      <h1 class="splash-title" aria-hidden="true">
+        <span class="splash-letters" id="splash-letters">
+
+          <span class="splash-letter" data-index="0">C</span>
+          <span class="splash-letter" data-index="1">A</span>
+          <span class="splash-letter" data-index="2">R</span>
+          <span class="splash-letter" data-index="3">A</span>
+          <span class="splash-letter" data-index="4">V</span>
+          <span class="splash-letter" data-index="5">E</span>
+          <span class="splash-letter" data-index="6">L</span>
+          <span class="splash-letter" data-index="7">&nbsp;</span>
+          <span class="splash-letter" data-index="8">R</span>
+          <span class="splash-letter" data-index="9">a</span>
+          <span class="splash-letter" data-index="10">c</span>
+          <span class="splash-letter" data-index="11">i</span>
+          <span class="splash-letter" data-index="12">n</span>
+          <span class="splash-letter" data-index="13">g</span>
+        </span>
+      </h1>
+
+      <div class="splash-car-wrap" aria-hidden="true">
+        <img class="splash-car" src="images/f1load.png" alt="F1 car" />
+      </div>
+
+      <div class="splash-bar" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0">
+        <div class="splash-fill" style="width:0%"></div>
+      </div>
+
+      <div class="splash-percent"><span id="splash-num">0</span>%</div>
+    </div>
+  </div>
+
+  <!-- Language picker modal (insert before closing </body>) -->
+  <div id="lang-modal" class="lang-modal" aria-hidden="true" role="dialog" aria-label="Language selector">
+    <div class="lang-panel" role="document">
+      <h3 data-i18n="lang.title">Choose language</h3>
+      <p data-i18n="lang.subtitle">Which language do you want to use?</p>
+
+      <div class="lang-buttons">
+        <button class="lang-btn" data-lang="en" aria-label="English">English</button>
+        <button class="lang-btn" data-lang="pt" aria-label="Português">Português</button>
+      </div>
+
+      <p class="lang-remember">
+        <label>
+          <input type="checkbox" id="remember-lang" />
+          <span data-i18n="lang.remember">Remember my choice</span>
+        </label>
+      </p>
+
+      <button id="lang-close" class="lang-close" aria-label="Close">×</button>
+    </div>
+  </div>
+
+
   <header class="site-header">
  <div class="container header-inner">
     <img class="site-logo" src="images/logonobg.png" alt="Caravel Racing logo">
@@ -51,7 +119,18 @@
     <nav class="nav">
       <a href="index.html" data-i18n="nav.home">Home</a>
       <a href="projects.html" data-i18n="nav.projects">Projects</a>
-      <a href="sobre-equipa.html" data-i18n="nav.about">About the Team</a>
+      <div class="nav-item dropdown" id="aboutDropdownWrap">
+        <button class="dropdown-toggle" id="aboutDropdown"
+                aria-haspopup="true" aria-expanded="false"
+                data-i18n="nav.about">
+          About the Team
+        </button>
+
+        <ul class="dropdown-menu" role="menu" aria-labelledby="aboutDropdown">
+          <li role="none"><a role="menuitem" href="members/info.html">Meet the Tripulation</a></li>
+          <li role="none"><a role="menuitem" href="sobre-equipa.html">Information</a></li>
+        </ul>
+      </div>
       <a href="patrocinadores.html" data-i18n="nav.sponsors">Sponsors</a>
       <a href="contact.html" data-i18n="nav.contact">Contact Us</a>
     </nav>
@@ -80,10 +159,26 @@
     <nav class="mobile-links" role="navigation" aria-label="Menu principal">
       <a href="index.html" data-i18n="nav.home">Home</a>
       <a href="projects.html" data-i18n="nav.projects">Projects</a>
-      <a href="sobre-equipa.html" data-i18n="nav.about">About the Team</a>
+
+      <!-- Mobile About accordion: collapsed by default -->
+      <div class="mobile-submenu">
+        <button class="mobile-submenu-toggle"
+                aria-expanded="false"
+                aria-controls="mobile-about-list"
+                id="mobileAboutToggle">
+          About the Team
+        </button>
+
+        <div id="mobile-about-list" class="mobile-about-list" hidden>
+          <a href="members/info.html">Meet the Tripulation</a>
+          <a href="sobre-equipa.html">Information</a>
+        </div>
+      </div>
+
       <a href="patrocinadores.html" data-i18n="nav.sponsors">Sponsors</a>
       <a href="contact.html" data-i18n="nav.contact">Contact Us</a>
     </nav>
+
 
     <!-- Socials placed below the links (mobile) -->
     <div class="mobile-socials" aria-label="Social links">

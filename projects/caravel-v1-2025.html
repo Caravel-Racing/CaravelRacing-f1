@@ -28,7 +28,18 @@
     <nav class="nav">
       <a href="../index.html" data-i18n="nav.home">Home</a>
       <a href="../projects.html" data-i18n="nav.projects">Projects</a>
-      <a href="../sobre-equipa.html" data-i18n="nav.about">About the Team</a>
+      <div class="nav-item dropdown" id="aboutDropdownWrap">
+        <button class="dropdown-toggle" id="aboutDropdown"
+                aria-haspopup="true" aria-expanded="false"
+                data-i18n="nav.about">
+          About the Team
+        </button>
+
+        <ul class="dropdown-menu" role="menu" aria-labelledby="aboutDropdown">
+          <li role="none"><a role="menuitem" href="../members/info.html">Meet the Tripulation</a></li>
+          <li role="none"><a role="menuitem" href="../sobre-equipa.html">Information</a></li>
+        </ul>
+      </div>
       <a href="../patrocinadores.html" data-i18n="nav.sponsors">Sponsors</a>
       <a href="../contact.html" data-i18n="nav.contact">Contact Us</a>
     </nav>
@@ -57,7 +68,22 @@
     <nav class="mobile-links" role="navigation" aria-label="Menu principal">
       <a href="../index.html" data-i18n="nav.home">Home</a>
       <a href="../projects.html" data-i18n="nav.projects">Projects</a>
-      <a href="../sobre-equipa.html" data-i18n="nav.about">About the Team</a>
+
+      <!-- Mobile About accordion: collapsed by default -->
+      <div class="mobile-submenu">
+        <button class="mobile-submenu-toggle"
+                aria-expanded="false"
+                aria-controls="mobile-about-list"
+                id="mobileAboutToggle">
+          About the Team
+        </button>
+
+        <div id="mobile-about-list" class="mobile-about-list" hidden>
+          <a href="../members/info.html">Meet the Tripulation</a>
+          <a href="../sobre-equipa.html">Information</a>
+        </div>
+      </div>
+
       <a href="../patrocinadores.html" data-i18n="nav.sponsors">Sponsors</a>
       <a href="../contact.html" data-i18n="nav.contact">Contact Us</a>
     </nav>
