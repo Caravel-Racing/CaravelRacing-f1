@@ -660,7 +660,6 @@ body.splash-active{
   display: flex;
   justify-content: flex-start;
   align-items: center;
-  background: #000000;
 }
 
 .mobile-social-link {
@@ -700,7 +699,7 @@ body.splash-active{
   position: absolute;
   right: 0;
   top: 0;
-  height: 100%;
+
   width: 280px;
   max-width: 85%;
   background: #0f0f0f;
@@ -742,7 +741,6 @@ html.mobile-menu-open .mobile-nav::before{
   flex-direction:column;
   gap: 0.6rem;
   margin-top: 0.5rem;
-  background: #000000;
 }
 .mobile-links a{
   color:#fff;
@@ -814,6 +812,7 @@ html.mobile-menu-open .mobile-nav::before{
   flex-direction: column;
   gap: .2rem;
   margin-top: .25rem;
+  background: #1C1C1C;
 }
 .mobile-about-list a {
   padding: .45rem 0;
