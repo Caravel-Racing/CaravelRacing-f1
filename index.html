@@ -1,5 +1,6 @@
 <!doctype html>
 <html lang="pt-PT">
+
 <head>
   <link rel="preload" href="/fonts/SpeedDemon.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="preload" href="/fonts/SpeedDemon.ttf" as="font" type="font/truetype" crossorigin>
@@ -7,7 +8,8 @@
   <meta name="viewport" content="width=device-width,initial-scale=1">
 
   <title>Caravel Racing</title>
-  <meta name="description" content="Equipa inscrita na competição STEM Racing na temporada 2025/26 — Caravel Racing. Projetos, membros e resultados da equipa portuguesa.">
+  <meta name="description"
+    content="Equipa inscrita na competição STEM Racing na temporada 2025/26 — Caravel Racing. Projetos, membros e resultados da equipa portuguesa.">
   <link rel="icon" href="/favicon.ico">
   <link rel="icon" href="https://caravelracing.com/favicon.ico">
   <link rel="icon" href="/favicon-32x32.png" sizes="32x32" type="image/png">
@@ -23,18 +25,21 @@
   <meta property="og:type" content="website">
   <meta property="og:title" content="Caravel Racing">
   <meta property="og:site_name" content="Caravel Racing">
-  <meta property="og:description" content="Equipa inscrita na competição STEM Racing na temporada 2025/26 — Caravel Racing.">
+  <meta property="og:description"
+    content="Equipa inscrita na competição STEM Racing na temporada 2025/26 — Caravel Racing.">
   <meta property="og:url" content="https://caravelracing.com/">
   <meta property="og:image" content="https://caravelracing.com/images/logonobg.png">
   <meta property="og:image:alt" content="Caravel Racing logo">
 
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="Caravel Racing">
-  <meta name="twitter:description" content="Equipa inscrita na competição STEM Racing na temporada 2025/26 — Caravel Racing.">
+  <meta name="twitter:description"
+    content="Equipa inscrita na competição STEM Racing na temporada 2025/26 — Caravel Racing.">
   <meta name="twitter:image" content="https://caravelracing.com/images/logonobg.png">
 
   <link rel="stylesheet" href="css/styles.css">
 </head>
+
 <body>
   <div id="splash" class="splash-overlay" aria-hidden="false">
     <div class="splash-inner">
@@ -99,126 +104,123 @@
 
 
   <header class="site-header">
- <div class="container header-inner">
-    <img class="site-logo" src="images/logonobg.png" alt="Caravel Racing logo">
-    <div class="brand-stack" aria-hidden="false">
-      <span class="brand-top">Caravel</span>
-      <span class="brand-bottom">Racing</span>
-    </div>
-
-    <!-- Mobile hamburger (hidden on desktop) -->
-    <button class="nav-toggle" aria-controls="mobile-nav" aria-expanded="false" aria-label="Menu">
-      <span class="hamburger" aria-hidden="true">
-        <span></span>
-        <span></span>
-        <span></span>
-      </span>
-    </button>
-
-    <!-- Desktop nav (kept for larger screens) -->
-    <nav class="nav">
-      <a href="index.html" data-i18n="nav.home">Home</a>
-      <a href="projects.html" data-i18n="nav.projects">Projects</a>
-      <div class="nav-item dropdown" id="aboutDropdownWrap">
-        <button class="dropdown-toggle" id="aboutDropdown"
-                aria-haspopup="true" aria-expanded="false"
-                data-i18n="nav.about">
-          About the Team
-        </button>
-
-        <ul class="dropdown-menu" role="menu" aria-labelledby="aboutDropdown">
-          <li role="none"><a role="menuitem" href="members/info.html" data-i18n="nav.about2">Meet the Tripulation</a></li>
-          <li role="none"><a role="menuitem" href="sobre-equipa.html" data-i18n="nav.about3">Information</a></li>
-        </ul>
+    <div class="container header-inner">
+      <img class="site-logo" src="images/logonobg.png" alt="Caravel Racing logo">
+      <div class="brand-stack" aria-hidden="false">
+        <span class="brand-top">Caravel</span>
+        <span class="brand-bottom">Racing</span>
       </div>
-      <a href="patrocinadores.html" data-i18n="nav.sponsors">Sponsors</a>
-      <a href="contact.html" data-i18n="nav.contact">Contact Us</a>
-    </nav>
 
-    <a class="header-social desktop-only" href="https://instagram.com/caravelracing"
-       target="_blank" rel="noopener noreferrer"
-       aria-label="Caravel Racing on Instagram" title="Instagram — Caravel Racing">
-      <img src="images/instagram.png" alt="Instagram icon">
-    </a>
+      <!-- Mobile hamburger (hidden on desktop) -->
+      <button class="nav-toggle" aria-controls="mobile-nav" aria-expanded="false" aria-label="Menu">
+        <span class="hamburger" aria-hidden="true">
+          <span></span>
+          <span></span>
+          <span></span>
+        </span>
+      </button>
 
-    <a class="header-social desktop-only" href="https://www.linkedin.com/in/caravel-racing-387b613a8"
-       target="_blank" rel="noopener noreferrer"
-       aria-label="Caravel Racing LinkedIn" title="LinkedIn — Caravel Racing">
-      <img src="images/linkedin.png" alt="LinkedIn icon">
-    </a>
+      <!-- Desktop nav (kept for larger screens) -->
+      <nav class="nav">
+        <a href="index.html" data-i18n="nav.home">Home</a>
+        <a href="projects.html" data-i18n="nav.projects">Projects</a>
+        <div class="nav-item dropdown" id="aboutDropdownWrap">
+          <button class="dropdown-toggle" id="aboutDropdown" aria-haspopup="true" aria-expanded="false"
+            data-i18n="nav.about">
+            About the Team
+          </button>
 
-       <!-- Language selector (desktop) -->
-    <a class="header-social desktop-only" href="#" id="lang-toggle"
-       aria-label="Change language" title="Change language">
-      <img src="images/language.png" alt="Select language" />
-    </a>
-
-
-    <h1 class="brand"><span class="brand-red">CAR</span><span class="brand-avel">AVEL Racing</span></h1>
-  </div>
-
- <!-- Mobile panel (hidden by default, slides in) -->
-<div id="mobile-nav" class="mobile-nav" aria-hidden="true">
-  <div class="mobile-nav-panel">
-    <button class="nav-close" aria-label="Close menu">&times;</button>
-
-    <nav class="mobile-links" role="navigation" aria-label="Menu principal">
-      <a href="index.html" data-i18n="nav.home">Home</a>
-      <a href="projects.html" data-i18n="nav.projects">Projects</a>
-
-      <!-- Mobile About accordion: collapsed by default -->
-      <div class="mobile-submenu">
-        <button class="mobile-submenu-toggle"
-                aria-expanded="false"
-                aria-controls="mobile-about-list"
-                id="mobileAboutToggle">
-          About the Team
-        </button>
-
-        <div id="mobile-about-list" class="mobile-about-list" hidden>
-          <a href="members/info.html" data-i18n="nav.about2">Meet the Tripulation</a>
-          <a href="sobre-equipa.html" data-i18n="nav.about3">Information</a>
+          <ul class="dropdown-menu" role="menu" aria-labelledby="aboutDropdown">
+            <li role="none"><a role="menuitem" href="members/info.html" data-i18n="nav.about2">Meet the Tripulation</a>
+            </li>
+            <li role="none"><a role="menuitem" href="sobre-equipa.html" data-i18n="nav.about3">Information</a></li>
+          </ul>
         </div>
-      </div>
+        <a href="patrocinadores.html" data-i18n="nav.sponsors">Sponsors</a>
+        <a href="chat.html" style="color:var(--accent); font-weight:bold;">AI Chat</a>
+        <a href="contact.html" data-i18n="nav.contact">Contact Us</a>
+      </nav>
 
-      <a href="patrocinadores.html" data-i18n="nav.sponsors">Sponsors</a>
-      <a href="contact.html" data-i18n="nav.contact">Contact Us</a>
-    </nav>
-
-
-    <!-- Socials placed below the links (mobile) -->
-    <div class="mobile-socials" aria-label="Social links">
-      <a href="https://instagram.com/caravelracing"
-         target="_blank" rel="noopener noreferrer"
-         class="mobile-social-link" aria-label="Caravel Racing on Instagram">
-        <img src="images/instagram.png" alt="" aria-hidden="true" />
+      <a class="header-social desktop-only" href="https://instagram.com/caravelracing" target="_blank"
+        rel="noopener noreferrer" aria-label="Caravel Racing on Instagram" title="Instagram — Caravel Racing">
+        <img src="images/instagram.png" alt="Instagram icon">
       </a>
 
-        <button id="lang-toggle-mobile" class="mobile-lang mobile-only lang-trigger"
-        aria-label="Change language" title="Change language"
-        aria-haspopup="dialog" aria-expanded="false">
+      <a class="header-social desktop-only" href="https://www.linkedin.com/in/caravel-racing-387b613a8" target="_blank"
+        rel="noopener noreferrer" aria-label="Caravel Racing LinkedIn" title="LinkedIn — Caravel Racing">
+        <img src="images/linkedin.png" alt="LinkedIn icon">
+      </a>
+
+      <!-- Language selector (desktop) -->
+      <a class="header-social desktop-only" href="#" id="lang-toggle" aria-label="Change language"
+        title="Change language">
         <img src="images/language.png" alt="Select language" />
-      </button>
+      </a>
+
+
+      <h1 class="brand"><span class="brand-red">CAR</span><span class="brand-avel">AVEL Racing</span></h1>
     </div>
 
-  </div>
-</div>
-</header>
+    <!-- Mobile panel (hidden by default, slides in) -->
+    <div id="mobile-nav" class="mobile-nav" aria-hidden="true">
+      <div class="mobile-nav-panel">
+        <button class="nav-close" aria-label="Close menu">&times;</button>
+
+        <nav class="mobile-links" role="navigation" aria-label="Menu principal">
+          <a href="index.html" data-i18n="nav.home">Home</a>
+          <a href="projects.html" data-i18n="nav.projects">Projects</a>
+
+          <!-- Mobile About accordion: collapsed by default -->
+          <div class="mobile-submenu">
+            <button class="mobile-submenu-toggle" aria-expanded="false" aria-controls="mobile-about-list"
+              id="mobileAboutToggle">
+              About the Team
+            </button>
+
+            <div id="mobile-about-list" class="mobile-about-list" hidden>
+              <a href="members/info.html" data-i18n="nav.about2">Meet the Tripulation</a>
+              <a href="sobre-equipa.html" data-i18n="nav.about3">Information</a>
+            </div>
+          </div>
+
+          <a href="patrocinadores.html" data-i18n="nav.sponsors">Sponsors</a>
+          <a href="chat.html" style="color:var(--accent); font-weight:bold;">AI Chat</a>
+          <a href="contact.html" data-i18n="nav.contact">Contact Us</a>
+        </nav>
+
+
+        <!-- Socials placed below the links (mobile) -->
+        <div class="mobile-socials" aria-label="Social links">
+          <a href="https://instagram.com/caravelracing" target="_blank" rel="noopener noreferrer"
+            class="mobile-social-link" aria-label="Caravel Racing on Instagram">
+            <img src="images/instagram.png" alt="" aria-hidden="true" />
+          </a>
+
+          <button id="lang-toggle-mobile" class="mobile-lang mobile-only lang-trigger" aria-label="Change language"
+            title="Change language" aria-haspopup="dialog" aria-expanded="false">
+            <img src="images/language.png" alt="Select language" />
+          </button>
+        </div>
+
+      </div>
+    </div>
+  </header>
 
   <main class="container">
     <section class="hero" aria-labelledby="hero-title">
-        <div>
-          <h2 id="hero-title" style="margin:0 0 .25rem;color:var(--accent);font-size:1.6rem;" data-i18n="meta.title">
-            Official homepage of Caravel Racing Team
-          </h2>
-          <p style="margin-top:.5rem">
-            <a class="btn" href="projects.html" data-i18n="meta.button1">View Projects</a>
-            <a class="btn" href="sobre-equipa.html" style="background:#444;margin-left:.6rem;" data-i18n="meta.button2">About the Team</a>
-          </p>
-          <p style="margin-top:.6rem">
-            <a class="btn" href="" target="_blank" rel="noopener noreferrer">See Car Model</a>
-          </p>
-        </div>
+      <div>
+        <h2 id="hero-title" style="margin:0 0 .25rem;color:var(--accent);font-size:1.6rem;" data-i18n="meta.title">
+          Official homepage of Caravel Racing Team
+        </h2>
+        <p style="margin-top:.5rem">
+          <a class="btn" href="projects.html" data-i18n="meta.button1">View Projects</a>
+          <a class="btn" href="sobre-equipa.html" style="background:#444;margin-left:.6rem;"
+            data-i18n="meta.button2">About the Team</a>
+        </p>
+        <p style="margin-top:.6rem">
+          <a class="btn" href="" target="_blank" rel="noopener noreferrer">See Car Model</a>
+        </p>
+      </div>
       <p data-i18n="hero.breadcrumb">Home • Projects • About the Team • Sponsors • Contact Us</p>
     </section>
 
@@ -226,48 +228,51 @@
     <div class="photo-wrap" id="photoWrap">
       <img src="images/group.png" alt="group" class="base-photo">
 
-      <img src="images/diogobg.png" alt="Diogo"
-          id="diogoCutout" class="cutout" crossorigin="anonymous"
-          data-page="members/info.html#diogo" tabindex="0">
+      <img src="images/diogobg.png" alt="Diogo" id="diogoCutout" class="cutout" crossorigin="anonymous"
+        data-page="members/info.html#diogo" tabindex="0">
 
-      <img src="images/martimbg.png" alt="Martim"
-          id="martimCutout" class="cutout" crossorigin="anonymous"
-          data-page="members/info.html#martim" tabindex="0">
+      <img src="images/martimbg.png" alt="Martim" id="martimCutout" class="cutout" crossorigin="anonymous"
+        data-page="members/info.html#martim" tabindex="0">
 
-      <img src="images/marianabg.png" alt="Mariana"
-          id="marianaCutout" class="cutout" crossorigin="anonymous"
-          data-page="members/info.html#mariana" tabindex="0">
+      <img src="images/marianabg.png" alt="Mariana" id="marianaCutout" class="cutout" crossorigin="anonymous"
+        data-page="members/info.html#mariana" tabindex="0">
 
-      <img src="images/ferreirabg.png" alt="Ferreira"
-          id="ferreiraCutout" class="cutout" crossorigin="anonymous"
-          data-page="members/info.html#ferreira" tabindex="0">
+      <img src="images/ferreirabg.png" alt="Ferreira" id="ferreiraCutout" class="cutout" crossorigin="anonymous"
+        data-page="members/info.html#ferreira" tabindex="0">
 
-      <img src="images/pedrobg.png" alt="Pedro"
-          id="pedroCutout" class="cutout" crossorigin="anonymous"
-          data-page="members/info.html#pedro" tabindex="0">
+      <img src="images/pedrobg.png" alt="Pedro" id="pedroCutout" class="cutout" crossorigin="anonymous"
+        data-page="members/info.html#pedro" tabindex="0">
 
-      <img src="images/franciscobg.png" alt="Francisco"
-          id="franciscoCutout" class="cutout" crossorigin="anonymous"
-          data-page="members/info.html#francisco" tabindex="0">
+      <img src="images/franciscobg.png" alt="Francisco" id="franciscoCutout" class="cutout" crossorigin="anonymous"
+        data-page="members/info.html#francisco" tabindex="0">
     </div>
 
-      <section class="kpis" aria-label="Indicadores">
-        <div class="card"><strong data-i18n="kpis.season_label">Season</strong><p data-i18n="kpis.season">2025/26</p></div>
-        <div class="card"><strong data-i18n="kpis.avg_label">Avg. Run</strong><p data-i18n="kpis.avg">-</p></div>
-        <div class="card"><strong data-i18n="kpis.members_label">Members</strong><p data-i18n="kpis.members">6</p></div>
-      </section>
+    <section class="kpis" aria-label="Indicadores">
+      <div class="card"><strong data-i18n="kpis.season_label">Season</strong>
+        <p data-i18n="kpis.season">2025/26</p>
+      </div>
+      <div class="card"><strong data-i18n="kpis.avg_label">Avg. Run</strong>
+        <p data-i18n="kpis.avg">-</p>
+      </div>
+      <div class="card"><strong data-i18n="kpis.members_label">Members</strong>
+        <p data-i18n="kpis.members">6</p>
+      </div>
+    </section>
   </main>
 
-<footer class="site-footer">
-    <div class="container" style="display:flex;flex-wrap:wrap;gap:1rem;align-items:center;justify-content:space-between;">
+  <footer class="site-footer">
+    <div class="container"
+      style="display:flex;flex-wrap:wrap;gap:1rem;align-items:center;justify-content:space-between;">
       <div>
         <p style="margin:0">© Caravel Racing — Portugal</p>
-        <p style="margin:0;font-size:.9rem;color:#9a9a9a;">Contact: <a href="mailto:caravelracing@gmail.com">caravelracing@gmail.com</a></p>
+        <p style="margin:0;font-size:.9rem;color:#9a9a9a;">Contact: <a
+            href="mailto:caravelracing@gmail.com">caravelracing@gmail.com</a></p>
       </div>
 
       <!-- Sponsors (middle) -->
       <div class="footer-sponsors" aria-label="Sponsors">
-        <a href="https://www.manuport-logistics.com/" target="_blank" rel="noopener noreferrer" aria-label="Sponsor One">
+        <a href="https://www.manuport-logistics.com/" target="_blank" rel="noopener noreferrer"
+          aria-label="Sponsor One">
           <img src="images/manuport.png" alt="manuport-logistics">
         </a>
 
@@ -286,21 +291,19 @@
 
       <div style="display:flex;">
         <div class="mobile-socials" aria-label="Social links">
-        <a href="https://instagram.com/caravelracing"
-          target="_blank" rel="noopener noreferrer"
-          class="mobile-social-link" aria-label="Caravel Racing on Instagram">
-          <img src="images/instagram.png" alt="" aria-hidden="true" />
-        </a>
+          <a href="https://instagram.com/caravelracing" target="_blank" rel="noopener noreferrer"
+            class="mobile-social-link" aria-label="Caravel Racing on Instagram">
+            <img src="images/instagram.png" alt="" aria-hidden="true" />
+          </a>
 
-        <a href="https://www.linkedin.com/in/caravel-racing-387b613a8"
-          target="_blank" rel="noopener noreferrer"
-          class="mobile-social-link" aria-label="Caravel Racing LinkedIn">
-          <img src="images/linkedin.png" alt="" aria-hidden="true" />
-        </a>
+          <a href="https://www.linkedin.com/in/caravel-racing-387b613a8" target="_blank" rel="noopener noreferrer"
+            class="mobile-social-link" aria-label="Caravel Racing LinkedIn">
+            <img src="images/linkedin.png" alt="" aria-hidden="true" />
+          </a>
         </div>
       </div>
-      
-      
+
+
     </div>
   </footer>
 </body>
@@ -311,6 +314,5 @@
 <script src="js/groupimage.js" defer></script>
 <script src="js/splash.js" defer></script>
 <script src="js/smoothscrollinfo.js" defer></script>
+
 </html>
-
-

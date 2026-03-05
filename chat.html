@@ -1,0 +1,121 @@
+<!doctype html>
+<html lang="pt-PT">
+
+<head>
+    <link rel="preload" href="/fonts/SpeedDemon.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="preload" href="/fonts/SpeedDemon.ttf" as="font" type="font/truetype" crossorigin>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+
+    <title>AI Chat - Caravel Racing</title>
+    <meta name="description" content="Talk with the Caravel Racing AI Assistant.">
+    <link rel="icon" href="/favicon.ico">
+    <link rel="icon" href="/favicon-32x32.png" sizes="32x32" type="image/png">
+    <link rel="icon" href="/favicon-16x16.png" sizes="16x16" type="image/png">
+
+    <meta name="theme-color" content="#c0182e">
+
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/chat.css">
+</head>
+
+<body>
+
+    <!-- Language picker modal (insert before closing </body>) -->
+    <div id="lang-modal" class="lang-modal" aria-hidden="true" role="dialog" aria-label="Language selector">
+        <div class="lang-panel" role="document">
+            <h3 data-i18n="lang.title">Choose language</h3>
+            <p data-i18n="lang.subtitle">Which language do you want to use?</p>
+            <div class="lang-buttons">
+                <button class="lang-btn" data-lang="en" aria-label="English">English</button>
+                <button class="lang-btn" data-lang="pt" aria-label="Português">Português</button>
+            </div>
+            <p class="lang-remember">
+                <label>
+                    <input type="checkbox" id="remember-lang" />
+                    <span data-i18n="lang.remember">Remember my choice</span>
+                </label>
+            </p>
+            <button id="lang-close" class="lang-close" aria-label="Close">×</button>
+        </div>
+    </div>
+
+    <header class="site-header">
+        <div class="container header-inner">
+            <a href="index.html" style="text-decoration:none;"><img class="site-logo" src="images/logonobg.png"
+                    alt="Caravel Racing logo"></a>
+            <div class="brand-stack" aria-hidden="false">
+                <span class="brand-top">Caravel</span>
+                <span class="brand-bottom">Racing</span>
+            </div>
+
+            <button class="nav-toggle" aria-controls="mobile-nav" aria-expanded="false" aria-label="Menu">
+                <span class="hamburger" aria-hidden="true">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </span>
+            </button>
+
+            <nav class="nav">
+                <a href="index.html" data-i18n="nav.home">Home</a>
+                <a href="projects.html" data-i18n="nav.projects">Projects</a>
+                <div class="nav-item dropdown" id="aboutDropdownWrap">
+                    <button class="dropdown-toggle" id="aboutDropdown" aria-haspopup="true" aria-expanded="false"
+                        data-i18n="nav.about">
+                        About the Team
+                    </button>
+                    <ul class="dropdown-menu" role="menu" aria-labelledby="aboutDropdown">
+                        <li role="none"><a role="menuitem" href="members/info.html" data-i18n="nav.about2">Meet the
+                                Tripulation</a></li>
+                        <li role="none"><a role="menuitem" href="sobre-equipa.html"
+                                data-i18n="nav.about3">Information</a></li>
+                    </ul>
+                </div>
+                <a href="patrocinadores.html" data-i18n="nav.sponsors">Sponsors</a>
+                <a href="chat.html" class="active" style="color:var(--accent); font-weight:bold;">AI Chat</a>
+                <a href="contact.html" data-i18n="nav.contact">Contact Us</a>
+            </nav>
+
+            <h1 class="brand"><span class="brand-red">CAR</span><span class="brand-avel">AVEL Racing</span></h1>
+        </div>
+    </header>
+
+    <main class="container chat-container">
+        <div class="chat-header">
+            <h2>Caravel Racing AI</h2>
+            <p>Ask anything about the team!</p>
+        </div>
+
+        <div class="chat-box" id="chatBox">
+            <div class="chat-message bot-message">
+                <div class="message-bubble">Hello! I am the Caravel Racing AI assistant. What would you like to know?
+                </div>
+            </div>
+        </div>
+
+        <div class="chat-input-area">
+            <input type="text" id="chatInput" placeholder="Type your message here..." aria-label="Chat input">
+            <button id="sendBtn" class="btn">Send</button>
+        </div>
+    </main>
+
+    <footer class="site-footer">
+        <div class="container"
+            style="display:flex;flex-wrap:wrap;gap:1rem;align-items:center;justify-content:space-between;">
+            <div>
+                <p style="margin:0">© Caravel Racing — Portugal</p>
+                <p style="margin:0;font-size:.9rem;color:#9a9a9a;">Contact: <a
+                        href="mailto:caravelracing@gmail.com">caravelracing@gmail.com</a></p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/header-dropdown.js" defer></script>
+    <script src="js/lang.js" defer></script>
+    <script src="js/langbutton.js" defer></script>
+    <script src="js/mobile-menu.js" defer></script>
+    <script src="js/chat.js" defer></script>
+</body>
+
+</html>
