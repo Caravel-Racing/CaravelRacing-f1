@@ -56,7 +56,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
         try {
             // Send to backend
-            const response = await fetch('https://caravel-ai-backend.onrender.com', {
+            const response = await fetch('https://caravel-ai-backend.onrender.com/api/chat', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
