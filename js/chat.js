@@ -3,6 +3,42 @@ document.addEventListener('DOMContentLoaded', () => {
     const chatInput = document.getElementById('chatInput');
     const sendBtn = document.getElementById('sendBtn');
 
+    // Convert **text** → <strong> and lines starting with * → bullet list items
+    function formatMarkdown(text) {
+        // Escape HTML to prevent injection
+        const escaped = text
+            .replace(/&/g, '&amp;')
+            .replace(/</g, '&lt;')
+            .replace(/>/g, '&gt;');
+
+        const lines = escaped.split('\n');
+        const output = [];
+        let inList = false;
+
+        for (const line of lines) {
+            // Check if line is a bullet item (starts with "* ")
+            if (/^\* /.test(line)) {
+                if (!inList) { output.push('<ul>'); inList = true; }
+                const content = applyInline(line.slice(2));
+                output.push(`<li>${content}</li>`);
+            } else {
+                if (inList) { output.push('</ul>'); inList = false; }
+                if (line.trim() === '') {
+                    output.push('<br>');
+                } else {
+                    output.push(`<p>${applyInline(line)}</p>`);
+                }
+            }
+        }
+        if (inList) output.push('</ul>');
+        return output.join('');
+    }
+
+    // Apply inline formatting: **bold**
+    function applyInline(text) {
+        return text.replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>');
+    }
+
     // Function to append a message to the chat
     function appendMessage(sender, text) {
         const messageDiv = document.createElement('div');
@@ -11,7 +47,11 @@ document.addEventListener('DOMContentLoaded', () => {
 
         const bubbleDiv = document.createElement('div');
         bubbleDiv.classList.add('message-bubble');
-        bubbleDiv.textContent = text;
+        if (sender === 'bot') {
+            bubbleDiv.innerHTML = formatMarkdown(text);
+        } else {
+            bubbleDiv.textContent = text;
+        }
 
         messageDiv.appendChild(bubbleDiv);
         chatBox.appendChild(messageDiv);

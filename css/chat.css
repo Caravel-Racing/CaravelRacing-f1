@@ -83,6 +83,25 @@
     border: 1px solid #3a3a3a;
 }
 
+/* Markdown formatting inside bot messages */
+.bot-message .message-bubble p {
+    margin: 0 0 0.4rem 0;
+}
+.bot-message .message-bubble p:last-child {
+    margin-bottom: 0;
+}
+.bot-message .message-bubble ul {
+    margin: 0.2rem 0 0.4rem 1.2rem;
+    padding: 0;
+}
+.bot-message .message-bubble li {
+    margin-bottom: 0.2rem;
+}
+.bot-message .message-bubble strong {
+    color: #ffffff;
+    font-weight: 700;
+}
+
 .chat-input-area {
     padding: 1rem;
     background: #1a1a1a;
