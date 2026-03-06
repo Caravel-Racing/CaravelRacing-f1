@@ -57,7 +57,7 @@ const headerHtml = `
           </ul>
         </div>
         <a href="../patrocinadores.html" data-i18n="nav.sponsors">Sponsors</a>
-        <a href="../chat.html" style="color:var(--accent); font-weight:bold;">AI Chat</a>
+        <a href="../chat.html">NavAI</a>
         <a href="../contact.html" data-i18n="nav.contact">Contact Us</a>
       </nav>
 
@@ -103,7 +103,7 @@ const headerHtml = `
           </div>
 
           <a href="../patrocinadores.html" data-i18n="nav.sponsors">Sponsors</a>
-          <a href="../chat.html" style="color:var(--accent); font-weight:bold;">AI Chat</a>
+          <a href="../chat.html">NavAI</a>
           <a href="../contact.html" data-i18n="nav.contact">Contact Us</a>
         </nav>
 
@@ -127,3 +127,39 @@ const headerHtml = `
 `;
 
 document.write(langModalHtml + headerHtml);
+
+// Highlight the nav link that matches the current page
+(function () {
+  var page = location.pathname.split('/').pop() || 'index.html';
+  var segments = location.pathname.replace(/^\//, '').split('/');
+  var dir = segments.length > 1 ? segments[segments.length - 2] + '/' : '';
+
+  var dirMap = {
+    'projects/': 'projects.html',
+    'members/': 'info.html',
+    'beneficios/': 'patrocinadores.html'
+  };
+
+  var links = document.querySelectorAll('.nav a, .mobile-links a, .mobile-about-list a');
+  var matched = false;
+
+  links.forEach(function (link) {
+    var linkFile = link.getAttribute('href').split('/').pop();
+    if (linkFile === page) {
+      link.classList.add('nav-active');
+      matched = true;
+    }
+  });
+
+  if (!matched && dir) {
+    var parentFile = dirMap[dir];
+    if (parentFile) {
+      links.forEach(function (link) {
+        var linkFile = link.getAttribute('href').split('/').pop();
+        if (linkFile === parentFile) {
+          link.classList.add('nav-active');
+        }
+      });
+    }
+  }
+})();

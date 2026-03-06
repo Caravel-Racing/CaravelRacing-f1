@@ -3,40 +3,40 @@ document.addEventListener('DOMContentLoaded', () => {
     const chatInput = document.getElementById('chatInput');
     const sendBtn = document.getElementById('sendBtn');
 
-    // Convert **text** → <strong> and lines starting with * → bullet list items
+    // Convert **text** → <strong> and * items → bullet list items
     function formatMarkdown(text) {
         // Escape HTML to prevent injection
-        const escaped = text
+        let html = text
             .replace(/&/g, '&amp;')
             .replace(/</g, '&lt;')
             .replace(/>/g, '&gt;');
 
-        const lines = escaped.split('\n');
+        // Apply bold: **text** → <strong>text</strong>
+        html = html.replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>');
+
+        // Normalize inline bullets: " * item" anywhere → newline + "* item"
+        // This handles when the AI puts multiple bullets on one line
+        html = html.replace(/ \* /g, '\n* ');
+
+        const lines = html.split('\n');
         const output = [];
         let inList = false;
 
         for (const line of lines) {
-            // Check if line is a bullet item (starts with "* ")
-            if (/^\* /.test(line)) {
+            const trimmed = line.trim();
+            if (!trimmed) {
+                if (inList) { output.push('</ul>'); inList = false; }
+                output.push('<br>');
+            } else if (/^\* /.test(trimmed)) {
                 if (!inList) { output.push('<ul>'); inList = true; }
-                const content = applyInline(line.slice(2));
-                output.push(`<li>${content}</li>`);
+                output.push(`<li>${trimmed.slice(2)}</li>`);
             } else {
                 if (inList) { output.push('</ul>'); inList = false; }
-                if (line.trim() === '') {
-                    output.push('<br>');
-                } else {
-                    output.push(`<p>${applyInline(line)}</p>`);
-                }
+                output.push(`<p>${trimmed}</p>`);
             }
         }
         if (inList) output.push('</ul>');
         return output.join('');
-    }
-
-    // Apply inline formatting: **bold**
-    function applyInline(text) {
-        return text.replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>');
     }
 
     // Function to append a message to the chat
