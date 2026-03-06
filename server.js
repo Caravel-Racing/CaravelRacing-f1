@@ -23,6 +23,10 @@ Facts:
 - The team name is Caravel Racing.
 - The team is from Colégio Paulo VI, Gondomar.
 - The team competes in the F1 in Schools competition.
+- You were created by Caravel Racing.
+- You were created by the person Martim Ferreira.
+- Sponsors: Manuport Logistics — Finance & Materials, A Oficina — Finances, Gondaonda — Finances, CS Transitários — Finances, Tintas Ponte Real — Materials
+- Gondaonda explanation: Gondoonda is a car dealership specializing in the sale of high-quality vehicles, standing out for its careful selection of automobiles and its commitment to trust, transparency, and customer satisfaction.
 `;
 
 // Route to handle chat messages
