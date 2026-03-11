@@ -51,7 +51,7 @@ const headerHtml = `
           </button>
 
           <ul class="dropdown-menu" role="menu" aria-labelledby="aboutDropdown">
-            <li role="none"><a role="menuitem" href="members/info.html" data-i18n="nav.about2">Meet the Tripulation</a>
+            <li role="none"><a role="menuitem" href="members/info.html" data-i18n="nav.about2">Meet the Crew</a>
             </li>
             <li role="none"><a role="menuitem" href="sobre-equipa.html" data-i18n="nav.about3">Information</a></li>
           </ul>
@@ -97,7 +97,7 @@ const headerHtml = `
             </button>
 
             <div id="mobile-about-list" class="mobile-about-list" hidden>
-              <a href="members/info.html" data-i18n="nav.about2">Meet the Tripulation</a>
+              <a href="members/info.html" data-i18n="nav.about2">Meet the Crew</a>
               <a href="sobre-equipa.html" data-i18n="nav.about3">Information</a>
             </div>
           </div>

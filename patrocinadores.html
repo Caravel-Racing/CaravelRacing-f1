@@ -39,6 +39,7 @@
 
   <link rel="stylesheet" href="css/styles.css">
   <link rel="stylesheet" href="css/subpage.css">
+  <link rel="stylesheet" href="css/sponsors.css">
 </head>
 
 <body>
@@ -48,16 +49,57 @@
   <script src="js/header.js"></script>
 
   <main class="container">
-    <h2 data-i18n="sponsors.title">Sponsors</h2>
-    <ul>
-      <li><a href="https://www.manuport-logistics.com/" target="_blank">Manuport Logistics</a> — Finance & Material</li>
-      <li><a href="https://www.aoficinagondomar.pt/" target="_blank">A Oficina</a> — Finance</li>
-      <li><a href="https://www.gondoonda.pt/" target="_blank">Gondoonda</a> — Finance</li>
-      <li><a href="https://cstransitarios.pt/" target="_blank">CS Transitários</a> — Finance</li>
-      <li><a href="https://www.tintaspontereal.pt/" target="_blank">Tintas Ponte Real</a> — Material</li>
-    </ul>
+    <section id="sponsors-info" class="container members-info" aria-label="Sponsors information">
+      <!-- Manuport Logistics -->
+      <article id="manuport" class="member-card" tabindex="-1" aria-labelledby="manuport-name">
+        <img src="images/manuport.png" alt="Manuport Logistics — Caravel Racing" class="member-photo">
+        <div class="member-meta">
+          <h2 id="manuport-name" class="member-name">Manuport Logistics</h2>
+          <p class="member-role">Finance & Material</p>
+          <p class="member-bio">Provides logistical support and financial backing to the team, ensuring our materials
+            reach their destination and our operations are well-funded.</p>
+        </div>
+      </article>
+      <!-- A Oficina -->
+      <article id="aoficina" class="member-card" tabindex="-1" aria-labelledby="aoficina-name">
+        <img src="images/aoficina.png" alt="A Oficina — Caravel Racing" class="member-photo">
+        <div class="member-meta">
+          <h2 id="aoficina-name" class="member-name">A Oficina</h2>
+          <p class="member-role">Finance</p>
+          <p class="member-bio">A key financial partner aiding in the development and growth of our racing projects.</p>
+        </div>
+      </article>
+      <!-- Gondoonda -->
+      <article id="gondoonda" class="member-card" tabindex="-1" aria-labelledby="gondoonda-name">
+        <img src="images/gondoonda.png" alt="Gondoonda — Caravel Racing" class="member-photo">
+        <div class="member-meta">
+          <h2 id="gondoonda-name" class="member-name">Gondoonda</h2>
+          <p class="member-role">Finance</p>
+          <p class="member-bio">Supporting the team's financial needs and participating in our shared success.</p>
+        </div>
+      </article>
+      <!-- CS Transitários -->
+      <article id="cstransitarios" class="member-card" tabindex="-1" aria-labelledby="cstransitarios-name">
+        <img src="images/cstransitarios.png" alt="CS Transitários — Caravel Racing" class="member-photo">
+        <div class="member-meta">
+          <h2 id="cstransitarios-name" class="member-name">CS Transitários</h2>
+          <p class="member-role">Finance</p>
+          <p class="member-bio">Expertise in transit and logistics, providing essential financial support to the team.
+          </p>
+        </div>
+      </article>
+      <!-- Tintas Ponte Real -->
+      <article id="tintaspontereal" class="member-card" tabindex="-1" aria-labelledby="tintaspontereal-name">
+        <img src="images/tintaspontereal.png" alt="Tintas Ponte Real — Caravel Racing" class="member-photo">
+        <div class="member-meta">
+          <h2 id="tintaspontereal-name" class="member-name">Tintas Ponte Real</h2>
+          <p class="member-role">Material</p>
+          <p class="member-bio">Providing the high-quality materials and finishes that make our car stand out on the
+            track.</p>
+        </div>
+      </article>
+    </section>
   </main>
-
   <main class="container">
     <h3 data-i18n="sponsors.title2">Sponsor Benefits</h3>
     <div class="grid">
@@ -67,7 +109,6 @@
       </article>
     </div>
   </main>
-
   <footer class="site-footer">
     <div class="container"
       style="display:flex;flex-wrap:wrap;gap:1rem;align-items:center;justify-content:space-between;">
@@ -76,22 +117,18 @@
         <p style="margin:0;font-size:.9rem;color:#9a9a9a;">Contact: <a
             href="mailto:caravelracing@gmail.com">caravelracing@gmail.com</a></p>
       </div>
-
       <!-- Sponsors (middle) -->
       <div class="footer-sponsors" aria-label="Sponsors">
         <a href="https://www.manuport-logistics.com/" target="_blank" rel="noopener noreferrer"
           aria-label="Sponsor One">
           <img src="images/manuport.png" alt="manuport-logistics">
         </a>
-
         <a href="https://www.aoficinagondomar.pt/" target="_blank" rel="noopener noreferrer" aria-label="Sponsor Two">
           <img src="images/aoficina.png" alt="a-oficina">
         </a>
-
         <a href="https://www.gondoonda.pt/" target="_blank" rel="noopener noreferrer" aria-label="Sponsor Three">
           <img src="images/gondoonda.png" alt="gondoonda">
         </a>
-
         <a href="https://cstransitarios.pt/" target="_blank" rel="noopener noreferrer" aria-label="Sponsor Four">
           <img src="images/cstransitarios.png" alt="cstransitarios">
         </a>
@@ -99,22 +136,18 @@
           <img src="images/tintaspontereal.png" alt="tintaspontereal">
         </a>
       </div>
-
       <div style="display:flex;">
         <div class="mobile-socials" aria-label="Social links">
           <a href="https://instagram.com/caravelracing" target="_blank" rel="noopener noreferrer"
             class="mobile-social-link" aria-label="Caravel Racing on Instagram">
             <img src="images/instagram.png" alt="" aria-hidden="true" />
           </a>
-
           <a href="https://www.linkedin.com/in/caravel-racing-387b613a8" target="_blank" rel="noopener noreferrer"
             class="mobile-social-link" aria-label="Caravel Racing LinkedIn">
             <img src="images/linkedin.png" alt="" aria-hidden="true" />
           </a>
         </div>
       </div>
-
-
     </div>
   </footer>
 </body>

@@ -1,0 +1,45 @@
+/* Custom styles for the Sponsors page to distinguish it from the Team Members page */
+
+.member-card {
+    background: #4d4d4d !important;
+    /* Secondary gray background */
+    border: 1px solid rgba(2, 2, 2, 0.1);
+}
+
+.member-name {
+    color: #fff !important;
+}
+
+.member-name::after {
+    background: #8e8e8e !important;
+    /* Darker separator for the gray theme */
+}
+
+.member-role {
+    color: var(--accent) !important;
+    /* Use red accent for the role to pop against gray */
+    font-weight: bold;
+}
+
+.member-bio {
+    color: #ccc !important;
+}
+
+/* Fix for logos on desktop to prevent "bugged" look */
+.member-photo {
+    background-color: #fff;
+    /* White background for logos (most have transparent or white bgs) */
+    object-fit: contain !important;
+    /* Ensure the whole logo is visible without cropping */
+    padding: 1rem;
+    /* Space around the logo */
+    box-sizing: border-box;
+}
+
+@media (max-width: 700px) {
+    .member-photo {
+        max-width: 200px;
+        height: auto;
+        margin: 0 auto;
+    }
+}
