@@ -90,6 +90,8 @@
         cstransitarios_bio: "Expertise in transit and logistics, providing essential financial support to the team.",
         tintaspontereal_role: "Material",
         tintaspontereal_bio: "Providing the high-quality materials and finishes that make our car stand out on the track."
+        cacao_role: "Material",
+        cacao_bio: "CACAO | Civil ENGINEERING embodies the raw material – knowledge – which, through unique processes, transforms that knowledge into a service of excellence for its clients. It also has a network of expert partners in diverse engineering fields, allowing it to embrace any challenge presented."
       },
       contact: {
         title: "Contacts",
@@ -235,6 +237,9 @@
         cstransitarios_bio: "Especialistas em trânsito e logística, prestando um apoio financeiro essencial à equipa.",
         tintaspontereal_role: "Materiais",
         tintaspontereal_bio: "Fornecer materiais e acabamentos de alta qualidade que fazem o nosso carro destacar-se na pista."
+        cacao_role: "Material",
+        cacao_bio: "A CACAO | Engenharia Civil personifica a matéria prima - conhecimento que, através de processos únicos, transforma o seu saber num serviço de excelência para os seus clientes. Tambm, conta com uma rede de parceiros especialistas nas mais diversas áreas de engenharia, o que lhe permite abraçar qualquer desafio proposto."
+
       },
       contact: {
         title: "Contactos",
