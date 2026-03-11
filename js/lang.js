@@ -48,7 +48,7 @@
         instagram: "Caravel Racing on Instagram"
       },
       projects: {
-        title:"Projects",
+        title: "Projects",
         one: "Project 1 - Caravel V1 -> Sketch",
         oneinfo: "First car sketch made by our Graphic Engineer and our Aerodynamicist",
         view: "View Project"
@@ -61,31 +61,41 @@
         nation: "Nationality: ",
         nationans: "Portuguese",
         school: "School: ",
-        goal:"Goals: ",
-        goalans:"Participate in the 2025/26 season — learn regulations and compete at a regional/national level. (Technical goal: minimize drag and friction as much as possible.)",
-        skills:"Key team skills: ",
+        goal: "Goals: ",
+        goalans: "Participate in the 2025/26 season — learn regulations and compete at a regional/national level. (Technical goal: minimize drag and friction as much as possible.)",
+        skills: "Key team skills: ",
         skillsans: "CAD (Fusion 360), CFD, CNC/laser fabric, marketing/branding e project managment.",
-        events:"Planned events: ",
-        eventsans:"Regional competitions (dates to be confirmed), local tests and demonstrations at the school.",
-        meetings:"Team Meetings: ",
-        meetingsans:"Weekly meeting (every Friday at 8:00 PM).",
-        social:"Team Social Media: ",
-        sponsors:"Sponsors Wanted: ",
-        sponsorsans:"Domínio/DNS, materiais, roupa/fatos, apoio financeiro ou técnico (lista de benefícios dos patrocinadores disponível).",
-        notes:"Additional Notes: ",
+        events: "Planned events: ",
+        eventsans: "Regional competitions (dates to be confirmed), local tests and demonstrations at the school.",
+        meetings: "Team Meetings: ",
+        meetingsans: "Weekly meeting (every Friday at 8:00 PM).",
+        social: "Team Social Media: ",
+        sponsors: "Sponsors Wanted: ",
+        sponsorsans: "Domínio/DNS, materiais, roupa/fatos, apoio financeiro ou técnico (lista de benefícios dos patrocinadores disponível).",
+        notes: "Additional Notes: ",
         notesans: "We will keep this site updated with all projects (CAD, simulations, and test results) — available to sponsors and judges.",
         roles: "Main Roles: "
       },
       sponsors: {
-        title:"Sponsors",
-        title2:"Sponsors Benefits",
-        button: "View Sponsor Benefits"
+        title: "Sponsors",
+        title2: "Sponsors Benefits",
+        button: "View Sponsor Benefits",
+        manuport_role: "Finance & Material",
+        manuport_bio: "Manuport Logistics is an international company specializing in logistics solutions and global freight transport. Its expertise in supply chain coordination and ocean freight makes it an essential partner for companies operating worldwide.",
+        aoficina_role: "Finance",
+        aoficina_bio: "Oficina Gondomar is a workshop dedicated to automotive maintenance and repair, standing out for its professionalism, experience, and attention to detail in every service performed. It offers technical solutions that guarantee safety, performance, and reliability for vehicles.",
+        gondoonda_role: "Finance",
+        gondoonda_bio: "Supporting the team's financial needs and participating in our shared success.",
+        cstransitarios_role: "Finance",
+        cstransitarios_bio: "Expertise in transit and logistics, providing essential financial support to the team.",
+        tintaspontereal_role: "Material",
+        tintaspontereal_bio: "Providing the high-quality materials and finishes that make our car stand out on the track."
       },
       contact: {
         title: "Contacts",
       },
       projectv1: {
-        title:"Caravel V1 - Sketch",
+        title: "Caravel V1 - Sketch",
         goal: "Goal: ",
         goalans: "Focus on the regulations and learn them.",
         process: "Process",
@@ -93,8 +103,8 @@
         p2: "Research and requirements",
         p3: "Talk and plan",
         p4: "Design",
-        result:"Result",
-        images:"Sketch Images"
+        result: "Result",
+        images: "Sketch Images"
       },
       benefits: {
         title: "Sponsor Benefits",
@@ -103,11 +113,11 @@
         marketing: "Digital Marketing: ",
         marketingans: "Team social media promotion, including regular mentions and acknowledgements.",
         event: "Event Acess: ",
-        eventans:"Invitations to team events, such as tryouts and competitions.",
+        eventans: "Invitations to team events, such as tryouts and competitions.",
         progress: "Progress Reports: ",
-        progressans:"Updates on project development and team performance.",
+        progressans: "Updates on project development and team performance.",
         promotional: "Custom Promotional Material: ",
-        promotionalans:"Possibility to create promotional material jointly with the team."
+        promotionalans: "Possibility to create promotional material jointly with the team."
       },
       members: {
         name: "Mariana Santos",
@@ -131,7 +141,7 @@
         pedro_bio: "Responsible for providing visibility to the team through activities/events, social media, and other types of advertising. Digitally creates the logo, images, and videos and represents the team in the media",
         pedro_skills: "Key skills: Creative, Communicative, Productive",
         name: "Francisco Silva",
-        francisco_role: "Resource & Logistics Manager", 
+        francisco_role: "Resource & Logistics Manager",
         francisco_bio: "Seeks to find the best companies that supply materials and services. Responsible for ensuring that all necessary materials arrive in a timely manner, guaranteeing their availability for other team members",
         francisco_skills: "Key skills: Analytical, Flexible, Committed"
       }
@@ -184,7 +194,7 @@
         instagram: "Caravel Racing no Instagram"
       },
       projects: {
-        title:"Projetos",
+        title: "Projetos",
         one: "Projeto 1 - Caravel V1 -> Esboço",
         oneinfo: "Primeiro esboço de um carro feito pelo nosso Engenheiro Gráfico e pela nossa Engenheira da Aerodinâmica",
         view: "Ver Projeto"
@@ -197,30 +207,40 @@
         nation: "Nacionalidade: ",
         nationans: "Portuguesa",
         school: "Escola: ",
-        goal:"Objetivos: ",
-        goalans:"Participar na época 2025/26 — aprender os regulamentos e competir a nível regional/nacional. (Objetivo técnico: minimizar ao máximo o arrasto e o atrito.)",
-        skills:"Competências-chave da equipa: ",
+        goal: "Objetivos: ",
+        goalans: "Participar na época 2025/26 — aprender os regulamentos e competir a nível regional/nacional. (Objetivo técnico: minimizar ao máximo o arrasto e o atrito.)",
+        skills: "Competências-chave da equipa: ",
         skillsans: "CAD (Fusion 360), CFD, fabrico CNC/laser, marketing/branding e gestão de projetos.",
-        events:"Eventos planeados: ",
-        eventsans:"Competições regionais (datas a confirmar), provas locais e demonstrações na escola.",
-        meetings:"Reuniões da Equipa: ",
-        meetingsans:"Reunião semanal (todas as sextas-feiras às 20h).",
-        social:"Redes Sociais da Equipa: ",
-        sponsors:"Patrocinadores procurados: ",
-        sponsorsans:"Domínio/DNS, materiais, roupa/fatos, apoio financeiro ou técnico (lista de benefícios dos patrocinadores disponível).",
-        notes:"Notas adicionais: ",
+        events: "Eventos planeados: ",
+        eventsans: "Competições regionais (datas a confirmar), provas locais e demonstrações na escola.",
+        meetings: "Reuniões da Equipa: ",
+        meetingsans: "Reunião semanal (todas as sextas-feiras às 20h).",
+        social: "Redes Sociais da Equipa: ",
+        sponsors: "Patrocinadores procurados: ",
+        sponsorsans: "Domínio/DNS, materiais, roupa/fatos, apoio financeiro ou técnico (lista de benefícios dos patrocinadores disponível).",
+        notes: "Notas adicionais: ",
         notesans: "Manteremos este site atualizado com todos os projetos (CAD, simulações e resultados de testes) — disponíveis para os patrocinadores e jurí.",
       },
       sponsors: {
-        title:"Patrocinadores",
-        title2:"Benefícios dos Patrocinadores",
-        button: "Ver benefícios"
+        title: "Patrocinadores",
+        title2: "Benefícios dos Patrocinadores",
+        button: "Ver benefícios",
+        manuport_role: "Finanças & Materiais",
+        manuport_bio: "A Manuport Logistics é uma empresa internacional especializada em soluções logísticas e transporte global de mercadorias. A sua experiência em coordenação de cadeias de abastecimento e transporte marítimo torna-a um parceiro essencial para empresas que operam a nível mundial.",
+        aoficina_role: "Finanças",
+        aoficina_bio: "A Oficina Gondomar é um espaço dedicado à manutenção e reparação automóvel, destacando-se pelo profissionalismo, experiência e atenção ao detalhe em cada serviço realizado. Oferece soluções técnicas que garantem segurança, desempenho e fiabilidade aos veículos.",
+        gondoonda_role: "Finanças",
+        gondoonda_bio: "A Gondoonda é um stand automóvel especializado na comercialização de veículos de elevada qualidade, destacando-se pela seleção criteriosa de automóveis e pelo compromisso com a confiança, transparência e satisfação do cliente.",
+        cstransitarios_role: "Finanças",
+        cstransitarios_bio: "Especialistas em trânsito e logística, prestando um apoio financeiro essencial à equipa.",
+        tintaspontereal_role: "Materiais",
+        tintaspontereal_bio: "Fornecer materiais e acabamentos de alta qualidade que fazem o nosso carro destacar-se na pista."
       },
       contact: {
         title: "Contactos",
       },
-        projectv1: {
-        title:"Caravel V1 - Esboço",
+      projectv1: {
+        title: "Caravel V1 - Esboço",
         goal: "Objetivo: ",
         goalans: "Compreender os regulamentos.",
         process: "Processo",
@@ -228,8 +248,8 @@
         p2: "Investigação e requisitos",
         p3: "Falar e planear",
         p4: "Desenhar",
-        result:"Resultado",
-        images:"Imagens do Esboço"
+        result: "Resultado",
+        images: "Imagens do Esboço"
       },
       benefits: {
         title: "Benefícios dos Patrocinadores",
@@ -238,11 +258,11 @@
         marketing: "Marketing Digital: ",
         marketingans: "Promoção da equipa nas redes sociais, incluindo menções e agradecimentos regulares.",
         event: "Acesso a Eventos: ",
-        eventans:"Convites para eventos de equipa, como testes e competições.",
+        eventans: "Convites para eventos de equipa, como testes e competições.",
         progress: "Relatórios de progresso: ",
-        progressans:"Atualizações sobre o desenvolvimento do projeto e o desempenho da equipa.",
+        progressans: "Atualizações sobre o desenvolvimento do projeto e o desempenho da equipa.",
         promotional: "Material Promocional Personalizado: ",
-        promotionalans:"Possibilidade de criar material promocional em conjunto com a equipa."
+        promotionalans: "Possibilidade de criar material promocional em conjunto com a equipa."
       },
       members: {
         mariana_name: "Mariana Santos",
@@ -269,13 +289,13 @@
         francisco_role: "Gestor de Recursos & Logística",
         francisco_bio: "Procura encontrar as melhores empresas fornecedoras de materiais e serviços. Responsável por garantir que todos os materiais necessários chegam atempadamente, garantindo a sua disponibilidade para os outros membros da equipa",
         francisco_skills: "Competências: Analítico, Flexível, Empenhado"
-    }
+      }
     },
   };
 
   // utility to get nested key
   function getKey(obj, keyPath) {
-    return keyPath.split('.').reduce((o,k) => (o && o[k] !== undefined) ? o[k] : undefined, obj);
+    return keyPath.split('.').reduce((o, k) => (o && o[k] !== undefined) ? o[k] : undefined, obj);
   }
 
   function applyTranslations(lang) {
@@ -371,20 +391,20 @@
     if (splash) {
       const observer = new MutationObserver(() => {
         const hidden = splash.getAttribute('aria-hidden') === 'true' ||
-                       getComputedStyle(splash).display === 'none' ||
-                       splash.classList.contains('hidden');
+          getComputedStyle(splash).display === 'none' ||
+          splash.classList.contains('hidden');
         if (hidden) {
           whenSplashDoneShow();
           observer.disconnect();
         }
       });
-      observer.observe(splash, { attributes: true, attributeFilter: ['style','class','aria-hidden'] });
+      observer.observe(splash, { attributes: true, attributeFilter: ['style', 'class', 'aria-hidden'] });
 
       // also check once DOM is ready
       window.addEventListener('load', () => {
         const hidden = splash.getAttribute('aria-hidden') === 'true' ||
-                       getComputedStyle(splash).display === 'none' ||
-                       splash.classList.contains('hidden');
+          getComputedStyle(splash).display === 'none' ||
+          splash.classList.contains('hidden');
         if (hidden) whenSplashDoneShow();
       });
     } else {

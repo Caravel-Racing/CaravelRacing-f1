@@ -17,17 +17,46 @@
   box-sizing: border-box
 }
 
+html,
+body {
+  overflow-x: hidden;
+}
+
 body {
   font-family: system-ui, -apple-system, Segoe UI, Roboto, 'Helvetica Neue', Arial;
   line-height: 1.45;
   color: var(--muted);
   margin: 0;
+  background-color: #fdfdfd;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  position: relative;
+}
+
+body::before {
+  content: "";
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 60%;
+  height: 60%;
+  background-image: url("/images/logonocolor.png");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
+  opacity: 0.05;
+  z-index: -1;
+  pointer-events: none;
 }
 
 .container {
   max-width: var(--max-width);
   margin: 0 auto;
   padding: 1rem;
+  flex: 1 0 auto;
+  width: 100%;
 }
 
 
@@ -177,7 +206,10 @@ body {
 /* Active page link highlight */
 .nav a.nav-active,
 .mobile-links a.nav-active,
-.mobile-about-list a.nav-active {
+.mobile-about-list a.nav-active,
+/* Highlight parent if dropdown contains an active link */
+#aboutDropdownWrap:has(.nav-active) .dropdown-toggle,
+.mobile-submenu:has(.nav-active) .mobile-submenu-toggle {
   color: var(--accent);
   font-weight: bold;
 }
