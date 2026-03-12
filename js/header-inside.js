@@ -44,6 +44,7 @@ const headerHtml = `
       <nav class="nav">
         <a href="../index.html" data-i18n="nav.home">Home</a>
         <a href="../projects.html" data-i18n="nav.projects">Projects</a>
+        <a href="../jogos.html" data-i18n="nav.games">Games</a>
         <div class="nav-item dropdown" id="aboutDropdownWrap">
           <button class="dropdown-toggle" id="aboutDropdown" aria-haspopup="true" aria-expanded="false"
             data-i18n="nav.about">
@@ -88,6 +89,7 @@ const headerHtml = `
         <nav class="mobile-links" role="navigation" aria-label="Menu principal">
           <a href="../index.html" data-i18n="nav.home">Home</a>
           <a href="../projects.html" data-i18n="nav.projects">Projects</a>
+          <a href="../jogos.html" data-i18n="nav.games">Games</a>
 
           <!-- Mobile About accordion: collapsed by default -->
           <div class="mobile-submenu">
@@ -131,6 +133,9 @@ document.write(langModalHtml + headerHtml);
 // Highlight the nav link that matches the current page
 (function () {
   var page = location.pathname.split('/').pop() || 'index.html';
+  if (page === 'jogoreacao.html') {
+    page = 'jogos.html';
+  }
   var segments = location.pathname.replace(/^\//, '').split('/');
   var dir = segments.length > 1 ? segments[segments.length - 2] + '/' : '';
 

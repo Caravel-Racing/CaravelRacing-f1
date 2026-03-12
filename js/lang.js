@@ -13,6 +13,7 @@
       nav: {
         home: "Home",
         projects: "Projects",
+        games: "Games",
         about: "About the Team",
         sponsors: "Sponsors",
         contact: "Contact Us",
@@ -96,6 +97,22 @@
       contact: {
         title: "Contacts",
       },
+      games: {
+        title: "Games",
+        reaction_title: "Reaction Time Game",
+        reaction_desc: "Test your reaction speed like a true F1 driver!",
+        play_button: "Play Game"
+      },
+      reaction: {
+        title: "Reaction Time Game",
+        instruction_desc: "Wait for the lights to cycle from 1 to 4 and then all red. Once they go out, click as fast as you can to measure your reaction time!",
+        start_prompt: "Click here to start",
+        back: "Back to Games",
+        jump_start: "Jump Start! Click to try again.",
+        wait: "Wait for it...",
+        ready: "GO!",
+        result: "Reaction time: {time} ms. Click to play again!"
+      },
       projectv1: {
         title: "Caravel V1 - Sketch",
         goal: "Goal: ",
@@ -159,6 +176,7 @@
       nav: {
         home: "Início",
         projects: "Projetos",
+        games: "Jogos",
         about: "Sobre a Equipa",
         about2: "A Tripulação",
         about3: "Informações",
@@ -243,6 +261,22 @@
       },
       contact: {
         title: "Contactos",
+      },
+      games: {
+        title: "Jogos",
+        reaction_title: "Jogo de Tempo de Reação",
+        reaction_desc: "Testa a tua velocidade de reação como um verdadeiro piloto de F1!",
+        play_button: "Jogar"
+      },
+      reaction: {
+        title: "Jogo de Tempo de Reação",
+        instruction_desc: "Espera que as luzes passem de 1 a 4 e depois todas vermelhas. Assim que se apagarem, clica o mais rápido que conseguires para medir o teu tempo de reação!",
+        start_prompt: "Clica aqui para começar",
+        back: "Voltar aos Jogos",
+        jump_start: "Falsa Partida! Clica para tentar denovo.",
+        wait: "Espera...",
+        ready: "VAI!",
+        result: "Tempo de reação: {time} ms. Clica para jogar novamente!"
       },
       projectv1: {
         title: "Caravel V1 - Esboço",
