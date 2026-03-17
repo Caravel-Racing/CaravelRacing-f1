@@ -41,6 +41,20 @@
         subtitle: "Which language do you want to use?",
         remember: "Remember my choice"
       },
+      team: {
+        title: "TEAM",
+        text: "We are Caravel Racing, a Portuguese team competing in the STEM Racing 2025/26 season. Six students driven by innovation, engineering, and speed."
+      },
+      objectives: {
+        title: "OBJECTIVES",
+        text: "Participate in the 2025/26 season \u2014 master the regulations, minimize drag and friction, and compete at a regional and national level."
+      },
+      news: {
+        title: "NEWS",
+        announcement: "New Sponsor: Areus",
+        description: "We are proud to announce Areus as our newest sponsor, supporting us in our journey through the STEM Racing competition.",
+        greeting: "Thank you for supporting Caravel Racing!"
+      },
       footer: {
         copy: "© Caravel Racing — Portugal",
         contact: "Contact: <a href=\"mailto:caravelracing@gmail.com\">caravelracing@gmail.com</a>"
@@ -55,6 +69,12 @@
         view: "View Project"
       },
       about: {
+        subtitle: "Discover who we are, our goals, and how we work together to build the future of racing.",
+        identity_title: "Team Identity",
+        objectives_title: "Mission & Skills",
+        agenda_title: "Agenda",
+        contact_title: "Contact & Social",
+        support_title: "Partnerships",
         members: "Members: ",
         membersans: "6",
         view_members: "View Members: ",
@@ -92,10 +112,16 @@
         tintaspontereal_role: "Material",
         tintaspontereal_bio: "Providing the high-quality materials and finishes that make our car stand out on the track.",
         cacao_role: "Material",
-        cacao_bio: "CACAO | Civil ENGINEERING embodies the raw material – knowledge – which, through unique processes, transforms that knowledge into a service of excellence for its clients. It also has a network of expert partners in diverse engineering fields, allowing it to embrace any challenge presented."
+        cacao_bio: "CACAO | Civil Engineering embodies the raw material – knowledge – which, through unique processes, transforms that knowledge into a service of excellence for its clients. It also has a network of expert partners in diverse engineering fields, allowing it to embrace any challenge presented.",
+        areus_role: "Material & Technical Support",
+        areus_bio: "Areus is a company specializing in the realization of engineering and construction projects, with a focus on innovation and quality, Areus provides essential resources that enable the development of cutting-edge projects."
       },
       contact: {
         title: "Contacts",
+        subtitle: "Get in touch with us through our email or follow our journey on social media.",
+        email_title: "Email",
+        instagram_title: "Instagram",
+        linkedin_title: "LinkedIn"
       },
       games: {
         title: "Games",
@@ -114,7 +140,7 @@
         result: "Reaction time: {time} ms. Click to play again!"
       },
       projectv1: {
-        title: "Caravel V1 - Sketch",
+        title: "Caravel V1 | Sketch",
         goal: "Goal: ",
         goalans: "Focus on the regulations and learn them.",
         process: "Process",
@@ -127,6 +153,7 @@
       },
       benefits: {
         title: "Sponsor Benefits",
+        subtitle: "Explore the exclusive benefits and opportunities of partnering with Caravel Racing.",
         visibility: "Brand Visibility: ",
         visibilityans: "Sponsor logo and name displayed on the official website, car logo, flyer, and pit lane mention at events.",
         marketing: "Digital Marketing: ",
@@ -206,6 +233,20 @@
         subtitle: "Que idioma pretende usar?",
         remember: "Lembrar esta escolha"
       },
+      team: {
+        title: "EQUIPA",
+        text: "Somos a Caravel Racing, uma equipa portuguesa a competir na temporada STEM Racing 2025/26. Seis estudantes movidos pela inovação, engenharia e velocidade."
+      },
+      objectives: {
+        title: "OBJETIVOS",
+        text: "Participar na época 2025/26 \u2014 dominar os regulamentos, minimizar o arrasto e o atrito, e competir a nível regional e nacional."
+      },
+      news: {
+        title: "NOT\u00CDCIAS",
+        announcement: "Novo Patrocinador: Areus",
+        description: "Temos o orgulho de anunciar a Areus como nosso mais recente patrocinador, apoiando-nos na jornada da competição STEM Racing.",
+        greeting: "Obrigado por apoiarem a Caravel Racing!"
+      },
       footer: {
         copy: "© Caravel Racing — Portugal",
         contact: "Contactos: <a href=\"mailto:caravelracing@gmail.com\">caravelracing@gmail.com</a>"
@@ -220,6 +261,12 @@
         view: "Ver Projeto"
       },
       about: {
+        subtitle: "Descobre quem somos, os nossos objetivos e como trabalhamos juntos para construir o futuro do automobilismo.",
+        identity_title: "Identidade da Equipa",
+        objectives_title: "Missão e Competências",
+        agenda_title: "Agenda",
+        contact_title: "Contactos e Redes Sociais",
+        support_title: "Parcerias",
         members: "Membros: ",
         view_members: "Ver Membros: ",
         view_membersans: "Aqui",
@@ -256,11 +303,16 @@
         tintaspontereal_role: "Materiais",
         tintaspontereal_bio: "Fornecer materiais e acabamentos de alta qualidade que fazem o nosso carro destacar-se na pista.",
         cacao_role: "Materiais",
-        cacao_bio: "A CACAO | Engenharia Civil personifica a matéria prima - conhecimento que, através de processos únicos, transforma o seu saber num serviço de excelência para os seus clientes. Tambm, conta com uma rede de parceiros especialistas nas mais diversas áreas de engenharia, o que lhe permite abraçar qualquer desafio proposto."
-
+        cacao_bio: "A CACAO | Engenharia Civil personifica a matéria prima - conhecimento que, através de processos únicos, transforma o seu saber num serviço de excelência para os seus clientes. Tambm, conta com uma rede de parceiros especialistas nas mais diversas áreas de engenharia, o que lhe permite abraçar qualquer desafio proposto.",
+        areus_role: "Materiais & Apoio Técnico",
+        areus_bio: "A Areus é uma empresa especializada na realização de projetos de engenharia e construção, com foco em inovação e qualidade, a Areus fornece recursos essenciais que possibilitam o desenvolvimento de projetos de ponta."
       },
       contact: {
         title: "Contactos",
+        subtitle: "Entra em contacto connosco através do nosso e-mail ou acompanha a nossa jornada nas redes sociais.",
+        email_title: "E-mail",
+        instagram_title: "Instagram",
+        linkedin_title: "LinkedIn"
       },
       games: {
         title: "Jogos",
@@ -279,7 +331,7 @@
         result: "Tempo de reação: {time} ms. Clica para jogar novamente!"
       },
       projectv1: {
-        title: "Caravel V1 - Esboço",
+        title: "Caravel V1 | Esboço",
         goal: "Objetivo: ",
         goalans: "Compreender os regulamentos.",
         process: "Processo",
@@ -292,6 +344,7 @@
       },
       benefits: {
         title: "Benefícios dos Patrocinadores",
+        subtitle: "Explora os benefícios e oportunidades exclusivas de ser parceiro da Caravel Racing.",
         visibility: "Visibilidade da Marca: ",
         visibilityans: "Logótipo e nome do patrocinador exibidos no site oficial, logótipo do automóvel, folheto e menção no pit em eventos.",
         marketing: "Marketing Digital: ",

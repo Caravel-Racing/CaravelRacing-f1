@@ -7,33 +7,42 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1">
 
-  <title>Caravel Racing - Jogos</title>
-  <meta name="description"
-    content="Equipa inscrita na competição STEM Racing na temporada 2025/26 — Caravel Racing. Jogos interativos, incluindo jogo de tempo de reação.">
+  <title>Caravel Racing — Team Photo</title>
   <link rel="icon" href="/favicon.ico">
-  <link rel="icon" href="/favicon-32x32.png" sizes="32x32" type="image/png">
-  <link rel="icon" href="/favicon-16x16.png" sizes="16x16" type="image/png">
-  <link rel="apple-touch-icon" href="/apple-touch-icon.png" sizes="180x180">
-
-  <meta name="theme-color" content="#c0182e">
   <link rel="stylesheet" href="css/styles.css">
-  <link rel="stylesheet" href="css/projects.css">
+  <link rel="stylesheet" href="css/equipa-foto.css">
 </head>
 
 <body>
-  <!-- Shared Header -->
   <script src="js/header.js"></script>
 
-  <main class="container" style="text-align: center; margin-top: 4rem; margin-bottom: 4rem;">
-    <h2 data-i18n="games.title" style="margin-bottom: 2rem;">Games</h2>
-    <div style="display: flex; justify-content: center; gap: 2rem; flex-wrap: wrap;">
-      <div class="card" style="padding: 3rem; text-align: center; max-width: 500px; width: 100%;">
-        <h3 data-i18n="games.reaction_title" style="font-size: 1.8rem;">Reaction Time Game</h3>
-        <p data-i18n="games.reaction_desc" style="margin-bottom: 2rem; font-size: 1.1rem; color: #ff4b4b;">Test your
-          reaction speed like a true F1 driver!</p>
-        <a href="jogoreacao.html" class="btn" style="font-size: 1.5rem; padding: 1rem 2rem; display: inline-block;"
-          data-i18n="games.play_button">Play Game</a>
-      </div>
+  <main class="container">
+    <section class="hero" aria-labelledby="hero-title">
+      <h2 id="hero-title" style="margin:0 0 .25rem;color:var(--accent);font-size:1.6rem;">
+        Interactive Team Photo
+      </h2>
+    </section>
+
+    <div class="photo-wrap" id="photoWrap">
+      <img src="images/group.png" alt="group" class="base-photo">
+
+      <img src="images/diogobg.png" alt="Diogo" id="diogoCutout" class="cutout" crossorigin="anonymous"
+        data-page="members/info.html#diogo" tabindex="0">
+
+      <img src="images/martimbg.png" alt="Martim" id="martimCutout" class="cutout" crossorigin="anonymous"
+        data-page="members/info.html#martim" tabindex="0">
+
+      <img src="images/marianabg.png" alt="Mariana" id="marianaCutout" class="cutout" crossorigin="anonymous"
+        data-page="members/info.html#mariana" tabindex="0">
+
+      <img src="images/ferreirabg.png" alt="Ferreira" id="ferreiraCutout" class="cutout" crossorigin="anonymous"
+        data-page="members/info.html#ferreira" tabindex="0">
+
+      <img src="images/pedrobg.png" alt="Pedro" id="pedroCutout" class="cutout" crossorigin="anonymous"
+        data-page="members/info.html#pedro" tabindex="0">
+
+      <img src="images/franciscobg.png" alt="Francisco" id="franciscoCutout" class="cutout" crossorigin="anonymous"
+        data-page="members/info.html#francisco" tabindex="0">
     </div>
   </main>
 
@@ -46,10 +55,8 @@
             href="mailto:caravelracing@gmail.com">caravelracing@gmail.com</a></p>
       </div>
 
-      <!-- Sponsors (middle) -->
       <div class="footer-sponsors" aria-label="Sponsors">
-        <a href="https://www.manuport-logistics.com/" target="_blank" rel="noopener noreferrer"
-          aria-label="Sponsor One">
+        <a href="https://www.manuport-logistics.com/" target="_blank" rel="noopener noreferrer" aria-label="Sponsor One">
           <img src="images/manuport.png" alt="manuport-logistics">
         </a>
         <a href="https://www.aoficinagondomar.pt/" target="_blank" rel="noopener noreferrer" aria-label="Sponsor Two">
@@ -87,10 +94,10 @@
     </div>
   </footer>
 </body>
-
+<script src="js/header-dropdown.js" defer></script>
 <script src="js/lang.js" defer></script>
 <script src="js/langbutton.js" defer></script>
 <script src="js/mobile-menu.js" defer></script>
-<script src="js/header-dropdown.js" defer></script>
+<script src="js/groupimage.js" defer></script>
 
 </html>

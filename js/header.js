@@ -1,7 +1,7 @@
 const langModalHtml = `
   <!-- Language picker modal -->
   <div id="lang-modal" class="lang-modal" aria-hidden="true" role="dialog" aria-label="Language selector">
-    <div class="lang-panel" role="document">
+    <div class="lang-panel" style="color: #000000;" role="document">
       <h3 data-i18n="lang.title">Choose language</h3>
       <p data-i18n="lang.subtitle">Which language do you want to use?</p>
 
@@ -115,6 +115,11 @@ const headerHtml = `
           <a href="https://instagram.com/caravelracing" target="_blank" rel="noopener noreferrer"
             class="mobile-social-link" aria-label="Caravel Racing on Instagram">
             <img src="images/instagram.png" alt="" aria-hidden="true" />
+          </a>
+
+          <a href="https://www.linkedin.com/in/caravel-racing-387b613a8" target="_blank" rel="noopener noreferrer"
+            class="mobile-social-link" aria-label="Caravel Racing LinkedIn">
+            <img src="images/linkedin.png" alt="" aria-hidden="true" />
           </a>
 
           <button id="lang-toggle-mobile" class="mobile-lang mobile-only lang-trigger" aria-label="Change language"

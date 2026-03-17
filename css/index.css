@@ -1,296 +1,530 @@
-.hero {
-    padding: 3rem 0;
-    text-align: center;
+/* ===========================
+   INDEX.CSS — Scrollytelling Homepage  (FIXED)
+   =========================== */
+
+/* ---------- 3D Canvas (fixed background) ---------- */
+#car-canvas {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 0;
+  pointer-events: none;
+  /* FIX: start fully visible; GSAP will control opacity smoothly via scrub */
+  opacity: 1;
+  /* Smooth transition acts as a safety net for non-GSAP opacity changes */
+  transition: opacity 0.6s ease;
+  will-change: opacity;
 }
 
-.hero h2 {
-    margin: 0 0 0.5rem;
-    font-size: 1.8rem;
-    color: var(--accent);
+/* ---------- Scroll container ---------- */
+#scroll-container {
+  position: relative;
+  z-index: 1;
+}
+
+/* ---------- Scroll sections ---------- */
+.scroll-section {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  padding: 2rem 1.5rem;
+}
+
+.section-content {
+  max-width: 960px;
+  width: 100%;
+  margin: 0 auto;
+}
+
+/* ---------- Hero section ---------- */
+.hero-section {
+  text-align: center;
+  padding-top: calc(var(--header-height, 80px) + 2rem);
+}
+
+.hero-main-title {
+  font-size: clamp(1.6rem, 4vw, 2.8rem);
+  color: #fff;
+  margin: 0 0 1.5rem;
+  text-shadow: 0 2px 20px rgba(0, 0, 0, 0.6);
+  font-weight: 700;
+}
+
+.hero-buttons {
+  margin-top: 1rem;
+  display: flex;
+  gap: 0.8rem;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.hero-buttons .btn {
+  font-size: 1rem;
+  padding: 0.7rem 1.6rem;
+  text-shadow: none;
+}
+
+.btn-secondary {
+  background: rgba(255, 255, 255, 0.12) !important;
+  backdrop-filter: blur(8px);
+  border: 1px solid rgba(255, 255, 255, 0.2) !important;
+}
+
+.btn-secondary:hover {
+  background: rgba(255, 255, 255, 0.22) !important;
+}
+
+/* Scroll indicator */
+.scroll-indicator {
+  margin-top: 3rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.4rem;
+  animation: scrollBounce 2s ease-in-out infinite;
+}
+
+.scroll-arrow {
+  display: block;
+  width: 24px;
+  height: 24px;
+  border-right: 2px solid rgba(255, 255, 255, 0.6);
+  border-bottom: 2px solid rgba(255, 255, 255, 0.6);
+  transform: rotate(45deg);
+}
+
+.scroll-text {
+  color: rgba(255, 255, 255, 0.5);
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 3px;
+}
+
+@keyframes scrollBounce {
+
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+
+  50% {
+    transform: translateY(10px);
+  }
+}
+
+/* ---------- Section split (title + text side by side) ---------- */
+.section-split {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.5rem;
+  text-align: center;
+}
+
+.section-title {
+  font-family: var(--brand-font);
+  font-size: clamp(2.5rem, 8vw, 5rem);
+  color: #fff;
+  margin: 0;
+  text-transform: uppercase;
+  letter-spacing: 4px;
+
+  /* Initial hidden state — GSAP fromTo overrides these explicitly */
+  opacity: 0;
+  will-change: transform, opacity;
+}
+
+.section-text {
+  font-size: clamp(1rem, 2.5vw, 1.3rem);
+  color: rgba(255, 255, 255, 0.85);
+  margin: 0;
+  max-width: 600px;
+  line-height: 1.7;
+  text-shadow: 0 1px 8px rgba(0, 0, 0, 0.5);
+
+  /* Initial hidden state */
+  opacity: 0;
+  will-change: transform, opacity;
+}
+
+/* Direction hints — read by JS to know starting translateX */
+.from-left {
+  transform: translateX(-120px);
+}
+
+.from-right {
+  transform: translateX(120px);
+}
+
+/* ---------- News card ---------- */
+.news-card {
+  background: rgba(0, 0, 0, 0.55);
+  backdrop-filter: blur(20px) saturate(140%);
+  -webkit-backdrop-filter: blur(20px) saturate(140%);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 16px;
+  padding: 2.5rem;
+  max-width: 700px;
+  margin: 0 auto;
+
+  /* Initial hidden state */
+  opacity: 0;
+  transform: scale(0.9) translateY(40px);
+  will-change: transform, opacity;
+}
+
+.news-title {
+  font-family: var(--brand-font);
+  font-size: clamp(2rem, 5vw, 3rem);
+  color: var(--accent);
+  margin: 0 0 1.5rem;
+  text-align: center;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+}
+
+.news-body {
+  display: flex;
+  gap: 1.5rem;
+  align-items: center;
+}
+
+.news-image-wrap {
+  flex: 0 0 120px;
+}
+
+.news-image {
+  width: 120px;
+  height: 120px;
+  object-fit: contain;
+  border-radius: 12px;
+  filter: drop-shadow(0 4px 12px rgba(0, 0, 0, 0.3));
+}
+
+.news-text-wrap {
+  flex: 1;
+}
+
+.news-announcement {
+  font-size: 1.3rem;
+  color: #fff;
+  margin: 0 0 0.6rem;
+  font-weight: 700;
+}
+
+.news-description {
+  font-size: 1rem;
+  color: rgba(255, 255, 255, 0.8);
+  margin: 0 0 0.8rem;
+  line-height: 1.6;
+}
+
+.news-greeting {
+  font-size: 0.95rem;
+  color: var(--accent);
+  margin: 0;
+  font-style: italic;
+  font-weight: 600;
+}
+
+/* ---------- KPI Section ---------- */
+.kpi-section {
+  min-height: 50vh;
 }
 
 .kpis {
-    display: flex;
-    gap: 1rem;
-    margin: 2rem 0
+  display: flex;
+  gap: 1.5rem;
+  justify-content: center;
+  flex-wrap: wrap;
+
+  /* Initial hidden state */
+  opacity: 0;
+  transform: translateY(40px);
+  will-change: transform, opacity;
 }
 
-.kpis .card {
-    background: #f5f5f5;
-    padding: 1rem;
-    border-radius: 8px;
-    flex: 1;
-    text-align: center;
+.kpi-card {
+  background: rgba(0, 0, 0, 0.85);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  padding: 1.5rem 2rem;
+  border-radius: 12px;
+  text-align: center;
+  min-width: 140px;
+  flex: 1;
+  max-width: 220px;
 }
 
-@media (max-width:600px) {
-    .kpis {
-        flex-direction: column
-    }
+.kpi-card strong {
+  display: block;
+  color: var(--accent);
+  font-size: 0.9rem;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin-bottom: 0.4rem;
 }
 
-/* Ensure wrapper & images align and cutout overlays exactly */
-.photo-wrap {
-    position: relative;
-    display: block;
-    max-width: 900px;
-    /* keep or change to your layout */
-    margin: 0 auto;
+.kpi-card p {
+  color: #fff;
+  font-size: 1.8rem;
+  margin: 0;
+  font-weight: 700;
 }
 
-.photo-wrap .base-photo,
-.photo-wrap .cutout {
-    display: block;
-    width: 100%;
-    height: auto;
-    user-select: none;
-    -webkit-user-drag: none;
-}
-
-/* overlay must exactly cover the base image */
-.cutout {
-    position: absolute;
-    left: 0;
-    top: 0;
-    pointer-events: none;
-    /* so pointer hits the wrapper, not the image */
-    opacity: 0;
-    transform-origin: center;
-    transition: transform .28s ease, opacity .28s ease, filter .28s ease;
-    z-index: 2;
-    filter: drop-shadow(0 10px 28px rgba(0, 0, 0, 0.35));
-}
-
-/* active/pop state */
-.photo-wrap.pop .cutout {
-    opacity: 1;
-    transform: scale(1.06);
-    z-index: 999;
-}
-
-/* optional: subtle dim of background to make Diogo pop */
-.photo-wrap.pop .base-photo {
-    filter: brightness(.92);
-    transition: filter .28s ease;
-}
-
+/* ---------- Splash screen ---------- */
 .splash-overlay {
-    position: fixed;
-    inset: 0;
-    background: #b0b0b0;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    z-index: 9999;
-    transition: opacity 500ms ease, visibility 500ms ease;
-    opacity: 1;
-    visibility: visible;
-    pointer-events: all;
+  position: fixed;
+  inset: 0;
+  background: #b0b0b0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
+  transition: opacity 500ms ease, visibility 500ms ease;
+  opacity: 1;
+  visibility: visible;
+  pointer-events: all;
 }
 
 .splash-overlay.hidden {
-    opacity: 0;
-    visibility: hidden;
-    pointer-events: none;
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
 }
 
 .splash-inner {
-    text-align: center;
-    color: #fff;
-    padding: 0.9rem 1.5rem;
-    width: 90%;
-    max-width: 740px;
+  text-align: center;
+  color: #fff;
+  padding: 0.9rem 1.5rem;
+  width: 90%;
+  max-width: 740px;
+  position: relative;
+  padding-top: 1.6rem;
 }
 
 .splash-title {
-    font-family: "GreatsRaceItalic";
-    font-size: 1.0rem;
-    margin: 0 0 0.6rem;
-    font-weight: 800;
-    letter-spacing: 6px;
-    color: #fff;
-    text-transform: uppercase;
-    line-height: 1;
+  font-family: "GreatsRaceItalic";
+  font-size: 1.0rem;
+  margin: 0 0 0.6rem;
+  font-weight: 800;
+  letter-spacing: 6px;
+  color: #fff;
+  text-transform: uppercase;
+  line-height: 1;
 }
 
 .splash-letters {
-    display: inline-block;
-    line-height: 1;
+  display: inline-block;
+  line-height: 1;
 }
 
 .splash-letter {
-    display: inline-block;
-    opacity: 0;
-    transform: translateY(8px) scale(0.98);
-    transition: opacity 220ms cubic-bezier(.2, .8, .2, 1), transform 220ms cubic-bezier(.2, .8, .2, 1);
-    color: #fff;
-    font-weight: 800;
-    letter-spacing: 1px;
-    will-change: transform, opacity;
-    font-size: 2.4rem;
+  display: inline-block;
+  opacity: 0;
+  transform: translateY(8px) scale(0.98);
+  transition: opacity 220ms cubic-bezier(.2, .8, .2, 1),
+    transform 220ms cubic-bezier(.2, .8, .2, 1);
+  color: #fff;
+  font-weight: 800;
+  letter-spacing: 1px;
+  will-change: transform, opacity;
+  font-size: 2.4rem;
 }
 
 .splash-letter.space {
-    width: 0.5rem;
-    display: inline-block
+  width: 0.5rem;
+  display: inline-block;
 }
 
-.splash-letter[data-index="0"],
 .splash-letter[data-index="0"],
 .splash-letter[data-index="1"],
 .splash-letter[data-index="2"] {
-    color: var(--accent);
+  color: var(--accent);
 }
 
 .splash-overlay.hidden .splash-letter {
-    opacity: 1;
-    transform: none
+  opacity: 1;
+  transform: none;
 }
 
 .splash-bar {
-    width: 100%;
-    height: 14px;
-    background: #3d3d3d;
-    border-radius: 12px;
-    overflow: hidden;
-    margin: 0 auto;
-    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.03);
+  width: 100%;
+  height: 14px;
+  background: #3d3d3d;
+  border-radius: 12px;
+  overflow: hidden;
+  margin: 0 auto;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.03);
+  position: relative;
+  z-index: 1;
+  margin-top: 0.6rem;
 }
 
 .splash-fill {
-    height: 100%;
-    width: 0%;
-    background: #fff;
-    transition: width 120ms linear;
+  height: 100%;
+  width: 0%;
+  background: #fff;
+  transition: width 120ms linear;
 }
 
 .splash-percent {
-    margin-top: 0.6rem;
-    font-weight: 600;
-    color: #fff;
-    font-size: 0.95rem;
+  margin-top: 0.6rem;
+  font-weight: 600;
+  color: #fff;
+  font-size: 0.95rem;
 }
-
 
 body.splash-active {
-    overflow: hidden;
-}
-
-
-.splash-inner {
-    position: relative;
-    padding-top: 1.6rem;
+  overflow: hidden;
 }
 
 .splash-gif-wrap {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin-bottom: 0.6rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 0.6rem;
+  position: relative;
+  z-index: 3;
 }
 
 .splash-gif {
-    max-width: 220px;
-    width: 40%;
-    height: auto;
-    display: block;
-    pointer-events: none;
+  max-width: 220px;
+  width: 40%;
+  height: auto;
+  display: block;
+  pointer-events: none;
 }
 
 .splash-car-wrap {
-    position: absolute;
-    left: 0;
-
-    top: 9.0rem;
-    width: 100%;
-    height: 48px;
-    pointer-events: none;
-    overflow: visible;
+  position: absolute;
+  left: 0;
+  top: 9.0rem;
+  width: 100%;
+  height: 48px;
+  pointer-events: none;
+  overflow: visible;
+  z-index: 2;
 }
 
 .splash-car {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 84px;
-    height: auto;
-    transform: translateX(0);
-    transition: left 120ms linear;
-    filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.25));
-    pointer-events: none;
-    display: block;
-    object-fit: contain;
-    background: transparent;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 84px;
+  height: auto;
+  transform: translateX(0);
+  transition: left 120ms linear;
+  filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.25));
+  pointer-events: none;
+  display: block;
+  object-fit: contain;
+  background: transparent;
 }
 
-@media (max-width:600px) {
-    .splash-car {
-        width: 60px;
-    }
+/* ---------- Responsive ---------- */
+@media (max-width: 768px) {
+  .scroll-section {
+    padding: 1.5rem 1rem;
+  }
 
-    .splash-car-wrap {
-        height: 40px;
-        top: 2.2rem;
-    }
+  .section-title {
+    font-size: clamp(2rem, 10vw, 3rem);
+  }
 
-    .splash-title {
-        font-size: 1.6rem;
-    }
+  .news-body {
+    flex-direction: column;
+    text-align: center;
+  }
 
-    .splash-letter {
-        font-size: 1.6rem;
-    }
+  .news-image-wrap {
+    flex: none;
+  }
 
-    .splash-gif {
-        max-width: 140px;
-        width: 48%;
-    }
+  .news-card {
+    padding: 1.5rem;
+  }
+
+  .kpi-card {
+    min-width: 100px;
+    padding: 1rem;
+  }
+
+  .kpi-card p {
+    font-size: 1.4rem;
+  }
 }
 
-.splash-gif-wrap {
-    position: relative;
-    z-index: 3;
+@media (max-width: 600px) {
+  .splash-car {
+    width: 60px;
+  }
+
+  .splash-car-wrap {
+    height: 40px;
+    top: 2.2rem;
+  }
+
+  .splash-title {
+    font-size: 1.6rem;
+  }
+
+  .splash-letter {
+    font-size: 1.6rem;
+  }
+
+  .splash-gif {
+    max-width: 140px;
+    width: 48%;
+  }
 }
 
-.splash-car-wrap {
-    z-index: 2;
-}
+@media (max-width: 480px) {
+  .kpis {
+    flex-direction: column;
+    align-items: center;
+  }
 
-.splash-bar {
-    position: relative;
-    z-index: 1;
-    margin-top: 0.6rem;
+  .kpi-card {
+    max-width: 100%;
+    width: 100%;
+  }
 }
 
 @media (max-width: 430px) and (orientation: portrait) {
-    .splash-gif {
-        max-width: 80px;
-        width: auto;
-        height: auto;
-        display: block;
-        margin: 0 auto 0.4rem;
-        pointer-events: none;
-        z-index: 3;
-    }
+  .splash-gif {
+    max-width: 80px;
+    width: auto;
+    height: auto;
+    display: block;
+    margin: 0 auto 0.4rem;
+    pointer-events: none;
+    z-index: 3;
+  }
 
-    .splash-car-wrap {
-        top: 5.2rem;
-        height: 48px;
-        z-index: 1;
-        overflow: visible;
-    }
+  .splash-car-wrap {
+    top: 5.2rem;
+    height: 48px;
+    z-index: 1;
+    overflow: visible;
+  }
 
-    .splash-car {
-        width: 60px;
-        top: 0;
-        transition: left 120ms linear, top 120ms linear;
-    }
+  .splash-car {
+    width: 60px;
+    top: 0;
+    transition: left 120ms linear, top 120ms linear;
+  }
 
-    .splash-title {
-        font-size: 1.6rem;
-    }
+  .splash-title {
+    font-size: 1.6rem;
+  }
 
-    .splash-letter {
-        font-size: 1.6rem;
-    }
+  .splash-letter {
+    font-size: 1.6rem;
+  }
 }

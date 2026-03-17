@@ -30,21 +30,25 @@
       user-select: none;
       transition: background 0.2s;
     }
+
     .game-area:active {
       background: #222;
     }
+
     .game-lights-img {
       max-width: 100%;
       height: auto;
       margin-bottom: 2rem;
       pointer-events: none;
     }
+
     .game-status {
       font-size: 2rem;
       color: #fff;
       margin: 0;
       min-height: 3rem;
     }
+
     .game-result {
       font-size: 1.5rem;
       color: var(--accent);
@@ -60,10 +64,11 @@
 
   <main class="container">
     <div style="margin-top: 3rem; text-align: center;">
-        <h2 data-i18n="reaction.title">Reaction Time Game</h2>
-        <p data-i18n="reaction.instruction_desc" style="max-width: 600px; margin: 0 auto 2rem auto; font-size: 1.1rem;">
-            Wait for the lights to cycle from 1 to 4 and then all red. Once they go out (0ver.png), click as fast as you can to measure your reaction time!
-        </p>
+      <h2 data-i18n="reaction.title">Reaction Time Game</h2>
+      <p data-i18n="reaction.instruction_desc" style="max-width: 600px; margin: 0 auto 2rem auto; font-size: 1.1rem;">
+        Wait for the lights to cycle from 1 to 4 and then all red. Once they go out (0ver.png), click as fast as you can
+        to measure your reaction time!
+      </p>
     </div>
 
     <div class="game-area" id="game-container">
@@ -71,9 +76,9 @@
       <h3 id="game-status" class="game-status" data-i18n="reaction.start_prompt">Click here to start</h3>
       <p id="game-result" class="game-result"></p>
     </div>
-    
+
     <div style="text-align: center; margin-bottom: 4rem;">
-       <a href="jogos.html" class="btn" style="background:#444;" data-i18n="reaction.back">Back to Games</a>
+      <a href="jogos.html" class="btn" style="background:#444;" data-i18n="reaction.back">Back to Games</a>
     </div>
   </main>
 
@@ -88,18 +93,30 @@
 
       <!-- Sponsors (middle) -->
       <div class="footer-sponsors" aria-label="Sponsors">
-        <a href="https://www.manuport-logistics.com/" target="_blank" rel="noopener noreferrer" aria-label="Sponsor One"><img src="images/manuport.png" alt="manuport-logistics"></a>
-        <a href="https://www.aoficinagondomar.pt/" target="_blank" rel="noopener noreferrer" aria-label="Sponsor Two"><img src="images/aoficina.png" alt="a-oficina"></a>
-        <a href="https://www.gondoonda.pt/" target="_blank" rel="noopener noreferrer" aria-label="Sponsor Three"><img src="images/gondoonda.png" alt="gondoonda"></a>
-        <a href="https://cstransitarios.pt/" target="_blank" rel="noopener noreferrer" aria-label="Sponsor Four"><img src="images/cstransitarios.png" alt="cstransitarios"></a>
-        <a href="https://www.tintaspontereal.pt/" target="_blank" rel="noopener noreferrer" aria-label="Sponsor Five"><img src="images/tintaspontereal.png" alt="tintaspontereal"></a>
-        <a href="https://cacao.pt/" target="_blank" rel="noopener noreferrer" aria-label="Sponsor Six"><img src="images/cacao.png" alt="cacao-civil-engineering"></a>
+        <a href="https://www.manuport-logistics.com/" target="_blank" rel="noopener noreferrer"
+          aria-label="Sponsor One"><img src="images/manuport.png" alt="manuport-logistics"></a>
+        <a href="https://www.aoficinagondomar.pt/" target="_blank" rel="noopener noreferrer"
+          aria-label="Sponsor Two"><img src="images/aoficina.png" alt="a-oficina"></a>
+        <a href="https://www.gondoonda.pt/" target="_blank" rel="noopener noreferrer" aria-label="Sponsor Three"><img
+            src="images/gondoonda.png" alt="gondoonda"></a>
+        <a href="https://cstransitarios.pt/" target="_blank" rel="noopener noreferrer" aria-label="Sponsor Four"><img
+            src="images/cstransitarios.png" alt="cstransitarios"></a>
+        <a href="https://www.tintaspontereal.pt/" target="_blank" rel="noopener noreferrer"
+          aria-label="Sponsor Five"><img src="images/tintaspontereal.png" alt="tintaspontereal"></a>
+        <a href="https://cacao.pt/" target="_blank" rel="noopener noreferrer" aria-label="Sponsor Six"><img
+            src="images/cacao.png" alt="cacao-civil-engineering"></a>
+        <a href="https://areus.pt/" target="_blank" rel="noopener noreferrer" aria-label="Sponsor Seven"><img
+            src="images/areus.png" alt="areus"></a>
       </div>
 
       <div style="display:flex;">
         <div class="mobile-socials" aria-label="Social links">
-          <a href="https://instagram.com/caravelracing" target="_blank" rel="noopener noreferrer" class="mobile-social-link" aria-label="Caravel Racing on Instagram"><img src="images/instagram.png" alt="" aria-hidden="true" /></a>
-          <a href="https://www.linkedin.com/in/caravel-racing-387b613a8" target="_blank" rel="noopener noreferrer" class="mobile-social-link" aria-label="Caravel Racing LinkedIn"><img src="images/linkedin.png" alt="" aria-hidden="true" /></a>
+          <a href="https://instagram.com/caravelracing" target="_blank" rel="noopener noreferrer"
+            class="mobile-social-link" aria-label="Caravel Racing on Instagram"><img src="images/instagram.png" alt=""
+              aria-hidden="true" /></a>
+          <a href="https://www.linkedin.com/in/caravel-racing-387b613a8" target="_blank" rel="noopener noreferrer"
+            class="mobile-social-link" aria-label="Caravel Racing LinkedIn"><img src="images/linkedin.png" alt=""
+              aria-hidden="true" /></a>
         </div>
       </div>
     </div>
@@ -110,11 +127,13 @@
 <div id="i18n-jump-start" data-i18n="reaction.jump_start" style="display: none;">Jump Start! Click to try again.</div>
 <div id="i18n-wait" data-i18n="reaction.wait" style="display: none;">Wait for it...</div>
 <div id="i18n-ready" data-i18n="reaction.ready" style="display: none;">GO!</div>
-<div id="i18n-result" data-i18n="reaction.result" style="display: none;">Reaction time: {time} ms. Click to play again!</div>
+<div id="i18n-result" data-i18n="reaction.result" style="display: none;">Reaction time: {time} ms. Click to play again!
+</div>
 
 <script src="js/lang.js" defer></script>
 <script src="js/langbutton.js" defer></script>
 <script src="js/mobile-menu.js" defer></script>
 <script src="js/header-dropdown.js" defer></script>
 <script src="js/reaction.js" defer></script>
+
 </html>
