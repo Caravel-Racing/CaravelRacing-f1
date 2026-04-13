@@ -1,7 +1,5 @@
-require('dotenv').config();
 const express = require('express');
 const cors = require('cors');
-const { GoogleGenAI } = require('@google/genai');
 
 const app = express();
 const port = process.env.PORT || 3000;
@@ -9,9 +7,6 @@ const port = process.env.PORT || 3000;
 // Middleware
 app.use(cors()); // Allow website to connect to backend
 app.use(express.json()); // Allow backend to parse JSON from website
-
-// Initialize Gemini API
-const ai = new GoogleGenAI({ apiKey: process.env.GEMINI_API_KEY });
 
 // The "Brain" Facts / System Instructions
 const SYSTEM_INSTRUCTIONS = `
@@ -221,22 +216,32 @@ app.post('/api/chat', async (req, res) => {
             return res.status(400).json({ error: 'Message is required' });
         }
 
-        // Call the Gemini API
-        const response = await ai.models.generateContent({
-            model: 'gemini-2.5-flash',
-            contents: userMessage,
-            config: {
-                systemInstruction: SYSTEM_INSTRUCTIONS,
-                // Optional: Set temperature to 0 for more factual, less creative answers based ONLY on the prompt
+        // Call the Pollinations AI API (free, no API key, OpenAI-compatible)
+        const response = await fetch('https://text.pollinations.ai/openai', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+                model: 'openai',
+                messages: [
+                    { role: 'system', content: SYSTEM_INSTRUCTIONS },
+                    { role: 'user', content: userMessage }
+                ],
                 temperature: 0.1
-            }
+            })
         });
 
+        if (!response.ok) {
+            throw new Error(`Pollinations API error: ${response.status}`);
+        }
+
+        const data = await response.json();
+        const answer = data.choices[0].message.content;
+
         // Send the AI's answer back to the frontend
-        res.json({ answer: response.text });
+        res.json({ answer });
 
     } catch (error) {
-        console.error('Error calling Gemini API:', error);
+        console.error('Error calling Pollinations AI:', error);
         res.status(500).json({ error: 'Failed to communicate with AI' });
     }
 });
