@@ -216,7 +216,10 @@ app.post('/api/chat', async (req, res) => {
             return res.status(400).json({ error: 'Message is required' });
         }
 
-        // Call the Pollinations AI API (free, no API key, OpenAI-compatible)
+        // Add timeout with AbortController (e.g., 60 seconds)
+        const controller = new AbortController();
+        const timeoutId = setTimeout(() => controller.abort(), 60000); // 60 seconds
+
         const response = await fetch('https://text.pollinations.ai/openai', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
@@ -227,8 +230,11 @@ app.post('/api/chat', async (req, res) => {
                     { role: 'user', content: userMessage }
                 ],
                 temperature: 0.1
-            })
+            }),
+            signal: controller.signal  // Add this line
         });
+
+        clearTimeout(timeoutId); // Clear timeout if request succeeds
 
         if (!response.ok) {
             throw new Error(`Pollinations API error: ${response.status}`);
