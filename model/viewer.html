@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Private 3D Model Viewer — caravel-v1.fbx</title>
+  <title>Private 3D Model Viewer — caravel-cabral.fbx</title>
 
   <!--
     FIX SUMMARY (FBXLoader constructor not available):
@@ -41,12 +41,12 @@
   <div id="app">
     <header>
       <strong>Private 3D Viewer</strong>
-      <small>(locked to <code>caravel-v1.fbx</code>)</small>
+      <small>(locked to <code>caravel-cabral.fbx</code>)</small>
       <div style="margin-left:auto;color:#9cf; font-size:13px">Do not share this page URL</div>
     </header>
 
     <div id="viewer">
-      <div class="meta">Model: <strong>caravel-v1.fbx</strong></div>
+      <div class="meta">Model: <strong>caravel-cabral.fbx</strong></div>
       <div id="controlsWarn" class="warn" style="display:none">OrbitControls unavailable — keyboard rotate enabled</div>
     </div>
   </div>
@@ -65,7 +65,7 @@
   import { OrbitControls } from 'https://unpkg.com/three@0.153.0/examples/jsm/controls/OrbitControls.js';
   import { FBXLoader } from 'https://unpkg.com/three@0.153.0/examples/jsm/loaders/FBXLoader.js';
 
-  const MODEL_PATH = './caravel-v1.fbx';
+  const MODEL_PATH = './Caravel.fbx';
 
   function showFatal(msg) {
     const v = document.getElementById('viewer');
