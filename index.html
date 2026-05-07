@@ -81,8 +81,8 @@
     </div>
   </div>
 
-  <!-- 3D Canvas (fixed background) -->
-  <canvas id="car-canvas"></canvas>
+  <!-- 3D Canvas (fixed background) - hidden -->
+  <canvas id="car-canvas" style="display:none;"></canvas>
 
   <!-- Shared Header -->
   <script src="js/header.js"></script>
@@ -106,7 +106,56 @@
       </div>
     </section>
 
-    <!-- Section 1: Team -->
+    <!-- Section 1: News -->
+    <section class="scroll-section news-section" id="section-news" aria-labelledby="news-main-title">
+      <div class="section-content">
+        <h2 id="news-main-title" class="section-title news-main-title" data-i18n="news.main_title">NOTÍCIAS / NEWS</h2>
+        
+        <!-- News Article 1: 05/05/2026 - Bake Sale (Most Recent) -->
+        <article class="news-item">
+          <div class="news-date" data-i18n="news.date_0505">05/05/2026</div>
+          <h3 class="news-headline" data-i18n="news.headline_0505">Bake Sale Fundraiser</h3>
+          <div class="news-gallery news-gallery-4">
+            <img src="images/bolo1.jpeg" alt="Bake Sale 1" class="news-img">
+            <img src="images/bolo2.jpeg" alt="Bake Sale 2" class="news-img">
+            <img src="images/bolo3.jpg" alt="Bake Sale 3" class="news-img">
+            <img src="images/bolo4.jpg" alt="Bake Sale 4" class="news-img">
+          </div>
+          <p class="news-text" data-i18n="news.text_0505">
+            We successfully organized a bake sale at school featuring a variety of snacks, sweets, drinks, and our special Dubai-style chocolate crepe. This initiative helped us raise funds for the development of our project while also increasing engagement with the school community and promoting Caravel Racing.
+          </p>
+        </article>
+
+        <!-- News Article 2: 25/04/2026 - Beach Cleanup -->
+        <article class="news-item">
+          <div class="news-date" data-i18n="news.date_2504">25/04/2026</div>
+          <h3 class="news-headline" data-i18n="news.headline_2504">Beach Cleanup at Zebreiros</h3>
+          <div class="news-gallery news-gallery-4">
+            <img src="images/square1.jpg" alt="Beach Cleanup 1" class="news-img">
+            <img src="images/square2.jpg" alt="Beach Cleanup 2" class="news-img">
+            <img src="images/square3.jpg" alt="Beach Cleanup 3" class="news-img">
+            <img src="images/square4.jpg" alt="Beach Cleanup 4" class="news-img">
+          </div>
+          <p class="news-text" data-i18n="news.text_2504">
+            Yesterday, we carried out a beach cleanup at Zebreiros river beach. We spent some time collecting litter scattered along the sand and near the waterline, mainly plastics, packaging, and small waste items that tend to accumulate and get carried by the wind and water. Although it is a simple action, its impact is real and immediately visible in the space. More than just cleaning, this activity is part of our commitment to sustainability within the project. STEM Racing is not only about engineering and speed — it is also about responsibility, environmental impact, and awareness of the world around us. The activity took place on a weekend when the 25th of April was commemorated, Portugal's Freedom Day 🇵🇹, a date that also reminds us of the importance of acting responsibly and contributing actively to our community.
+          </p>
+        </article>
+
+        <!-- News Article 3: 14/04/2026 - Regional Competition (Oldest) -->
+        <article class="news-item">
+          <div class="news-date" data-i18n="news.date_1404">14/04/2026</div>
+          <h3 class="news-headline" data-i18n="news.headline_1404">1st Place at Regional STEM Racing Competition!</h3>
+          <div class="news-gallery">
+            <img src="images/regional1place.jpg" alt="Regional Competition 1st Place" class="news-img news-img-single">
+          </div>
+          <p class="news-text" data-i18n="news.text_1404">
+            On April 14th, the Caravel Racing team from Colégio Paulo VI participated with enormous pride in the STEM Racing competition and the results speak for themselves! 🥇 The team conquered: • 1st place on the podium • Fastest Car • Engineering Award (CATIM) This competition challenges participants to develop a miniature F1 car, combined with creating a business model, promoting a true integration of skills across various areas. "This project requires a fusion of diverse skills such as engineering, management, and marketing, making it an enriching experience. After 5 months of hard work, at the Porto regional final, with much dedication, we achieved our goal: to win!" — The Caravel Racing Team. After this brilliant achievement, the team qualified for the national phase and is more motivated than ever for the next challenges!
+          </p>
+        </article>
+      </div>
+    </section>
+
+    <!-- Section 2: Team -->
     <section class="scroll-section" id="section-team">
       <div class="section-content section-split">
         <h2 class="section-title from-left" data-i18n="team.title">TEAM</h2>
@@ -117,7 +166,7 @@
       </div>
     </section>
 
-    <!-- Section 2: Objectives -->
+    <!-- Section 3: Objectives -->
     <section class="scroll-section" id="section-objectives">
       <div class="section-content section-split">
         <h2 class="section-title from-right" data-i18n="objectives.title">OBJECTIVES</h2>
@@ -125,28 +174,6 @@
           Participate in the 2025/26 season — master the regulations, minimize drag and friction, and compete at a
           regional and national level.
         </p>
-      </div>
-    </section>
-
-    <!-- Section 3: News -->
-    <section class="scroll-section" id="section-news">
-      <div class="section-content">
-        <div class="news-card">
-          <h2 class="news-title" data-i18n="news.title">NEWS</h2>
-          <div class="news-body">
-            <div class="news-image-wrap">
-              <img src="images/areus.png" alt="News" class="news-image">
-            </div>
-            <div class="news-text-wrap">
-              <h3 class="news-announcement" data-i18n="news.announcement">New Sponsor: Areus</h3>
-              <p class="news-description" data-i18n="news.description">
-                We are proud to announce Areus as our newest sponsor, supporting us in our journey through the STEM
-                Racing competition.
-              </p>
-              <p class="news-greeting" data-i18n="news.greeting">Thank you for supporting Caravel Racing!</p>
-            </div>
-          </div>
-        </div>
       </div>
     </section>
 
@@ -209,6 +236,9 @@
         <a href="https://ricardobarbosa.pt/" target="_blank" rel="noopener noreferrer" aria-label="Sponsor Eight">
           <img src="images/ricardo&barbosa.png" alt="ricardo&barbosa">
         </a>
+        <a href="https://invicta3d.pt/" target="_blank" rel="noopener noreferrer" aria-label="Sponsor Nine">
+          <img src="images/invicta3d.png" alt="invicta3d">
+        </a>
         
       </div>
 
@@ -253,3 +283,4 @@
 <script type="module" src="js/scrollscene.js"></script>
 
 </html>
+

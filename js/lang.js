@@ -50,10 +50,20 @@
         text: "Participate in the 2025/26 season \u2014 master the regulations, minimize drag and friction, and compete at a regional and national level."
       },
       news: {
+        main_title: "NOTÍCIAS / NEWS",
         title: "NEWS",
         announcement: "New Sponsor: Areus",
         description: "We are proud to announce Areus as our newest sponsor, supporting us in our journey through the STEM Racing competition.",
-        greeting: "Thank you for supporting Caravel Racing!"
+        greeting: "Thank you for supporting Caravel Racing!",
+        date_0505: "05/05/2026",
+        headline_0505: "Bake Sale Fundraiser",
+        text_0505: "We successfully organized a bake sale at school featuring a variety of snacks, sweets, drinks, and our special Dubai-style chocolate crepe. This initiative helped us raise funds for the development of our project while also increasing engagement with the school community and promoting Caravel Racing.",
+        date_2504: "25/04/2026",
+        headline_2504: "Beach Cleanup at Zebreiros",
+        text_2504: "Yesterday, we carried out a beach cleanup at Zebreiros river beach. We spent some time collecting litter scattered along the sand and near the waterline, mainly plastics, packaging, and small waste items that tend to accumulate and get carried by the wind and water. Although it is a simple action, its impact is real and immediately visible in the space. More than just cleaning, this activity is part of our commitment to sustainability within the project. STEM Racing is not only about engineering and speed — it is also about responsibility, environmental impact, and awareness of the world around us. The activity took place on a weekend when the 25th of April was commemorated, Portugal's Freedom Day 🇵🇹, a date that also reminds us of the importance of acting responsibly and contributing actively to our community.",
+        date_1404: "14/04/2026",
+        headline_1404: "1st Place at Regional STEM Racing Competition!",
+        text_1404: "On April 14th, the Caravel Racing team from Colégio Paulo VI participated with enormous pride in the STEM Racing competition and the results speak for themselves! 🥇 The team conquered: • 1st place on the podium • Fastest Car • Engineering Award (CATIM) This competition challenges participants to develop a miniature F1 car, combined with creating a business model, promoting a true integration of skills across various areas. \"This project requires a fusion of diverse skills such as engineering, management, and marketing, making it an enriching experience. After 5 months of hard work, at the Porto regional final, with much dedication, we achieved our goal: to win!\" — The Caravel Racing Team. After this brilliant achievement, the team qualified for the national phase and is more motivated than ever for the next challenges!"
       },
       footer: {
         copy: "© Caravel Racing — Portugal",
@@ -247,10 +257,20 @@
         text: "Participar na época 2025/26 \u2014 dominar os regulamentos, minimizar o arrasto e o atrito, e competir a nível regional e nacional."
       },
       news: {
+        main_title: "NOTÍCIAS / NEWS",
         title: "NOT\u00CDCIAS",
         announcement: "Novo Patrocinador: Areus",
         description: "Temos o orgulho de anunciar a Areus como nosso mais recente patrocinador, apoiando-nos na jornada da competição STEM Racing.",
-        greeting: "Obrigado por apoiarem a Caravel Racing!"
+        greeting: "Obrigado por apoiarem a Caravel Racing!",
+        date_0505: "05/05/2026",
+        headline_0505: "Venda de Bolos - Angariação de Fundos",
+        text_0505: "Organizámos com sucesso uma venda de bolos na escola com uma variedade de snacks, doces, bebidas e a nossa especial crepe de chocolate estilo Dubai. Esta iniciativa ajudou-nos a angariar fundos para o desenvolvimento do nosso projeto, aumentando também o envolvimento com a comunidade escolar e promovendo a Caravel Racing.",
+        date_2504: "25/04/2026",
+        headline_2504: "Limpeza de Praia em Zebreiros",
+        text_2504: "Ontem, realizámos uma limpeza de praia na praia fluvial de Zebreiros. Passámos algum tempo a recolher lixo espalhado ao longo da areia e junto à linha de água, principalmente plásticos, embalagens e pequenos resíduos que tendem a acumular-se e ser transportados pelo vento e pela água. Embora seja uma ação simples, o seu impacto é real e imediatamente visível no espaço. Mais do que limpar, esta atividade faz parte do nosso compromisso com a sustentabilidade dentro do projeto. O STEM Racing não é apenas sobre engenharia e velocidade — é também sobre responsabilidade, impacto ambiental e consciência do mundo à nossa volta. A atividade decorreu num fim de semana em que se comemorou o 25 de Abril, Dia da Liberdade de Portugal 🇵🇹, uma data que também nos lembra da importância de agir de forma responsável e contribuir ativamente para a nossa comunidade.",
+        date_1404: "14/04/2026",
+        headline_1404: "1º Lugar na Competição Regional STEM Racing!",
+        text_1404: "No dia 14 de abril, a equipa Caravel Racing, do Colégio Paulo VI, participou com enorme orgulho na competição STEM Racing e os resultados falam por si! 🥇A equipa conquistou: • 1.º lugar do pódio • Carro Mais Rápido • Prémio de Engenharia (CATIM) Esta competição desafia os participantes a desenvolver um carro miniatura de Fórmula 1, aliado à criação de um modelo de negócio, promovendo uma verdadeira integração de competências em diversas áreas. \"Este projeto requer uma fusão de diversas competências como engenharia, gestão e marketing, tornando-se numa experiência enriquecedora. Após 5 meses de trabalho árduo, na final regional do Porto, com muita dedicação, alcançámos o nosso objetivo: vencer!\" A equipa Caravel Racing. Após esta brilhante conquista, a equipa foi apurada para a fase nacional e está mais motivada do que nunca para os próximos desafios!"
       },
       footer: {
         copy: "© Caravel Racing — Portugal",

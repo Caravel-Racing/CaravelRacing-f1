@@ -25,9 +25,9 @@ body {
 body {
   font-family: system-ui, -apple-system, Segoe UI, Roboto, 'Helvetica Neue', Arial;
   line-height: 1.45;
-  color: #ffffff;
+  color: #333333;
   margin: 0;
-  background-color: #0a0a0a;
+  background-color: #ffffff;
   display: flex;
   flex-direction: column;
   min-height: 100vh;
@@ -47,7 +47,7 @@ body {
 
 .site-header {
   background-color: #000000;
-  color: #ffffff;
+  color: #333333;
   position: sticky;
   width: 100%;
   overflow: visible;
@@ -860,7 +860,7 @@ html.mobile-menu-open .mobile-nav::before {
   /* larger to match 250px photo */
   margin: 0 0 .6rem;
   line-height: 1.5;
-  color: #ffffff;
+  color: #333333;
   font-family: "GreatsRaceItalic";
   font-weight: 400;
   position: relative;
@@ -890,7 +890,7 @@ html.mobile-menu-open .mobile-nav::before {
   margin: 0.5rem;
   font-size: 1.0rem;
   /* increase for readability */
-  color: #ffffff;
+  color: #333333;
 }
 
 
@@ -933,3 +933,4 @@ html.mobile-menu-open .mobile-nav::before {
     font-size: 0.95rem;
   }
 }
+
