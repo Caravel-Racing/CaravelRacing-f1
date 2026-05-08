@@ -82,7 +82,7 @@ body {
   cursor: pointer;
   font: inherit;
   padding: .25rem .5rem;
-  color: inherit;
+  color: #ffffff;
 }
 
 /* Menu hidden by default */
@@ -107,13 +107,13 @@ body {
   display: block;
   padding: .6rem .9rem;
   text-decoration: none;
-  color: #222;
+  color: #fff;
   white-space: nowrap;
 }
 
 .dropdown-menu a:hover,
 .dropdown-menu a:focus {
-  background: rgba(0, 0, 0, .04);
+  background: rgba(255, 255, 255, .1);
 }
 
 /* Show on hover of the whole container (keeps shown while mouse is over the menu) */
@@ -860,7 +860,7 @@ html.mobile-menu-open .mobile-nav::before {
   /* larger to match 250px photo */
   margin: 0 0 .6rem;
   line-height: 1.5;
-  color: #333333;
+  color: #ffffff;
   font-family: "GreatsRaceItalic";
   font-weight: 400;
   position: relative;
@@ -890,7 +890,7 @@ html.mobile-menu-open .mobile-nav::before {
   margin: 0.5rem;
   font-size: 1.0rem;
   /* increase for readability */
-  color: #333333;
+  color: #ffffff;
 }
 
 

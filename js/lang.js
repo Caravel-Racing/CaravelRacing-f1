@@ -6,7 +6,7 @@
       meta: {
         title: "Caravel Racing",
         description: "Caravel Racing — STEM Racing team 2025/26. Projects, members and results.",
-        title: "Official homepage of Caravel Racing Team",
+        subtitle: "🏆 1st Place — Porto Regional Finals 2025/26<br><span class='hero-subtitle-highlight'>Qualified for National Championship</span>",
         button1: "View Projects",
         button2: "About the Team"
       },
@@ -50,7 +50,7 @@
         text: "Participate in the 2025/26 season \u2014 master the regulations, minimize drag and friction, and compete at a regional and national level."
       },
       news: {
-        main_title: "NOTÍCIAS / NEWS",
+        main_title: "News",
         title: "NEWS",
         announcement: "New Sponsor: Areus",
         description: "We are proud to announce Areus as our newest sponsor, supporting us in our journey through the STEM Racing competition.",
@@ -211,7 +211,7 @@
       meta: {
         title: "Caravel Racing",
         description: "Caravel Racing — Equipa inscrita na competição STEM Racing 2025/26. Projetos, membros e resultados.",
-        title: "Página oficial da Equipa Caravel Racing",
+        subtitle: "🏆 1º Lugar — Finais Regionais do Porto 2025/26<br><span class='hero-subtitle-highlight'>Apurados para o Campeonato Nacional</span>",
         button1: "Ver Projetos",
         button2: "Sobre a Equipa"
       },
@@ -257,7 +257,7 @@
         text: "Participar na época 2025/26 \u2014 dominar os regulamentos, minimizar o arrasto e o atrito, e competir a nível regional e nacional."
       },
       news: {
-        main_title: "NOTÍCIAS / NEWS",
+        main_title: "Notícias",
         title: "NOT\u00CDCIAS",
         announcement: "Novo Patrocinador: Areus",
         description: "Temos o orgulho de anunciar a Areus como nosso mais recente patrocinador, apoiando-nos na jornada da competição STEM Racing.",
