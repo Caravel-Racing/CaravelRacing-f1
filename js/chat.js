@@ -107,8 +107,28 @@ document.addEventListener('DOMContentLoaded', () => {
             removeTypingIndicator();
 
             if (response.ok) {
-                const data = await response.json();
-                appendMessage('bot', data.answer);
+                // Create the bot message bubble in advance to stream text into
+                const messageDiv = document.createElement('div');
+                messageDiv.classList.add('chat-message', 'bot-message');
+                const bubbleDiv = document.createElement('div');
+                bubbleDiv.classList.add('message-bubble');
+                messageDiv.appendChild(bubbleDiv);
+                chatBox.appendChild(messageDiv);
+                chatBox.scrollTop = chatBox.scrollHeight;
+
+                const reader = response.body.getReader();
+                const decoder = new TextDecoder();
+                let fullText = "";
+
+                while (true) {
+                    const { done, value } = await reader.read();
+                    if (done) break;
+
+                    const chunk = decoder.decode(value, { stream: true });
+                    fullText += chunk;
+                    bubbleDiv.innerHTML = formatMarkdown(fullText);
+                    chatBox.scrollTop = chatBox.scrollHeight;
+                }
             } else {
                 appendMessage('bot', 'Sorry, I am having trouble connecting to the server. Is the backend running?');
             }

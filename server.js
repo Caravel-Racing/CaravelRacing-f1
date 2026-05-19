@@ -171,7 +171,12 @@ Facts:
 `;
 
 
-// Route to handle chat messages
+// Health check endpoint for UptimeRobot to prevent Render cold starts
+app.get('/health', (req, res) => {
+    res.json({ status: 'ok', timestamp: new Date() });
+});
+
+// Route to handle chat messages (streaming)
 app.post('/api/chat', async (req, res) => {
     try {
         const userMessage = req.body.message;
@@ -179,6 +184,12 @@ app.post('/api/chat', async (req, res) => {
         if (!userMessage) {
             return res.status(400).json({ error: 'Message is required' });
         }
+
+        // Set headers for chunked streaming
+        res.setHeader('Content-Type', 'text/plain; charset=utf-8');
+        res.setHeader('Transfer-Encoding', 'chunked');
+        res.setHeader('Cache-Control', 'no-cache');
+        res.setHeader('Connection', 'keep-alive');
 
         // Add timeout with AbortController (e.g., 60 seconds)
         const controller = new AbortController();
@@ -193,9 +204,10 @@ app.post('/api/chat', async (req, res) => {
                     { role: 'system', content: SYSTEM_INSTRUCTIONS },
                     { role: 'user', content: userMessage }
                 ],
-                temperature: 0.1
+                temperature: 0.1,
+                stream: true // Enable streaming
             }),
-            signal: controller.signal  // Add this line
+            signal: controller.signal
         });
 
         clearTimeout(timeoutId); // Clear timeout if request succeeds
@@ -204,15 +216,46 @@ app.post('/api/chat', async (req, res) => {
             throw new Error(`Pollinations API error: ${response.status}`);
         }
 
-        const data = await response.json();
-        const answer = data.choices[0].message.content;
+        const reader = response.body.getReader();
+        const decoder = new TextDecoder();
+        let buffer = '';
 
-        // Send the AI's answer back to the frontend
-        res.json({ answer });
+        while (true) {
+            const { done, value } = await reader.read();
+            if (done) break;
+
+            const chunk = decoder.decode(value, { stream: true });
+            buffer += chunk;
+
+            const lines = buffer.split('\n');
+            buffer = lines.pop(); // keep last incomplete line in buffer
+
+            for (const line of lines) {
+                if (line.startsWith('data: ')) {
+                    const dataStr = line.slice(6).trim();
+                    if (dataStr === '[DONE]') continue;
+                    try {
+                        const parsed = JSON.parse(dataStr);
+                        const content = parsed.choices[0]?.delta?.content || "";
+                        if (content) {
+                            res.write(content);
+                        }
+                    } catch (e) {
+                        // ignore JSON parsing errors for incomplete lines
+                    }
+                }
+            }
+        }
+
+        res.end();
 
     } catch (error) {
         console.error('Error calling Pollinations AI:', error);
-        res.status(500).json({ error: 'Failed to communicate with AI' });
+        if (!res.headersSent) {
+            res.status(500).json({ error: 'Failed to communicate with AI' });
+        } else {
+            res.end();
+        }
     }
 });
 
